@@ -5,12 +5,12 @@ public class Producto {
     private int idProducto;
     private String nombre;
     private int cantidad;
-    private boolean precio;
+    private double precio;
 
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, int cantidad, boolean precio) {
+    public Producto(int idProducto, String nombre, int cantidad, double precio) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -41,11 +41,11 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public boolean isPrecio() {
+    public double isPrecio() {
         return precio;
     }
 
-    public void setPrecio(boolean precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
