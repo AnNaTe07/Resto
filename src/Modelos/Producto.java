@@ -1,10 +1,6 @@
 
 package Modelos;
 
-/**
- *
- * @author Best smite LAS
- */
 public class Producto {
     private int idProducto;
     private String nombre;

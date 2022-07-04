@@ -6,15 +6,6 @@ import java.util.HashSet;
 
 public class Mesa {
     
-    
-package Modelos;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-
-
-public class Mesa {
-    
     private int idMesa; 
     private Reserva reserva;
     private int capacidad;
@@ -86,7 +77,9 @@ public class Mesa {
     public void setListaProducto(HashSet<Producto> listaProducto) {
         this.listaProducto = listaProducto;
     }
-    
-    
-    
 }
+
+    
+    
+    
+
