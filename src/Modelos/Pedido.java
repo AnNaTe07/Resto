@@ -62,6 +62,10 @@ public class Pedido {
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ID de pedido: "+ idPedido + "Subtotal: " +subTotal ;
+    }
     
 }
