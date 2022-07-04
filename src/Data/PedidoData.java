@@ -8,6 +8,6 @@ package Data;
  *
  * @author Samir
  */
-public class ProductoData {
+public class PedidoData {
     
 }
