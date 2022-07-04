@@ -8,6 +8,19 @@ package Data;
  *
  * @author Samir
  */
+
+import Modelos.Pedido;
+import java.sql.*;
+import java.util.*;
+
+
 public class PedidoData {
     
+    
+    private Connection con = null;
+    
+    public PedidoData (Conexion conex){
+        
+        
+    }
 }
