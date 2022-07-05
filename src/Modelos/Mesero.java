@@ -1,41 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelos;
 
 import java.util.List;
 
-/**
- *
- * @author duvar
- */
 public class Mesero {
     private int idMesero;
     private String nombre;
     private String apellido;
-    private Long dni;
-    private List<Pedido> listaPedidos;
+    private int dni;
+    //private List<Pedido> listaPedidos;
 
     
     //Constructores
     public Mesero() {
     }
 
-    public Mesero(String nombre, String apellido, Long dni, List<Pedido> listaPedidos) {
+    public Mesero(String nombre, String apellido, int dni/*, List<Pedido> listaPedidos*/) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.listaPedidos = listaPedidos;
+        //this.listaPedidos = listaPedidos;
     }
 
-    public Mesero(int idMesero, String nombre, String apellido, Long dni, List<Pedido> listaPedidos) {
+    public Mesero(int idMesero, String nombre, String apellido, int dni/*, List<Pedido> listaPedidos*/) {
         this.idMesero = idMesero;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.listaPedidos = listaPedidos;
+        //this.listaPedidos = listaPedidos;
     }
     
     //Getters y Setters
@@ -64,21 +56,27 @@ public class Mesero {
         this.apellido = apellido;
     }
 
-    public Long getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
-    public List<Pedido> getListaPedidos() {
-        return listaPedidos;
-    }
+//    public List<Pedido> getListaPedidos() {
+//        return listaPedidos;
+//    }
+//
+//    public void setListaPedidos(List<Pedido> listaPedidos) {
+//        this.listaPedidos = listaPedidos;
+//    }
 
-    public void setListaPedidos(List<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
+    @Override
+    public String toString() {
+        return "Mesero{" + "idMesero=" + idMesero + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
     }
+    
     
     
     

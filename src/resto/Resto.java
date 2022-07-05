@@ -1,8 +1,12 @@
 package resto;
 
 import Data.Conexion;
+import Data.MeseroData;
 import Data.ProductoData;
+import Modelos.Mesero;
+import Modelos.Pedido;
 import Modelos.Producto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.scripts.JO;
 
@@ -32,6 +36,18 @@ public class Resto {
 //        }
 
           
+
+        //Mesero
+//        MeseroData md = new MeseroData(conexion);
+//        Mesero mesero = new Mesero("Luciano", "Cejas", 321331);
+//        md.agregarMesero(mesero);
+//        Mesero mesero = md.buscarMesero(6);
+//        md.borrarMesero(mesero);
+//        ArrayList<Mesero> listaMeseros = md.obtenerMeseros();
+//        for (Mesero listaMesero : listaMeseros) {
+//            System.out.println(listaMesero);
+//        }
+        
     }
 
 }
