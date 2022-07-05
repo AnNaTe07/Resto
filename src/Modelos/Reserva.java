@@ -1,29 +1,40 @@
 
 package Modelos;
 
+import java.sql.Time;
 import java.util.Date;
 
-/**
- *
- * @author Best smite LAS
- */
 public class Reserva {
     private int idReserva;
-    private int cliente;
-    private Date fechaYhora;
+    private String nombre;
+    private int dni;
+    private Date fecha;
+    private Time hora;
     private int idMesa;
-    private boolean reserva;
+    private boolean activo;
 
     public Reserva() {
     }
 
-    public Reserva(int idReserva, int cliente, Date fechaYhora, int idMesa, boolean reserva) {
-        this.idReserva = idReserva;
-        this.cliente = cliente;
-        this.fechaYhora = fechaYhora;
+    public Reserva( String nombre, int dni, Date fecha, Time hora, int idMesa, boolean activo) {
+     
+        this.nombre = nombre;
+        this.dni = dni;
+        this.fecha = fecha;
+        this.hora = hora;
         this.idMesa = idMesa;
-        this.reserva = reserva;
+        this.activo = activo;
     }
+
+    public Reserva(int idReserva, String nombre, int dni, Date fecha, Time hora, int idMesa, boolean activo) {
+        this.idReserva = idReserva;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.idMesa = idMesa;
+        this.activo = activo;
+    } 
 
     public int getIdReserva() {
         return idReserva;
@@ -33,41 +44,58 @@ public class Reserva {
         this.idReserva = idReserva;
     }
 
-    public int getCliente() {
-        return cliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCliente(int cliente) {
-        this.cliente = cliente;
+    public int getDni() {
+        return dni;
     }
 
-    public Date getFechaYhora() {
-        return fechaYhora;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaYhora(Date fechaYhora) {
-        this.fechaYhora = fechaYhora;
+    public Time getHora() {
+        return hora;
     }
 
     public int getIdMesa() {
         return idMesa;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+
     public void setIdMesa(int idMesa) {
         this.idMesa = idMesa;
     }
 
-    public boolean isReserva() {
-        return reserva;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
-    public void setReserva(boolean reserva) {
-        this.reserva = reserva;
-    }
-
+ 
     @Override
     public String toString() {
-        return "Reserva{" + "idReserva=" + idReserva + ", cliente=" + cliente + ", fechaYhora=" + fechaYhora + ", idMesa=" + idMesa + ", reserva=" + reserva + '}';
+        return "Reserva \nMesa n°=" + idMesa+ "\n Cliente=" + nombre +" \nDni:"+dni+ "\nFecha Y hora=" + fecha + ", "+hora+"hs";
     }
     
     
