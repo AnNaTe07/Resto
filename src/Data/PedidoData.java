@@ -52,12 +52,13 @@ public class PedidoData {
     }
 
 // QUITA UN PEDIDO
-    public boolean quitarPedido(Producto prod) {
+    public boolean quitarPedido(Pedido ped) {
         boolean check = false;
         String sql = "DELET FROM pedido WHERE idPedido = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, ped.getIdPedido());
             if (ps.executeUpdate() != 0) {
 
                 check = true;
