@@ -28,13 +28,13 @@ public class PedidoData {
         boolean check = true;
         String sql = "INSERT INTO pedido(idPedido, idMesa, idMesero, idProductos, subtotal) VALUES ('?','?','?','?','?') ";
         try {       
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);          
             for (Producto producto : ped.getListaProducto()) {            
                 ps.setInt(1, ped.getIdPedido());
                 ps.setInt(2, ped.getMesa().getIdMesa());
                 ps.setInt(3, ped.getMozo().getIdMesero());
                 ps.setInt(4, producto.getIdProducto());          
-                ps.setDouble(5, producto.isPrecio());
+                ps.setDouble(5, producto.getPrecio());
 //                ps.setDate(6, ped.getHorario());
                 ps.executeUpdate();
             }
