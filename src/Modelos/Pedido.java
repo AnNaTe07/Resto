@@ -5,6 +5,8 @@
 package Modelos;
 
 import java.util.*;
+import java.sql.*;
+import java.time.*;
 
 /**
  *
@@ -15,23 +17,54 @@ public class Pedido {
     private int idPedido;
     private HashSet <Producto> listaProducto;
     private Mesa mesa;
+    private Mesero mozo;
     private double subTotal;
+    private Time horario;
 
     public Pedido() {
     }
 
-    public Pedido(HashSet<Producto> listaProducto, Mesa mesa, double subTotal) {
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+
+ 
+    public void setHorario(Time horario) {
+       
+    }
+
+    public Time getHorario() {
+       return Time.valueOf(LocalTime.now());
+    }
+
+  
+
+    public Pedido(HashSet<Producto> listaProducto, Mesa mesa, double subTotal, Time horario, Mesero mozo) {
         this.listaProducto = listaProducto;
         this.mesa = mesa;
         this.subTotal = subTotal;
+        this.horario = horario;
+        this.mozo = mozo;
+       
+    }
+
+    public Mesero getMozo() {
+        return mozo;
+    }
+
+    public void setMozo(Mesero mozo) {
+        this.mozo = mozo;
     }
 
    
-    public Pedido(int idPedido , HashSet<Producto> listaProducto, Mesa mesa, double subTotal) {
+    public Pedido(int idPedido , HashSet<Producto> listaProducto, Mesa mesa, double subTotal, Time horario, Mesero mozo) {
         this.idPedido = idPedido;
         this.listaProducto = listaProducto;
         this.mesa = mesa;
         this.subTotal = subTotal;
+        this.horario = horario;
+        this.mozo = mozo;
+       
     }
 
     public int getIdPedido() {
@@ -43,8 +76,8 @@ public class Pedido {
         return listaProducto;
     }
 
-    public void setListaProducto(HashSet<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
+    public void setListaProducto(Producto listaProducto) {
+        this.listaProducto.add(listaProducto);
     }
 
     public Mesa getMesa() {
