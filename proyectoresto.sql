@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2022 a las 04:51:47
+-- Tiempo de generación: 06-07-2022 a las 05:13:50
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -46,16 +46,6 @@ CREATE TABLE `mesa` (
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `mesa`
---
-
-INSERT INTO `mesa` (`idMesa`, `capacidad`, `estado`) VALUES
-(1, 10, 0),
-(2, 5, 1),
-(3, 10, 0),
-(5, 5, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -94,16 +84,6 @@ CREATE TABLE `pedido` (
   `fecha` date NOT NULL DEFAULT current_timestamp(),
   `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`idPedido`, `idMesa`, `idMesero`, `activo`, `cobrado`, `fecha`, `hora`) VALUES
-(1, 1, 2, 1, 0, '2022-07-06', '23:39:23'),
-(2, 1, 2, 1, 0, '2022-07-02', '23:40:48'),
-(12, 1, 1, 1, 0, '2022-07-06', '23:48:31'),
-(121, 2, 1, 1, 0, '2022-07-06', '23:49:12');
 
 -- --------------------------------------------------------
 
@@ -170,9 +150,9 @@ ALTER TABLE `mesero`
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`idPedido`) USING BTREE,
-  ADD KEY `idMesa` (`idMesa`),
-  ADD KEY `idMesero` (`idMesero`) USING BTREE;
+  ADD PRIMARY KEY (`idPedido`),
+  ADD KEY `idMesero` (`idMesero`) USING BTREE,
+  ADD KEY `idMesa` (`idMesa`) USING BTREE;
 
 --
 -- Indices de la tabla `producto`
@@ -212,6 +192,12 @@ ALTER TABLE `mesero`
   MODIFY `idMesero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -235,10 +221,10 @@ ALTER TABLE `detalle`
   ADD CONSTRAINT `detalle_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 
 --
--- Filtros para la tabla `pedido`
+-- Filtros para la tabla `mesa`
 --
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idMesa`) REFERENCES `mesa` (`idMesa`);
+ALTER TABLE `mesa`
+  ADD CONSTRAINT `mesa_ibfk_1` FOREIGN KEY (`idMesa`) REFERENCES `pedido` (`idMesa`);
 
 --
 -- Filtros para la tabla `reserva`
