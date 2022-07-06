@@ -4,7 +4,7 @@
  */
 package Modelos;
 
-import java.util.*;
+import java.util.Date;
 import java.sql.*;
 import java.time.*;
 
@@ -15,69 +15,41 @@ import java.time.*;
 public class Pedido {
     
     private int idPedido;
-    private HashSet <Producto> listaProducto;
     private Mesa mesa;
     private Mesero mozo;
+    private boolean cobrado;
     private double subTotal;
+    private Date fecha;
     private Time horario;
 
     public Pedido() {
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
-
- 
-    public void setHorario(Time horario) {
-       
-    }
-
-    public Time getHorario() {
-       return Time.valueOf(LocalTime.now());
-    }
-
-  
-
-    public Pedido(HashSet<Producto> listaProducto, Mesa mesa, double subTotal, Time horario, Mesero mozo) {
-        this.listaProducto = listaProducto;
+    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, Date fecha, Time horario) {
         this.mesa = mesa;
+        this.mozo = mozo;
+        this.cobrado = cobrado;
         this.subTotal = subTotal;
+        this.fecha = fecha;
         this.horario = horario;
-        this.mozo = mozo;
-       
     }
 
-    public Mesero getMozo() {
-        return mozo;
-    }
-
-    public void setMozo(Mesero mozo) {
-        this.mozo = mozo;
-    }
-
-   
-    public Pedido(int idPedido , HashSet<Producto> listaProducto, Mesa mesa, double subTotal, Time horario, Mesero mozo) {
+    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, Date fecha, Time horario) {
         this.idPedido = idPedido;
-        this.listaProducto = listaProducto;
         this.mesa = mesa;
-        this.subTotal = subTotal;
-        this.horario = horario;
         this.mozo = mozo;
-       
+        this.cobrado = cobrado;
+        this.subTotal = subTotal;
+        this.fecha = fecha;
+        this.horario = horario;
     }
 
     public int getIdPedido() {
         return idPedido;
     }
 
-
-    public HashSet<Producto> getListaProducto() {
-        return listaProducto;
-    }
-
-    public void setListaProducto(Producto listaProducto) {
-        this.listaProducto.add(listaProducto);
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
 
     public Mesa getMesa() {
@@ -88,6 +60,22 @@ public class Pedido {
         this.mesa = mesa;
     }
 
+    public Mesero getMozo() {
+        return mozo;
+    }
+
+    public void setMozo(Mesero mozo) {
+        this.mozo = mozo;
+    }
+
+    public boolean isCobrado() {
+        return cobrado;
+    }
+
+    public void setCobrado(boolean cobrado) {
+        this.cobrado = cobrado;
+    }
+
     public double getSubTotal() {
         return subTotal;
     }
@@ -96,10 +84,25 @@ public class Pedido {
         this.subTotal = subTotal;
     }
 
-    @Override
-    public String toString() {
-        return "ID de pedido: "+ idPedido + "Subtotal: " +subTotal ;
+    public Date getFecha() {
+        return fecha;
     }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Time getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Time horario) {
+        this.horario = horario;
+    }
+
+    
+ 
+    
     
     
 }
