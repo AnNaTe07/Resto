@@ -73,14 +73,14 @@ public class DetalleData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, mesa.getIdMesa());
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
                 Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
                 Producto product = new Producto();
-                product = prodData.
+                product = prodData.obtenerProductoXId(0)
                 dped.
             }
         } catch (Exception e) {

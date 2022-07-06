@@ -30,7 +30,7 @@ public class ProductoData {
             ps.setString(1, producto.getNombre());
             ps.setInt(2, producto.getCantidad());
             ps.setDouble(3, producto.getPrecio());
-            
+
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -46,7 +46,7 @@ public class ProductoData {
 
         } catch (SQLException e) {
             if (e instanceof java.sql.SQLIntegrityConstraintViolationException) {
-                exito=false;
+                exito = false;
                 JOptionPane.showMessageDialog(null, "Ya existe un alumno registrado con ese número de dni");
             } else {
 
@@ -152,7 +152,6 @@ public class ProductoData {
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
 
-               
             }
             ps.close();
 
@@ -173,19 +172,18 @@ public class ProductoData {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
+                
                 producto = new Producto();
                 producto.setIdProducto(resultSet.getInt("idProducto"));
                 producto.setNombre(resultSet.getString("nombre"));
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
-
-               
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo obtener los productos");
+            JOptionPane.showMessageDialog(null, "No se pudo obtener el producto");
         }
         return producto;
     }
