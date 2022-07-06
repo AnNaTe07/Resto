@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2022 a las 05:58:48
+-- Tiempo de generación: 06-07-2022 a las 19:41:56
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -31,15 +31,17 @@ CREATE TABLE `detalle` (
   `idDetalle` int(11) NOT NULL,
   `idPedido` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `cantidad` int(11) NOT NULL,
+  `expirado` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `detalle`
 --
 
-INSERT INTO `detalle` (`idDetalle`, `idPedido`, `idProducto`, `cantidad`) VALUES
-(1, 1, 2, 12);
+INSERT INTO `detalle` (`idDetalle`, `idPedido`, `idProducto`, `cantidad`, `expirado`) VALUES
+(1, 1, 2, 12, 0),
+(2, 1, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -194,7 +196,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `mesa`
