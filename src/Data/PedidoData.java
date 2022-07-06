@@ -15,10 +15,14 @@ import javax.swing.JOptionPane;
 public class PedidoData {
 
     private Connection con = null;
-    private int idPed = 0;
+    private int idPed;
+    private double st;
+    
     
     public PedidoData(Conexion conex) {
 
+        idPed = 0 ;
+        st = 0;
         con = conex.getConexion();
 
     }
@@ -35,6 +39,7 @@ public class PedidoData {
                 ps.setInt(3, ped.getMozo().getIdMesero());
                 ps.setInt(4, producto.getIdProducto());          
                 ps.setDouble(5, producto.getPrecio());
+                subTotal(producto.getPrecio());
 //                ps.setDate(6, ped.getHorario());
                 ps.executeUpdate();
             }
@@ -67,7 +72,7 @@ public class PedidoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar el pedido.");
             }
-
+            ps.close();
         } catch (Exception e) {
         }
 
@@ -82,9 +87,28 @@ public class PedidoData {
 // SUBTOTAL
     public double subTotal(double cash){
         
-        
-        
+        st += cash;        
         
         return cash;
+    }
+    
+// TOTAL PEDIDO
+    public double totalPedido(Pedido ped){
+        double ttl = 0 ;
+        String sql = "SELECT subtotal FROM pedido WHERE idPedido = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, ped.getIdPedido());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                ttl += rs.getDouble(5);
+            }
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "No se pudo obtener el total del pedido." );
+        }
+        
+        return ttl;  
     }
 }
