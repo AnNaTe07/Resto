@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2022 a las 05:13:50
+-- Tiempo de generación: 06-07-2022 a las 05:58:48
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -33,6 +33,13 @@ CREATE TABLE `detalle` (
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detalle`
+--
+
+INSERT INTO `detalle` (`idDetalle`, `idPedido`, `idProducto`, `cantidad`) VALUES
+(1, 1, 2, 12);
 
 -- --------------------------------------------------------
 
@@ -85,6 +92,16 @@ CREATE TABLE `pedido` (
   `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`idPedido`, `idMesa`, `idMesero`, `activo`, `cobrado`, `fecha`, `hora`) VALUES
+(1, 1, 1, 1, 0, '2022-07-06', '00:14:34'),
+(2, 1, 1, 0, 0, '2022-07-06', '00:14:34'),
+(3, 3, 1, 1, 0, '2022-07-06', '23:54:44'),
+(4, 3, 1, 1, 0, '2022-07-06', '23:54:44');
+
 -- --------------------------------------------------------
 
 --
@@ -131,7 +148,7 @@ CREATE TABLE `reserva` (
 ALTER TABLE `detalle`
   ADD PRIMARY KEY (`idDetalle`),
   ADD KEY `idPedido` (`idPedido`),
-  ADD KEY `idProducto` (`idProducto`);
+  ADD KEY `detalle_ibfk_2` (`idProducto`);
 
 --
 -- Indices de la tabla `mesa`
@@ -177,7 +194,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `mesa`
@@ -195,7 +212,7 @@ ALTER TABLE `mesero`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -217,8 +234,8 @@ ALTER TABLE `reserva`
 -- Filtros para la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  ADD CONSTRAINT `detalle_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`),
-  ADD CONSTRAINT `detalle_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
+  ADD CONSTRAINT `detalle_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mesa`
