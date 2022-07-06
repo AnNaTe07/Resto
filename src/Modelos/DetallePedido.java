@@ -11,22 +11,22 @@ package Modelos;
 public class DetallePedido {
     
     private int idDetalle;
-    private Pedido ped;
+    private Pedido dped;
     private Producto prod;
     int cant;
 
     public DetallePedido() {
     }
 
-    public DetallePedido(Pedido ped, Producto prod, int cant) {
-        this.ped = ped;
+    public DetallePedido(Pedido dped, Producto prod, int cant) {
+        this.dped = dped;
         this.prod = prod;
         this.cant = cant;
     }
 
-    public DetallePedido(int idDetalle, Pedido ped, Producto prod, int cant) {
+    public DetallePedido(int idDetalle, Pedido dped, Producto prod, int cant) {
         this.idDetalle = idDetalle;
-        this.ped = ped;
+        this.dped = dped;
         this.prod = prod;
         this.cant = cant;
     }
@@ -40,11 +40,11 @@ public class DetallePedido {
     }
 
     public Pedido getPed() {
-        return ped;
+        return dped;
     }
 
     public void setPed(Pedido ped) {
-        this.ped = ped;
+        this.dped = ped;
     }
 
     public Producto getProd() {
