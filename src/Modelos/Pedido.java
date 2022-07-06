@@ -17,6 +17,7 @@ public class Pedido {
     private int idPedido;
     private Mesa mesa;
     private Mesero mozo;
+    private boolean activo;
     private boolean cobrado;
     private double subTotal;
     private Date fecha;
