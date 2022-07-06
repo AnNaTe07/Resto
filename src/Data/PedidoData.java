@@ -27,7 +27,7 @@ public class PedidoData {
     }
 
     // AGREGAR PEDIDO
-    public boolean agregarPedido(Pedido ped) {
+    public boolean cargarPedido(Pedido ped) {
         boolean check = true;
         String sql = "INSERT INTO pedido( idMesa, idMesero, hora) VALUES (?,?,?)";
         try {
@@ -50,25 +50,25 @@ public class PedidoData {
         return check;
     }
 
-    // "CANCELAR" PEDIDO
-    
-    public boolean cancelarPedido (Pedido ped){
-        
-        boolean check = false;
-        String sql = "UPDATE pedido SET activo = 0 WHERE idPedido = ?";
-        
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, ped.getIdPedido());
-            if (ps.executeUpdate() != 0) {
-                check = true;
-            } 
-            ps.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar el pedido");
-        }
-        return check;
-    }
+//    // "CANCELAR" PEDIDO
+//    
+//    public boolean cancelarPedido (Pedido ped){
+//        
+//        boolean check = false;
+//        String sql = "UPDATE pedido SET activo = 0 WHERE idPedido = ?";
+//        
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, ped.getIdPedido());
+//            if (ps.executeUpdate() != 0) {
+//                check = true;
+//            } 
+//            ps.close();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "No se pudo eliminar el pedido");
+//        }
+//        return check;
+//    }
    
     
    //MOSTRAR TODOS LOS PEDIDOS
@@ -101,6 +101,38 @@ public class PedidoData {
        
         return allPed;
         
-        
+    }
+    
+    
+    // OBTENER PEDIDO POR ID
+    
+    public Pedido obtenerPedidoXId(int idPedido){
+        String sql = "SELECT * FROM pedido WHERE idPedido = ?";
+        Pedido pedido = new Pedido();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idPedido);
+            ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                pedido.setIdPedido(idPedido);
+                Mesa ms = new Mesa();
+                Mesero mesero = new Mesero();
+                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
+                mesero = mozo.buscarMesero(rs.getInt("idMesero"));
+                pedido.setMesa(ms);
+                pedido.setMozo(mesero);
+                pedido.setActivo(rs.getBoolean("activo"));
+                pedido.setCobrado(rs.getBoolean("cobrado"));
+                pedido.setFecha(rs.getDate("fecha"));
+                pedido.setHorario(rs.getTime("hora"));
+                ps.close();
+             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
+            
+        }
+       
+        return pedido;
     }
 }

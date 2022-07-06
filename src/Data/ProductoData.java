@@ -137,7 +137,7 @@ public class ProductoData {
     public Producto obtenerProductosXnombre(String nombre) {
         Producto producto = null;
 
-        String sql = "SELECT * FROM producto WHERE nombre = ?";
+        String sql = "SELECT * FROM producto WHERE nombre LIKE ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -162,4 +162,31 @@ public class ProductoData {
         return producto;
     }
 
+    public Producto obtenerProductoXId(int id) {
+        Producto producto = null;
+
+        String sql = "SELECT * FROM producto WHERE idProducto = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                producto = new Producto();
+                producto.setIdProducto(resultSet.getInt("idProducto"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+
+               
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo obtener los productos");
+        }
+        return producto;
+    }
 }
