@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2022 a las 04:46:04
+-- Tiempo de generación: 06-07-2022 a las 04:51:47
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -90,8 +90,8 @@ CREATE TABLE `pedido` (
   `idMesa` int(11) NOT NULL,
   `idMesero` int(11) NOT NULL,
   `activo` tinyint(4) NOT NULL DEFAULT 1,
-  `cobrado` tinyint(4) NOT NULL,
-  `fecha` date NOT NULL,
+  `cobrado` tinyint(4) NOT NULL DEFAULT 0,
+  `fecha` date NOT NULL DEFAULT current_timestamp(),
   `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -101,7 +101,9 @@ CREATE TABLE `pedido` (
 
 INSERT INTO `pedido` (`idPedido`, `idMesa`, `idMesero`, `activo`, `cobrado`, `fecha`, `hora`) VALUES
 (1, 1, 2, 1, 0, '2022-07-06', '23:39:23'),
-(2, 1, 2, 1, 0, '2022-07-02', '23:40:48');
+(2, 1, 2, 1, 0, '2022-07-02', '23:40:48'),
+(12, 1, 1, 1, 0, '2022-07-06', '23:48:31'),
+(121, 2, 1, 1, 0, '2022-07-06', '23:49:12');
 
 -- --------------------------------------------------------
 
