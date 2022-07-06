@@ -8,29 +8,31 @@ public class Mesero {
     private String nombre;
     private String apellido;
     private int dni;
-    //private List<Pedido> listaPedidos;
+    private int telefono;
+    private boolean activo;
 
     
     //Constructores
+
     public Mesero() {
     }
 
-    public Mesero(String nombre, String apellido, int dni/*, List<Pedido> listaPedidos*/) {
+    public Mesero(String nombre, String apellido, int dni, int telefono, boolean activo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        //this.listaPedidos = listaPedidos;
+        this.telefono = telefono;
+        this.activo = activo;
     }
 
-    public Mesero(int idMesero, String nombre, String apellido, int dni/*, List<Pedido> listaPedidos*/) {
+    public Mesero(int idMesero, String nombre, String apellido, int dni, int telefono, boolean activo) {
         this.idMesero = idMesero;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        //this.listaPedidos = listaPedidos;
+        this.telefono = telefono;
+        this.activo = activo;
     }
-    
-    //Getters y Setters
 
     public int getIdMesero() {
         return idMesero;
@@ -64,20 +66,28 @@ public class Mesero {
         this.dni = dni;
     }
 
-//    public List<Pedido> getListaPedidos() {
-//        return listaPedidos;
-//    }
-//
-//    public void setListaPedidos(List<Pedido> listaPedidos) {
-//        this.listaPedidos = listaPedidos;
-//    }
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     @Override
     public String toString() {
-        return "Mesero{" + "idMesero=" + idMesero + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return "Mesero{" + "idMesero=" + idMesero + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", telefono=" + telefono + ", activo=" + activo + '}';
     }
     
     
-    
+  
     
 }
