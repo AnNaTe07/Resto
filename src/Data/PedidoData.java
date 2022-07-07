@@ -43,40 +43,20 @@ public class PedidoData {
             } else {
                 check = false;
             }
-            
+
         } catch (Exception e) {
 
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo cargar el pedido.");
         }
+
         return check;
     }
 
-//    // "CANCELAR" PEDIDO
-//    
-//    public boolean cancelarPedido (Pedido ped){
-//        
-//        boolean check = false;
-//        String sql = "UPDATE pedido SET activo = 0 WHERE idPedido = ?";
-//        
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, ped.getIdPedido());
-//            if (ps.executeUpdate() != 0) {
-//                check = true;
-//            } 
-//            ps.close();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "No se pudo eliminar el pedido");
-//        }
-//        return check;
-//    }
-   
-    
-   //MOSTRAR TODOS LOS PEDIDOS
-    
-    public ArrayList<Pedido> mostrarPedidos(){
+    //MOSTRAR TODOS LOS PEDIDOS ACTIVOS
+    public ArrayList<Pedido> mostrarPedidos() {
         ArrayList<Pedido> allPed = new ArrayList();
         String sql = "SELECT * FROM pedido  WHERE activo= 1";
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -86,27 +66,55 @@ public class PedidoData {
                 Mesa ms = new Mesa();
                 Mesero mese = new Mesero();
                 ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
-                mese = mozo.buscarMesero(rs.getInt("idMesero"));               
+                mese = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setIdPedido(rs.getInt(1));
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
-                
+
                 allPed.add(pedido);
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos");
-            
+
         }
-       
+
         return allPed;
-        
+
+    }
+
+    //MOSTRAR TODOS LOS PEDIDOS INACTIVOS
+    public ArrayList<Pedido> mostrarPedidosInactivos() {
+        ArrayList<Pedido> allPed = new ArrayList();
+        String sql = "SELECT * FROM pedido  WHERE activo= 0";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                Mesa ms = new Mesa();
+                Mesero mese = new Mesero();
+                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
+                mese = mozo.buscarMesero(rs.getInt("idMesero"));
+                pedido.setIdPedido(rs.getInt(1));
+                pedido.setMesa(ms);
+                pedido.setMozo(mese);
+
+                allPed.add(pedido);
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos.");
+
+        }
+        return allPed;
+
     }
     
-    
     // OBTENER PEDIDO POR ID
-    
-    public Pedido obtenerPedidoXId(int idPedido){
+    public Pedido obtenerPedidoXId(int idPedido) {
         String sql = "SELECT * FROM pedido WHERE idPedido = ?";
         Pedido pedido = new Pedido();
         try {
@@ -114,7 +122,7 @@ public class PedidoData {
             ps.setInt(1, idPedido);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 pedido.setIdPedido(idPedido);
                 Mesa ms = new Mesa();
                 Mesero mesero = new Mesero();
@@ -127,105 +135,36 @@ public class PedidoData {
                 pedido.setFecha(rs.getDate("fecha"));
                 pedido.setHorario(rs.getTime("hora"));
                 ps.close();
-             }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
-            
+
         }
-       
+
         return pedido;
     }
 
-<<<<<<< HEAD
-    
-     //MOSTRAR TODOS LOS PEDIDOS
-    
-    public ArrayList<Pedido> mostrarPedidos(){
-        ArrayList<Pedido> allPed = new ArrayList();
-        String sql = "SELECT * FROM pedido  WHERE activo= 1";
-        
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(rs.getInt("idPedido"));
-                Mesa ms = new Mesa();
-                Mesero mese = new Mesero();
-                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
-                mese = mozo.buscarMesero(rs.getInt("idMesero"));               
-                pedido.setIdPedido(rs.getInt(1));
-                pedido.setMesa(ms);
-                pedido.setMozo(mese);
-                
-                allPed.add(pedido);
-                
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos");
-            
-        }
-       
-        return allPed;
-        
-    }
-    
-    
-    // OBTENER PEDIDO POR ID
-    
-    public Pedido obtenerPedidoXId(int idPedido){
-        String sql = "SELECT * FROM pedido WHERE idPedido = ?";
-        Pedido pedido = new Pedido();
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idPedido);
-            ps.executeQuery();
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                pedido.setIdPedido(idPedido);
-                Mesa ms;
-                Mesero mesero;
-                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
-                mesero = mozo.buscarMesero(rs.getInt("idMesero"));
-                pedido.setMesa(ms);
-                pedido.setMozo(mesero);
-                pedido.setActivo(rs.getBoolean("activo"));
-                pedido.setCobrado(rs.getBoolean("cobrado"));
-                pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("hora"));
-                ps.close();
-             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
-            
-        }
-       
-        return pedido;
-    }
-    
     //LISTAR PEDIDO X MESA EN UNA FECHA ENTRE HORAS
-    
-     public ArrayList<Pedido> listaPedidosxMesa(int idMesa, LocalDate fecha) {
-        ArrayList<Pedido>  lista = new ArrayList();       
+    public ArrayList<Pedido> listaPedidosxMesa(int idMesa, LocalDate fecha) {
+        ArrayList<Pedido> lista = new ArrayList();
 
         try {
             String sql = "SELECT * FROM pedido WHERE idMesa = ? AND fecha =?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
-            Pedido pedido;     
-                                  
+
+            Pedido pedido;
+
             while (rs.next()) {
-                pedido = new Pedido();  
+                pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
-                
+
                 Mesa me = mesa.obtenerMesaxId(rs.getInt("idMesa"));
                 pedido.setMesa(me);
 
                 Mesero mesero = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setMozo(mesero);
-                
-           
+
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setSubTotal(rs.getDouble("subTotal"));
@@ -241,9 +180,7 @@ public class PedidoData {
         }
         return lista;
     }
-   
 
-=======
     // OBTENER PEDIDOS POR MOZO
     public ArrayList<Pedido> obtenerPedidoXMozo(Mesero mozo) {
         String sql = "SELECT * FROM pedido WHERE idMesero = ?";
@@ -275,5 +212,4 @@ public class PedidoData {
 
         return pddo;
     }
->>>>>>> parent of 88c65f1 (Merge branch 'main' of https://github.com/AnNaTe07/Resto)
 }

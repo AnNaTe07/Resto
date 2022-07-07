@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelos;
 
 /**
@@ -13,27 +9,42 @@ public class DetallePedido {
     private int idDetalle;
     private Pedido dped;
     private Producto prod;
-<<<<<<< HEAD
     private int cant;
-=======
-    int cant;
     boolean expirado;
->>>>>>> parent of 88c65f1 (Merge branch 'main' of https://github.com/AnNaTe07/Resto)
+
 
     public DetallePedido() {
     }
 
-    public DetallePedido(Pedido dped, Producto prod, int cant) {
+    public DetallePedido(Pedido dped, Producto prod, int cant, boolean expirado) {
         this.dped = dped;
         this.prod = prod;
         this.cant = cant;
+        this.expirado = expirado;
     }
 
-    public DetallePedido(int idDetalle, Pedido dped, Producto prod, int cant) {
+    public DetallePedido(int idDetalle, Pedido dped, Producto prod, int cant, boolean expirado) {
         this.idDetalle = idDetalle;
         this.dped = dped;
         this.prod = prod;
         this.cant = cant;
+        this.expirado = expirado;
+    }
+
+    public Pedido getDped() {
+        return dped;
+    }
+
+    public void setDped(Pedido dped) {
+        this.dped = dped;
+    }
+
+    public boolean isExpirado() {
+        return expirado;
+    }
+
+    public void setExpirado(boolean expirado) {
+        this.expirado = expirado;
     }
 
     public int getIdDetalle() {
@@ -71,6 +82,7 @@ public class DetallePedido {
     @Override
     public String toString() {
         return "DetallePedido{" + "idDetalle=" + idDetalle + ", ped=" + dped + ", prod=" + prod + ", cant=" + cant + '}';
+
     }
     
 }
