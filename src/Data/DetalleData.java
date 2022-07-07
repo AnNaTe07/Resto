@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Data;
 
 import Modelos.DetallePedido;
@@ -198,15 +194,18 @@ public class DetalleData {
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
+
+                Pedido ped;
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
                 Producto product = new Producto();
+
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
                 dped.setExpirado(rs.getBoolean("expirado"));
                 allDet.add(dped);
+
             }
             rs.close();
 
@@ -216,6 +215,7 @@ public class DetalleData {
         }
         return allDet;
     }
+
 
     //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS EXPIRADOS
     public ArrayList<DetallePedido> todoDetalleDePedidoExpirado() {
@@ -248,4 +248,5 @@ public class DetalleData {
         }
         return allDet;
     }
+
 }

@@ -1,17 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Modelos;
 
 import java.util.Date;
 import java.sql.*;
-import java.time.*;
+import java.time.LocalDate;
 
-/**
- *
- * @author Samir
- */
+
 public class Pedido {
     
     private int idPedido;
@@ -20,13 +14,14 @@ public class Pedido {
     private boolean activo;
     private boolean cobrado;
     private double subTotal;
-    private Date fecha;
+    private LocalDate fecha;
     private Time horario;
 
     public Pedido() {
     }
 
-    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, Date fecha, Time horario, boolean activo) {
+
+    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario, boolean activo) {
         this.mesa = mesa;
         this.mozo = mozo;
         this.cobrado = cobrado;
@@ -36,7 +31,9 @@ public class Pedido {
         this.activo = activo;
     }
 
-    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, Date fecha, Time horario, boolean activo) {
+
+    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario, boolean Activo) {
+
         this.idPedido = idPedido;
         this.mesa = mesa;
         this.mozo = mozo;
@@ -87,19 +84,12 @@ public class Pedido {
         this.subTotal = subTotal;
     }
 
-    public boolean isActivo() {
-        return activo;
-    }
+    public LocalDate getFecha() {
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
-    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -109,6 +99,14 @@ public class Pedido {
 
     public void setHorario(Time horario) {
         this.horario = horario;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     

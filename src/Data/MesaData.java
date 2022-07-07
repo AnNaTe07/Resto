@@ -2,16 +2,13 @@
 package Data;
 
 import Modelos.Mesa;
-import Modelos.Pedido;
-import Modelos.Producto;
-import Modelos.Reserva;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class MesaData {
@@ -29,13 +26,13 @@ public class MesaData {
         String sql = "INSERT INTO mesa(idMesa, capacidad, ocupada, fecha, activo, estado) VALUES (? ,? , ?, ?, ?, ?)";
 
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, mesa.getIdMesa());
             ps.setInt(2, mesa.getCapacidad());
             ps.setBoolean(3, mesa.isOcupada());
             ps.setDate(4,Date.valueOf(mesa.getFecha()));
             ps.setBoolean(5,mesa.isActivo());
-            ps.setString(6 ,mesa.getEstado());
+            ps.setInt(6 ,mesa.getEstado());
              
             ps.executeUpdate();
 
@@ -97,7 +94,7 @@ public class MesaData {
             ps.setBoolean(3, mesa.isOcupada());
             ps.setDate(4,Date.valueOf(mesa.getFecha()));
             ps.setBoolean(5,mesa.isActivo());
-            ps.setString(6 ,mesa.getEstado());
+            ps.setInt(6 ,mesa.getEstado());
             if (ps.executeUpdate() != 0) {
 
                 exito = true;
@@ -128,7 +125,7 @@ public class MesaData {
                 mesa.setCapacidad(resultSet.getInt("capacidad"));
                 mesa.setOcupada(resultSet.getBoolean("ocupada"));
                 mesa.setFecha(resultSet.getDate("fecha").toLocalDate());
-                mesa.setEstado(resultSet.getString("estado"));
+                mesa.setEstado(resultSet.getInt("estado"));
 
                 listaMesa.add(mesa);
             }
@@ -157,7 +154,7 @@ public class MesaData {
                 mesa.setOcupada(resultSet.getBoolean("ocupada"));
                 mesa.setFecha(resultSet.getDate("fecha").toLocalDate());
                 mesa.setActivo(resultSet.getBoolean("activo"));
-                mesa.setEstado(resultSet.getString("estado"));
+                mesa.setEstado(resultSet.getInt("estado"));
 
             }
             ps.close();
@@ -167,5 +164,7 @@ public class MesaData {
 
         return mesa;
     }    
+    
+   
    
 }
