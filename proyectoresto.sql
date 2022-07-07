@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2022 a las 19:41:56
+-- Tiempo de generación: 07-07-2022 a las 04:41:24
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -41,7 +41,11 @@ CREATE TABLE `detalle` (
 
 INSERT INTO `detalle` (`idDetalle`, `idPedido`, `idProducto`, `cantidad`, `expirado`) VALUES
 (1, 1, 2, 12, 0),
-(2, 1, 2, 2, 0);
+(2, 1, 2, 2, 0),
+(3, 2, 1, 3, 0),
+(4, 2, 1, 1, 1),
+(5, 3, 2, 2, 1),
+(6, 1, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -54,6 +58,19 @@ CREATE TABLE `mesa` (
   `capacidad` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mesa`
+--
+
+INSERT INTO `mesa` (`idMesa`, `capacidad`, `estado`) VALUES
+(1, 12, 1),
+(2, 1, 1),
+(6, 12, 1),
+(7, 12, 1),
+(12, 12, 1),
+(13, 1, 1),
+(14, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +119,9 @@ INSERT INTO `pedido` (`idPedido`, `idMesa`, `idMesero`, `activo`, `cobrado`, `fe
 (1, 1, 1, 1, 0, '2022-07-06', '00:14:34'),
 (2, 1, 1, 0, 0, '2022-07-06', '00:14:34'),
 (3, 3, 1, 1, 0, '2022-07-06', '23:54:44'),
-(4, 3, 1, 1, 0, '2022-07-06', '23:54:44');
+(4, 3, 1, 1, 0, '2022-07-06', '23:54:44'),
+(5, 6, 1, 1, 0, '2022-07-07', '21:36:01'),
+(6, 2, 2, 1, 0, '2022-07-07', '21:36:42');
 
 -- --------------------------------------------------------
 
@@ -196,13 +215,13 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `detalle`
 --
 ALTER TABLE `detalle`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `mesero`
@@ -214,7 +233,7 @@ ALTER TABLE `mesero`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -238,12 +257,6 @@ ALTER TABLE `reserva`
 ALTER TABLE `detalle`
   ADD CONSTRAINT `detalle_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON UPDATE CASCADE,
   ADD CONSTRAINT `detalle_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `mesa`
---
-ALTER TABLE `mesa`
-  ADD CONSTRAINT `mesa_ibfk_1` FOREIGN KEY (`idMesa`) REFERENCES `pedido` (`idMesa`);
 
 --
 -- Filtros para la tabla `reserva`
