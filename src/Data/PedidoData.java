@@ -43,21 +43,19 @@ public class PedidoData {
             } else {
                 check = false;
             }
-            
-        } catch (Exception e) {
 
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo cargar el pedido.");
         }
         return check;
     }
 
-
-    
-   //MOSTRAR TODOS LOS PEDIDOS
-    
-    public ArrayList<Pedido> mostrarPedidos(){
+    //MOSTRAR TODOS LOS PEDIDOS ACTIVOS
+    public ArrayList<Pedido> mostrarPedidos() {
         ArrayList<Pedido> allPed = new ArrayList();
         String sql = "SELECT * FROM pedido  WHERE activo= 1";
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -67,27 +65,56 @@ public class PedidoData {
                 Mesa ms = new Mesa();
                 Mesero mese = new Mesero();
                 ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
-                mese = mozo.buscarMesero(rs.getInt("idMesero"));               
+                mese = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setIdPedido(rs.getInt(1));
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
-                
+
                 allPed.add(pedido);
-                
+
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos");
-            
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos.");
+
         }
-       
+
         return allPed;
-        
+
     }
-    
-    
+
+    //MOSTRAR TODOS LOS PEDIDOS INACTIVOS
+    public ArrayList<Pedido> mostrarPedidosInactivos() {
+        ArrayList<Pedido> allPed = new ArrayList();
+        String sql = "SELECT * FROM pedido  WHERE activo= 0";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                Mesa ms = new Mesa();
+                Mesero mese = new Mesero();
+                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
+                mese = mozo.buscarMesero(rs.getInt("idMesero"));
+                pedido.setIdPedido(rs.getInt(1));
+                pedido.setMesa(ms);
+                pedido.setMozo(mese);
+
+                allPed.add(pedido);
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos.");
+
+        }
+
+        return allPed;
+
+    }
+
     // OBTENER PEDIDO POR ID
-    
-    public Pedido obtenerPedidoXId(int idPedido){
+    public Pedido obtenerPedidoXId(int idPedido) {
         String sql = "SELECT * FROM pedido WHERE idPedido = ?";
         Pedido pedido = new Pedido();
         try {
@@ -95,7 +122,7 @@ public class PedidoData {
             ps.setInt(1, idPedido);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 pedido.setIdPedido(idPedido);
                 Mesa ms = new Mesa();
                 Mesero mesero = new Mesero();
@@ -108,12 +135,44 @@ public class PedidoData {
                 pedido.setFecha(rs.getDate("fecha"));
                 pedido.setHorario(rs.getTime("hora"));
                 ps.close();
-             }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
-            
+
         }
-       
+
         return pedido;
+    }
+
+    // OBTENER PEDIDOS POR MOZO
+    public ArrayList<Pedido> obtenerPedidoXMozo(Mesero mozo) {
+        String sql = "SELECT * FROM pedido WHERE idMesero = ?";
+        ArrayList<Pedido> pddo = new ArrayList();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mozo.getIdMesero());
+            ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                Mesa ms = new Mesa();
+                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
+                pedido.setMesa(ms);
+                pedido.setMozo(mozo);
+                pedido.setActivo(rs.getBoolean("activo"));
+                pedido.setCobrado(rs.getBoolean("cobrado"));
+                pedido.setFecha(rs.getDate("fecha"));
+                pedido.setHorario(rs.getTime("hora"));
+                ps.close();
+                pddo.add(pedido);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
+
+        }
+
+        return pddo;
     }
 }

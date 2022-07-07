@@ -83,24 +83,23 @@ public class DetalleData {
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
                 dped.setExpirado(rs.getBoolean("expirado"));
-                
+
                 allDet.add(dped);
             }
             rs.close();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos");
-            
+
         }
 
         return allDet;
     }
-    
-    
-       //  BUSCAR / MOSTRAR PEDIDOS POR ID
-    public ArrayList<DetallePedido> detallePedidoPorId(int id) {
 
-        ArrayList<DetallePedido> allDet = new ArrayList();
+    //  BUSCAR / MOSTRAR DETALLE POR ID
+    public DetallePedido detallePedidoPorId(int id) {
+
+        DetallePedido dped = new DetallePedido();
 
         String sql = "SELECT * FROM detalle WHERE idDetalle = ?";
 
@@ -109,6 +108,39 @@ public class DetalleData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                dped.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
+                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
+                dped.setPed(ped);
+                Producto product = new Producto();
+                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dped.setProd(product);
+                dped.setCant(rs.getInt("cantidad"));
+                dped.setExpirado(rs.getBoolean("expirado"));
+
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se encontro el pedido con el ID ingresado.");
+
+        }
+
+        return dped;
+    }
+
+    //  MOSTRAR DETALLES POR MOZO
+    public ArrayList<DetallePedido> detallePedidoPorMozo(Mesero mozo) {
+
+        ArrayList<DetallePedido> allDet = new ArrayList();
+
+        String sql = "SELECT * FROM detalle WHERE idMesero = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mozo.getIdMesero());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
                 Pedido ped = new Pedido();
@@ -119,27 +151,25 @@ public class DetalleData {
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
                 dped.setExpirado(rs.getBoolean("expirado"));
-                
+
                 allDet.add(dped);
             }
             rs.close();
-            
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se encontro el pedido con el ID ingresado.");
-            
+            JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos");
+
         }
 
         return allDet;
     }
 
-    
     // TOTAL DE PEDIDO $$ 
-    
-    public double totalDePedido(Pedido pedido){
+    public double totalDePedido(Pedido pedido) {
         double total = 0;
-        Producto producto ;
-        String sql ="SELECT idProducto, cantidad FROM detalle WHERE idPedido = ? AND expirado = 0 ";
-        
+        Producto producto;
+        String sql = "SELECT idProducto, cantidad FROM detalle WHERE idPedido = ? AND expirado = 0 ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, pedido.getIdPedido());
@@ -154,8 +184,8 @@ public class DetalleData {
         }
         return total;
     }
-    
-       //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS ACTIVOS
+
+    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS ACTIVOS
     public ArrayList<DetallePedido> todoDetalleDePedido() {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
@@ -179,14 +209,14 @@ public class DetalleData {
                 allDet.add(dped);
             }
             rs.close();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener la informacion.");
-            
+
         }
         return allDet;
     }
-    
+
     //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS EXPIRADOS
     public ArrayList<DetallePedido> todoDetalleDePedidoExpirado() {
 
@@ -211,10 +241,10 @@ public class DetalleData {
                 allDet.add(dped);
             }
             rs.close();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener la informacion.");
-            
+
         }
         return allDet;
     }
