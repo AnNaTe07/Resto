@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ProductoData {
@@ -162,4 +160,30 @@ public class ProductoData {
         return producto;
     }
 
+    public Producto obtenerProductoXId(int id) {
+        Producto producto = null;
+
+        String sql = "SELECT * FROM producto WHERE idProducto = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                
+                producto = new Producto();
+                producto.setIdProducto(resultSet.getInt("idProducto"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo obtener el producto");
+        }
+        return producto;
+    }
 }
