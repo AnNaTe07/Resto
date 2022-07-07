@@ -28,7 +28,7 @@ public class ProductoData {
             ps.setString(1, producto.getNombre());
             ps.setInt(2, producto.getCantidad());
             ps.setDouble(3, producto.getPrecio());
-            
+
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -44,7 +44,7 @@ public class ProductoData {
 
         } catch (SQLException e) {
             if (e instanceof java.sql.SQLIntegrityConstraintViolationException) {
-                exito=false;
+                exito = false;
                 JOptionPane.showMessageDialog(null, "Ya existe un alumno registrado con ese número de dni");
             } else {
 
@@ -135,7 +135,7 @@ public class ProductoData {
     public Producto obtenerProductosXnombre(String nombre) {
         Producto producto = null;
 
-        String sql = "SELECT * FROM producto WHERE nombre = ?";
+        String sql = "SELECT * FROM producto WHERE nombre LIKE ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -150,7 +150,6 @@ public class ProductoData {
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
 
-               
             }
             ps.close();
 

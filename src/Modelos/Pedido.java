@@ -20,16 +20,20 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario) {
+
+    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario, boolean activo) {
         this.mesa = mesa;
         this.mozo = mozo;
         this.cobrado = cobrado;
         this.subTotal = subTotal;
         this.fecha = fecha;
         this.horario = horario;
+        this.activo = activo;
     }
 
-    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario) {
+
+    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario, boolean Activo) {
+
         this.idPedido = idPedido;
         this.mesa = mesa;
         this.mozo = mozo;
@@ -37,6 +41,7 @@ public class Pedido {
         this.subTotal = subTotal;
         this.fecha = fecha;
         this.horario = horario;
+        this.activo = activo;
     }
 
     public int getIdPedido() {
@@ -80,6 +85,7 @@ public class Pedido {
     }
 
     public LocalDate getFecha() {
+
         return fecha;
     }
 

@@ -38,16 +38,17 @@ public class Resto {
           
 
         //Mesero
-//        MeseroData md = new MeseroData(conexion);
-//        Mesero mesero = new Mesero("Luciano", "Cejas", 321331);
+        MeseroData md = new MeseroData(conexion);
+//        Mesero mesero = new Mesero("Claudio", "Duvara", 44358778, 232131, true);
 //        md.agregarMesero(mesero);
-//        Mesero mesero = md.buscarMesero(6);
+        //Mesero mesero = md.buscarMesero(1);
+       //md.borrarMesero(mesero);
 //        md.borrarMesero(mesero);
 //        ArrayList<Mesero> listaMeseros = md.obtenerMeseros();
 //        for (Mesero listaMesero : listaMeseros) {
 //            System.out.println(listaMesero);
 //        }
-        
+ //       md.cobrarPedido(pedido);
     }
 
 }

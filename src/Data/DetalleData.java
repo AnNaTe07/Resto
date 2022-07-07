@@ -72,17 +72,20 @@ public class DetalleData {
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
+
                 Pedido ped;
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
                 Producto product = new Producto();
                 product = prodData.obtenerProductoXId(0);
                 dped.setProd(product);
+
             }
         } catch (Exception e) {
         }
 
         return allDet;
     }
+
 
 }
