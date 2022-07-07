@@ -123,11 +123,9 @@ public class MeseroData {
 
             int rs = ps.executeUpdate();
 
-            
-            if(rs == 1){
-                JOptionPane.showMessageDialog(null, "Pedido tomado por el mesero: " + mesero.getApellido());
-            }else{
-
+            if (rs == 1) {
+                JOptionPane.showMessageDialog(null, "Pedido tomado por el mesero:" + mesero.getApellido());
+            } else {
                 JOptionPane.showMessageDialog(null, "error");
                 exito = false;
             }
@@ -138,9 +136,7 @@ public class MeseroData {
         return exito;
     }
 
-    
-     public boolean cancelarPedido(Pedido pedido) {
-
+    public boolean cancelarPedido(Pedido pedido) {
         boolean exito = true;
         String sql = "UPDATE `pedido` SET `activo`= 0 WHERE idPedido = ?";
 
@@ -208,4 +204,5 @@ public class MeseroData {
 
         return exito;
     }
+
 }

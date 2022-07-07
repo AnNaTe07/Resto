@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Data;
 
 import Modelos.DetallePedido;
@@ -72,20 +76,61 @@ public class DetalleData {
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-
-                Pedido ped;
+                Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
                 Producto product = new Producto();
+<<<<<<< HEAD
                 product = prodData.obtenerProductoXId(0);
                 dped.setProd(product);
 
+=======
+                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dped.setProd(product);
+                dped.setCant(rs.getInt("cantidad"));
+                dped.setExpirado(rs.getBoolean("expirado"));
+                allDet.add(dped);
+>>>>>>> parent of 88c65f1 (Merge branch 'main' of https://github.com/AnNaTe07/Resto)
             }
         } catch (Exception e) {
         }
 
+<<<<<<< HEAD
         return allDet;
     }
 
 
+=======
+    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS EXPIRADOS
+    public ArrayList<DetallePedido> todoDetalleDePedidoExpirado() {
+
+        ArrayList<DetallePedido> allDet = new ArrayList();
+
+        String sql = "SELECT * FROM detalle WHERE expirado = 1";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                DetallePedido dped = new DetallePedido();
+                dped.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
+                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
+                dped.setPed(ped);
+                Producto product = new Producto();
+                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dped.setProd(product);
+                dped.setCant(rs.getInt("cantidad"));
+                dped.setExpirado(rs.getBoolean("expirado"));
+                allDet.add(dped);
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo obtener la informacion.");
+
+        }
+        return allDet;
+    }
+>>>>>>> parent of 88c65f1 (Merge branch 'main' of https://github.com/AnNaTe07/Resto)
 }

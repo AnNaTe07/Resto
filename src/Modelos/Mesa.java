@@ -10,27 +10,27 @@ public class Mesa {
     private boolean ocupada;
     private LocalDate fecha;
     private boolean activo;
-    private int estado;
+    private String estado;
 
     public Mesa() {
     }
 
-    public Mesa( int capacidad, boolean ocupada, LocalDate fecha, boolean activo, int estado) {
+    public Mesa( int capacidad, boolean ocupada, LocalDate fecha, boolean activo, String estado) {
    
-        this.capacidad = 6;
+        this.capacidad = capacidad;
         this.ocupada = ocupada;
         this.fecha = fecha;
         this.activo = activo;
-        this.estado = 0;
+        this.estado = estado;
     }
 
-    public Mesa(int idMesa, int capacidad, boolean ocupada, LocalDate fecha, boolean activo, int estado) {
+    public Mesa(int idMesa, int capacidad, boolean ocupada, LocalDate fecha, boolean activo, String estado) {
         this.idMesa = idMesa;
-        this.capacidad = 6;
+        this.capacidad = capacidad;
         this.ocupada = ocupada;
         this.fecha = fecha;
         this.activo = activo;
-        this.estado = 0;
+        this.estado = estado;
     }
 
     public int getIdMesa() {
@@ -53,7 +53,7 @@ public class Mesa {
         return activo;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
@@ -77,7 +77,7 @@ public class Mesa {
         this.activo = activo;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

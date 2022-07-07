@@ -1,12 +1,24 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Modelos;
 
+/**
+ *
+ * @author Samir
+ */
 public class DetallePedido {
     
     private int idDetalle;
     private Pedido dped;
     private Producto prod;
+<<<<<<< HEAD
     private int cant;
+=======
+    int cant;
+    boolean expirado;
+>>>>>>> parent of 88c65f1 (Merge branch 'main' of https://github.com/AnNaTe07/Resto)
 
     public DetallePedido() {
     }
@@ -58,8 +70,7 @@ public class DetallePedido {
 
     @Override
     public String toString() {
-        return "DetallePedido" + "idDetalle=" + idDetalle + ", ped=" + dped + ", prod=" + prod + ", cant=" + cant;
-
+        return "DetallePedido{" + "idDetalle=" + idDetalle + ", ped=" + dped + ", prod=" + prod + ", cant=" + cant + '}';
     }
     
 }

@@ -1,10 +1,15 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Data;
 
+/**
+ *
+ * @author Samir
+ */
 import Modelos.*;
 import java.sql.*;
-import java.time.LocalDate;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -131,6 +136,7 @@ public class PedidoData {
         return pedido;
     }
 
+<<<<<<< HEAD
     
      //MOSTRAR TODOS LOS PEDIDOS
     
@@ -237,4 +243,37 @@ public class PedidoData {
     }
    
 
+=======
+    // OBTENER PEDIDOS POR MOZO
+    public ArrayList<Pedido> obtenerPedidoXMozo(Mesero mozo) {
+        String sql = "SELECT * FROM pedido WHERE idMesero = ?";
+        ArrayList<Pedido> pddo = new ArrayList();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mozo.getIdMesero());
+            ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(rs.getInt("idPedido"));
+                Mesa ms = new Mesa();
+                ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
+                pedido.setMesa(ms);
+                pedido.setMozo(mozo);
+                pedido.setActivo(rs.getBoolean("activo"));
+                pedido.setCobrado(rs.getBoolean("cobrado"));
+                pedido.setFecha(rs.getDate("fecha"));
+                pedido.setHorario(rs.getTime("hora"));
+                ps.close();
+                pddo.add(pedido);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
+
+        }
+
+        return pddo;
+    }
+>>>>>>> parent of 88c65f1 (Merge branch 'main' of https://github.com/AnNaTe07/Resto)
 }
