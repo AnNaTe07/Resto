@@ -50,26 +50,7 @@ public class PedidoData {
         return check;
     }
 
-//    // "CANCELAR" PEDIDO
-//    
-//    public boolean cancelarPedido (Pedido ped){
-//        
-//        boolean check = false;
-//        String sql = "UPDATE pedido SET activo = 0 WHERE idPedido = ?";
-//        
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, ped.getIdPedido());
-//            if (ps.executeUpdate() != 0) {
-//                check = true;
-//            } 
-//            ps.close();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "No se pudo eliminar el pedido");
-//        }
-//        return check;
-//    }
-   
+
     
    //MOSTRAR TODOS LOS PEDIDOS
     

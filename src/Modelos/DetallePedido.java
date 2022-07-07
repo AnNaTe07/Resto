@@ -14,21 +14,40 @@ public class DetallePedido {
     private Pedido dped;
     private Producto prod;
     int cant;
+    boolean expirado;
 
     public DetallePedido() {
     }
 
-    public DetallePedido(Pedido dped, Producto prod, int cant) {
+    public DetallePedido(Pedido dped, Producto prod, int cant, boolean expirado) {
         this.dped = dped;
         this.prod = prod;
         this.cant = cant;
+        this.expirado = expirado;
     }
 
-    public DetallePedido(int idDetalle, Pedido dped, Producto prod, int cant) {
+    public DetallePedido(int idDetalle, Pedido dped, Producto prod, int cant, boolean expirado) {
         this.idDetalle = idDetalle;
         this.dped = dped;
         this.prod = prod;
         this.cant = cant;
+        this.expirado = expirado;
+    }
+
+    public Pedido getDped() {
+        return dped;
+    }
+
+    public void setDped(Pedido dped) {
+        this.dped = dped;
+    }
+
+    public boolean isExpirado() {
+        return expirado;
+    }
+
+    public void setExpirado(boolean expirado) {
+        this.expirado = expirado;
     }
 
     public int getIdDetalle() {
