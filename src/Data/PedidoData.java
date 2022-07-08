@@ -10,6 +10,8 @@ package Data;
  */
 import Modelos.*;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -132,7 +134,7 @@ public class PedidoData {
                 pedido.setMozo(mesero);
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
-                pedido.setFecha(rs.getDate("fecha"));
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
                 pedido.setHorario(rs.getTime("hora"));
                 ps.close();
             }
@@ -200,7 +202,7 @@ public class PedidoData {
                 pedido.setMozo(mozo);
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
-                pedido.setFecha(rs.getDate("fecha"));
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
                 pedido.setHorario(rs.getTime("hora"));
                 ps.close();
                 pddo.add(pedido);

@@ -95,7 +95,6 @@ public class DetalleData {
         return allDet;
     }
 
-    
     //  BUSCAR / MOSTRAR DETALLE POR ID
     public DetallePedido detallePedidoPorId(int id) {
 
@@ -128,7 +127,6 @@ public class DetalleData {
 
         return dped;
     }
-    
 
     //  MOSTRAR DETALLES POR MOZO
     public ArrayList<DetallePedido> detallePedidoPorMozo(Mesero mozo) {
@@ -164,14 +162,12 @@ public class DetalleData {
 
         return allDet;
     }
-    
-    
+
     // TOTAL DE PEDIDO $$ 
     public double totalDePedido(Pedido pedido) {
         double total = 0;
-        Producto producto ;
-        String sql ="SELECT idProducto, cantidad FROM detalle WHERE idPedido = ? AND expirado = 0 ";
-        
+        Producto producto;
+        String sql = "SELECT idProducto, cantidad FROM detalle WHERE idPedido = ? AND expirado = 0 ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -188,52 +184,18 @@ public class DetalleData {
         return total;
     }
 
-    
-     //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS ACTIVOS
-    public ArrayList<DetallePedido> todoDetalleDePedido() {
+    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS ACTIVOS O NO ACTIVOS
+    public ArrayList<DetallePedido> todoDetalleDePedido(boolean exp) {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
 
-        String sql = "SELECT * FROM detalle WHERE expirado = 0";
+        String sql = "SELECT * FROM detalle WHERE expirado = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, exp);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                DetallePedido dped = new DetallePedido();
-                dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
-                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
-                dped.setPed(ped);
-                Producto product = new Producto();
-                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
-                dped.setProd(product);
-                dped.setCant(rs.getInt("cantidad"));
-                dped.setExpirado(rs.getBoolean("expirado"));
-                allDet.add(dped);
-            }
-            rs.close();
-            
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo obtener la informacion.");
-            
-
-        }
-        return allDet;
-    }
-    
-    
-    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS EXPIRADOS
-    public ArrayList<DetallePedido> todoDetalleDePedidoExpirado() {
-
-        ArrayList<DetallePedido> allDet = new ArrayList();
-
-        String sql = "SELECT * FROM detalle WHERE expirado = 1";
-
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
@@ -255,6 +217,40 @@ public class DetalleData {
         }
         return allDet;
     }
+
+    //  BUSCAR PEDIDOS POR MESA Y MOZO
+    public ArrayList<DetallePedido> detallePedidoPorMesaMozo(Mesa mesa, Mesero moso) {
+
+        ArrayList<DetallePedido> allDet = new ArrayList();
+
+        String sql = "SELECT * FROM detalle WHERE idMesa = ? AND idMozo = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mesa.getIdMesa());
+            ps.setInt(2, moso.getIdMesero());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DetallePedido dped = new DetallePedido();
+                dped.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
+                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
+                dped.setPed(ped);
+                Producto product = new Producto();
+                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dped.setProd(product);
+                dped.setCant(rs.getInt("cantidad"));
+                dped.setExpirado(rs.getBoolean("expirado"));
+                allDet.add(dped);
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos");
+
+        }
+
+        return allDet;
+    }
+
 }
-
-
