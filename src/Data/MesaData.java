@@ -22,7 +22,7 @@ public class MesaData {
     
     public boolean agregarMesa(Mesa mesa) {
         boolean exito = true;
-        String sql = "INSERT INTO mesa(idMesa, capacidad,activo, estado) VALUES (? ,? , ?, ?, ?, ?)";
+        String sql = "INSERT INTO mesa(idMesa, capacidad,activo, estado) VALUES (? ,? , ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
