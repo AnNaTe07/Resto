@@ -30,7 +30,7 @@ public class ReservaData {
             ps.setInt(1, reserva.getIdReserva());
             ps.setString(2, reserva.getNombre());
             ps.setInt(3, reserva.getDni());
-            ps.setDate(4, (Date) reserva.getFecha());
+            ps.setDate(4, Date.valueOf(reserva.getFecha()));
             ps.setTime(5,reserva.getHora());
             ps.setInt(6, reserva.getIdMesa());
             ps.setBoolean(7,reserva.isActivo());
@@ -94,7 +94,7 @@ public class ReservaData {
             ps.setInt(1, reserva.getIdReserva());
             ps.setString(2, reserva.getNombre());
             ps.setInt(3, reserva.getDni());
-            ps.setDate(4, (Date) reserva.getFecha());
+            ps.setDate(4, Date.valueOf(reserva.getFecha()));
             ps.setTime(5,reserva.getHora());
             ps.setInt(6, reserva.getIdMesa());
             ps.setBoolean(7,reserva.isActivo());
@@ -128,7 +128,7 @@ public class ReservaData {
                 reserva.setIdReserva(resultSet.getInt("isReserva"));
                 reserva.setNombre(resultSet.getString("nombre"));
                 reserva.setDni(resultSet.getInt("dni"));
-                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setFecha(resultSet.getDate("fecha").toLocalDate());
                 reserva.setHora(resultSet.getTime("hora"));
                 reserva.setIdMesa(resultSet.getInt("idMesa"));
                 reserva.setActivo(resultSet.getBoolean("activo"));
@@ -158,7 +158,7 @@ public class ReservaData {
                 reserva.setIdReserva(resultSet.getInt("isReserva"));
                 reserva.setNombre(resultSet.getString("nombre"));
                 reserva.setDni(resultSet.getInt("dni"));
-                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setFecha(resultSet.getDate("fecha").toLocalDate());
                 reserva.setHora(resultSet.getTime("hora"));
                 reserva.setIdMesa(resultSet.getInt("idMesa"));
                 reserva.setActivo(resultSet.getBoolean("activo"));

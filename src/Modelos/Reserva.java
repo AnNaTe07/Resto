@@ -2,13 +2,13 @@
 package Modelos;
 
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Reserva {
     private int idReserva;
     private String nombre;
     private int dni;
-    private Date fecha;
+    private LocalDate fecha;
     private Time hora;
     private int idMesa;
     private boolean activo;
@@ -16,7 +16,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva( String nombre, int dni, Date fecha, Time hora, int idMesa, boolean activo) {
+    public Reserva( String nombre, int dni, LocalDate fecha, Time hora, int idMesa, boolean activo) {
      
         this.nombre = nombre;
         this.dni = dni;
@@ -26,7 +26,7 @@ public class Reserva {
         this.activo = activo;
     }
 
-    public Reserva(int idReserva, String nombre, int dni, Date fecha, Time hora, int idMesa, boolean activo) {
+    public Reserva(int idReserva, String nombre, int dni, LocalDate fecha, Time hora, int idMesa, boolean activo) {
         this.idReserva = idReserva;
         this.nombre = nombre;
         this.dni = dni;
@@ -52,7 +52,7 @@ public class Reserva {
         return dni;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -76,7 +76,7 @@ public class Reserva {
         this.dni = dni;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -95,7 +95,7 @@ public class Reserva {
  
     @Override
     public String toString() {
-        return "Reserva \nMesa n°=" + idMesa+ "\n Cliente=" + nombre +" \nDni:"+dni+ "\nFecha Y hora=" + fecha + ", "+hora+"hs";
+        return "Reserva n°: "+idReserva+"\nMesa n°=" + idMesa+ "\n Cliente=" + nombre +" \nDni:"+dni+ "\nFecha Y hora=" + fecha + ", "+hora+"hs";
     }
     
     
