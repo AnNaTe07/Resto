@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
-/**
- *
- * @author Best smite LAS
- */
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -38,13 +31,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jpMenu3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jpMenu6 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jpProductos = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jpMenu5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jpExtra = new javax.swing.JPanel();
+        jpMenu6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,7 +51,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
+            .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addContainerGap(217, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(213, 213, 213))
@@ -106,6 +99,9 @@ public class Menu extends javax.swing.JFrame {
 
         jpMenu2.setBackground(new java.awt.Color(29, 19, 32));
         jpMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpMenu2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jpMenu2MouseEntered(evt);
             }
@@ -158,35 +154,6 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jpMenu3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
 
-        jpMenu6.setBackground(new java.awt.Color(29, 19, 32));
-        jpMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpMenu6MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpMenu6MouseExited(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("      MENU 6");
-
-        javax.swing.GroupLayout jpMenu6Layout = new javax.swing.GroupLayout(jpMenu6);
-        jpMenu6.setLayout(jpMenu6Layout);
-        jpMenu6Layout.setHorizontalGroup(
-            jpMenu6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMenu6Layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jpMenu6Layout.setVerticalGroup(
-            jpMenu6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jpMenu6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, -1));
-
         jpProductos.setBackground(new java.awt.Color(29, 19, 32));
         jpProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -202,13 +169,15 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("PRODUCTOS");
+        jLabel4.setText("   PRODUCTOS");
 
         javax.swing.GroupLayout jpProductosLayout = new javax.swing.GroupLayout(jpProductos);
         jpProductos.setLayout(jpProductosLayout);
         jpProductosLayout.setHorizontalGroup(
             jpProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addGroup(jpProductosLayout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpProductosLayout.setVerticalGroup(
             jpProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,14 +204,16 @@ public class Menu extends javax.swing.JFrame {
         jpMenu5.setLayout(jpMenu5Layout);
         jpMenu5Layout.setHorizontalGroup(
             jpMenu5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addGroup(jpMenu5Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(114, 114, 114))
         );
         jpMenu5Layout.setVerticalGroup(
             jpMenu5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getContentPane().add(jpMenu5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, -1));
+        getContentPane().add(jpMenu5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 90, -1));
 
         jpExtra.setBackground(new java.awt.Color(29, 19, 32));
 
@@ -258,6 +229,43 @@ public class Menu extends javax.swing.JFrame {
         );
 
         getContentPane().add(jpExtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 460, 40));
+
+        jpMenu6.setBackground(new java.awt.Color(29, 19, 32));
+        jpMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpMenu6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpMenu6MouseExited(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("      MENU 6");
+
+        javax.swing.GroupLayout jpMenu6Layout = new javax.swing.GroupLayout(jpMenu6);
+        jpMenu6.setLayout(jpMenu6Layout);
+        jpMenu6Layout.setHorizontalGroup(
+            jpMenu6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 118, Short.MAX_VALUE)
+            .addGroup(jpMenu6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpMenu6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jpMenu6Layout.setVerticalGroup(
+            jpMenu6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(jpMenu6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpMenu6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        getContentPane().add(jpMenu6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 100, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -315,10 +323,22 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpMenu1MouseClicked
 
     private void jpProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductosMouseClicked
+          Productos p = new Productos();
+          p.setSize(1000, 610);
+          p.setLocation(0,0);
+          
+          jpPrincipal.removeAll();
+          jpPrincipal.add(p, BorderLayout.CENTER);
+          jpPrincipal.revalidate();
+          jpPrincipal.repaint();
         
-       
         
     }//GEN-LAST:event_jpProductosMouseClicked
+
+    private void jpMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu2MouseClicked
+          
+          
+    }//GEN-LAST:event_jpMenu2MouseClicked
 
     /**
      * @param args the command line arguments

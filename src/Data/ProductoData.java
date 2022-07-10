@@ -23,13 +23,15 @@ public class ProductoData {
 
     public boolean agregarProducto(Producto producto) {
         boolean exito = true;
-        String sql = "INSERT INTO producto(nombre, cantidad, precio) VALUES (? ,? , ?)";
+        String sql = "INSERT INTO producto(nombre, cantidad, precio, activo, categoria) VALUES (? , ? , ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, producto.getNombre());
             ps.setInt(2, producto.getCantidad());
             ps.setDouble(3, producto.getPrecio());
+            ps.setBoolean(4, producto.isActivo());
+            ps.setInt(5, producto.getCategaoria());
 
             ps.executeUpdate();
 
@@ -60,8 +62,7 @@ public class ProductoData {
 
     public boolean borrarProducto(int id) {
         boolean exito = false;
-
-        String sql = "DELETE FROM producto WHERE idProducto = ?";
+        String sql = "UPDATE producto SET activo = 0 WHERE idProducto = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -73,16 +74,15 @@ public class ProductoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto");
+            JOptionPane.showMessageDialog(null, "Error de sintaxis");
         }
-
         return exito;
     }
 
     public boolean modificarProducto(Producto producto) {
         boolean exito = false;
 
-        String sql = "UPDATE  producto SET nombre = ?, cantidad = ?, precio = ? WHERE idProducto = ? ";
+        String sql = "UPDATE  producto SET nombre = ?, cantidad = ?, precio = ?, activo = ?,categoria = ? WHERE idProducto = ? ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -90,7 +90,9 @@ public class ProductoData {
             ps.setString(1, producto.getNombre());
             ps.setInt(2, producto.getCantidad());
             ps.setDouble(3, producto.getPrecio());
-            ps.setInt(4, producto.getIdProducto());
+            ps.setBoolean(4, producto.isActivo());
+            ps.setInt(5, producto.getCategaoria());
+            ps.setInt(6, producto.getIdProducto());
 
             if (ps.executeUpdate() != 0) {
 
@@ -100,7 +102,7 @@ public class ProductoData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo modificar el producto");
+            JOptionPane.showMessageDialog(null, "Error de sintaxis");
         }
 
         return exito;
@@ -123,6 +125,8 @@ public class ProductoData {
                 producto.setNombre(resultSet.getString("nombre"));
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+                producto.setCategaoria(resultSet.getInt("categoria"));
 
                 productos.add(producto);
             }
@@ -151,6 +155,8 @@ public class ProductoData {
                 producto.setNombre(resultSet.getString("nombre"));
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+                producto.setCategaoria(resultSet.getInt("categoria"));
 
             }
             ps.close();
@@ -173,12 +179,14 @@ public class ProductoData {
             ResultSet resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                
+
                 producto = new Producto();
                 producto.setIdProducto(resultSet.getInt("idProducto"));
                 producto.setNombre(resultSet.getString("nombre"));
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+                producto.setCategaoria(resultSet.getInt("categoria"));
             }
             ps.close();
 
@@ -187,4 +195,5 @@ public class ProductoData {
         }
         return producto;
     }
+
 }

@@ -18,22 +18,28 @@ public class Resto {
         ProductoData pd = new ProductoData(conexion);
         /////----------------AGREGANDO PRODUCTOS----------------------------
         //creamos el objeto
-        Producto pizza = new Producto("mondongo", 300, 400.0);
+        Producto pizza = new Producto("mondongo", 300, 400.0,true,0);
 
 //        if(pd.agregarProducto(pizza)){
 //            JOptionPane.showMessageDialog(null, "Prodcuto agregado con exito");
 //        }
-//        if(pd.borrarProducto(12)){
+//        if(pd.borrarProducto(3)){
 //            JOptionPane.showMessageDialog(null, "Prodcuto eliminado con exito");
+//        }else{
+//            JOptionPane.showMessageDialog(null, "error");
 //        }
 //        
-//          if(pd.modificarProducto( pizza = new Producto(1, "pizza 2", 100, 100.0))){
+//          if(pd.modificarProducto( pizza = new Producto(3, "pizza 2", 100, 100.0,true,1))){
 //              JOptionPane.showMessageDialog(null, "Prodcuto modificado con exito");
 //          }
 
 //        for (Producto aux : pd.obtenerProductos()) {
 //            System.out.println(aux);
 //        }
+
+//        System.out.println(pd.obtenerProductosXnombre("pizza 2"));
+
+//        System.out.println(pd.obtenerProductoXId(3));
 
           
 
