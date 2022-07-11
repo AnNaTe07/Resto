@@ -24,10 +24,10 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jpPrincipal = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jlMenu = new javax.swing.JLabel();
         jpMenu1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jpMenu2 = new javax.swing.JPanel();
+        jpEscritorio = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jpMenu3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,8 +44,8 @@ public class Menu extends javax.swing.JFrame {
 
         jpPrincipal.setBackground(new java.awt.Color(64, 44, 72));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/resssssst.jpg"))); // NOI18N
-        jLabel7.setText("jLabel7");
+        jlMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/resssssst.jpg"))); // NOI18N
+        jlMenu.setText("jLabel7");
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
@@ -53,14 +53,14 @@ public class Menu extends javax.swing.JFrame {
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addContainerGap(217, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(213, 213, 213))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(127, Short.MAX_VALUE))
         );
 
@@ -97,35 +97,35 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jpMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
 
-        jpMenu2.setBackground(new java.awt.Color(29, 19, 32));
-        jpMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpEscritorio.setBackground(new java.awt.Color(29, 19, 32));
+        jpEscritorio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpMenu2MouseClicked(evt);
+                jpEscritorioMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpMenu2MouseEntered(evt);
+                jpEscritorioMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpMenu2MouseExited(evt);
+                jpEscritorioMouseExited(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("      MENU 2");
+        jLabel2.setText("  ESCRITORIO");
 
-        javax.swing.GroupLayout jpMenu2Layout = new javax.swing.GroupLayout(jpMenu2);
-        jpMenu2.setLayout(jpMenu2Layout);
-        jpMenu2Layout.setHorizontalGroup(
-            jpMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpEscritorioLayout = new javax.swing.GroupLayout(jpEscritorio);
+        jpEscritorio.setLayout(jpEscritorioLayout);
+        jpEscritorioLayout.setHorizontalGroup(
+            jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
         );
-        jpMenu2Layout.setVerticalGroup(
-            jpMenu2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpEscritorioLayout.setVerticalGroup(
+            jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jpMenu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, -1, -1));
+        getContentPane().add(jpEscritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, -1, -1));
 
         jpMenu3.setBackground(new java.awt.Color(29, 19, 32));
         jpMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -278,13 +278,13 @@ public class Menu extends javax.swing.JFrame {
         jpMenu1.setBackground(new Color(29, 19, 32));
     }//GEN-LAST:event_jpMenu1MouseExited
 
-    private void jpMenu2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu2MouseEntered
-        jpMenu2.setBackground(new Color(64, 44, 72));
-    }//GEN-LAST:event_jpMenu2MouseEntered
+    private void jpEscritorioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscritorioMouseEntered
+        jpEscritorio.setBackground(new Color(64, 44, 72));
+    }//GEN-LAST:event_jpEscritorioMouseEntered
 
-    private void jpMenu2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu2MouseExited
-        jpMenu2.setBackground(new Color(29, 19, 32));
-    }//GEN-LAST:event_jpMenu2MouseExited
+    private void jpEscritorioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscritorioMouseExited
+        jpEscritorio.setBackground(new Color(29, 19, 32));
+    }//GEN-LAST:event_jpEscritorioMouseExited
 
     private void jpMenu3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu3MouseEntered
         jpMenu3.setBackground(new Color(64, 44, 72));
@@ -319,7 +319,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpMenu5MouseExited
 
     private void jpMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu1MouseClicked
+        
         dispose();
+        
     }//GEN-LAST:event_jpMenu1MouseClicked
 
     private void jpProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductosMouseClicked
@@ -335,10 +337,13 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jpProductosMouseClicked
 
-    private void jpMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu2MouseClicked
+    private void jpEscritorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscritorioMouseClicked
+          jpPrincipal.removeAll();
+        jpPrincipal.repaint();
+        jpPrincipal.add(jlMenu);
+        jpPrincipal.setVisible(true);
           
-          
-    }//GEN-LAST:event_jpMenu2MouseClicked
+    }//GEN-LAST:event_jpEscritorioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -382,14 +387,17 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jlMenu;
+    private javax.swing.JPanel jpEscritorio;
     private javax.swing.JPanel jpExtra;
     private javax.swing.JPanel jpMenu1;
-    private javax.swing.JPanel jpMenu2;
     private javax.swing.JPanel jpMenu3;
     private javax.swing.JPanel jpMenu5;
     private javax.swing.JPanel jpMenu6;
     private javax.swing.JPanel jpPrincipal;
     private javax.swing.JPanel jpProductos;
     // End of variables declaration//GEN-END:variables
+
+
+
 }

@@ -196,4 +196,35 @@ public class ProductoData {
         return producto;
     }
 
+    public ArrayList<Producto> productosXStock(int stock) {
+        ArrayList<Producto> productos = new ArrayList();
+        try {
+
+            String sql = "SELECT * FROM producto WHERE activo = 1 AND cantidad >= ? ORDER BY cantidad DESC";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, stock);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            Producto producto;
+            while (resultSet.next()) {
+                producto = new Producto();
+                producto.setIdProducto(resultSet.getInt("idProducto"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+                producto.setCategaoria(resultSet.getInt("categoria"));
+
+                productos.add(producto);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo obtener los productos");
+        }
+        return productos;
+    }
+
 }

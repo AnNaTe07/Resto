@@ -41,6 +41,10 @@ public class Resto {
 
 //        System.out.println(pd.obtenerProductoXId(3));
 
+        for (Producto aux : pd.productosXStock(10)) {
+            System.out.println(aux);
+        }
+
           
 
         //Mesero
