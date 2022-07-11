@@ -7,7 +7,7 @@ import java.time.LocalTime;
 public class Reserva {
     private int idReserva;
     private String nombre;
-    private long dni;
+    private int dni;
     private LocalDate fecha;
     private LocalTime hora;
     private int idMesa;
@@ -16,7 +16,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva( String nombre, long dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
+    public Reserva( String nombre, int dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
      
         this.nombre = nombre;
         this.dni = dni;
@@ -26,7 +26,7 @@ public class Reserva {
         this.activo = activo;
     }
 
-    public Reserva(int idReserva, String nombre, long dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
+    public Reserva(int idReserva, String nombre, int dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
         this.idReserva = idReserva;
         this.nombre = nombre;
         this.dni = dni;
@@ -48,7 +48,7 @@ public class Reserva {
         return nombre;
     }
 
-    public long getDni() {
+    public int getDni() {
         return dni;
     }
 
@@ -72,7 +72,7 @@ public class Reserva {
         this.nombre = nombre;
     }
 
-    public void setDni(long dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 

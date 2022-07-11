@@ -434,7 +434,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
         if(!jtNombre.getText().isEmpty() && !jtDni.getText().isEmpty()){
             
         String nombre=jtNombre.getText();
-        long dni=Long.parseLong(jtDni.getText());
+        int dni=Integer.parseInt(jtDni.getText());
       
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = formato.format(jdFecha.getDate());
@@ -473,7 +473,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
            //validar si el nombre y dni no estan vacios
         if(!jtNombre.getText().isEmpty() && !jtDni.getText().isEmpty()){
           try{
-         long dni=Long.parseLong(jtDni.getText()); 
+         int dni=Integer.parseInt(jtDni.getText()); 
      
          String nombre=jtNombre.getText();         
          
