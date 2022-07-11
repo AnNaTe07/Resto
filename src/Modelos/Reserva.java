@@ -1,22 +1,22 @@
 
 package Modelos;
 
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Reserva {
     private int idReserva;
     private String nombre;
-    private int dni;
+    private long dni;
     private LocalDate fecha;
-    private Time hora;
+    private LocalTime hora;
     private int idMesa;
     private boolean activo;
 
     public Reserva() {
     }
 
-    public Reserva( String nombre, int dni, LocalDate fecha, Time hora, int idMesa, boolean activo) {
+    public Reserva( String nombre, long dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
      
         this.nombre = nombre;
         this.dni = dni;
@@ -26,7 +26,7 @@ public class Reserva {
         this.activo = activo;
     }
 
-    public Reserva(int idReserva, String nombre, int dni, LocalDate fecha, Time hora, int idMesa, boolean activo) {
+    public Reserva(int idReserva, String nombre, long dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
         this.idReserva = idReserva;
         this.nombre = nombre;
         this.dni = dni;
@@ -48,7 +48,7 @@ public class Reserva {
         return nombre;
     }
 
-    public int getDni() {
+    public long getDni() {
         return dni;
     }
 
@@ -56,7 +56,7 @@ public class Reserva {
         return fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
@@ -72,7 +72,7 @@ public class Reserva {
         this.nombre = nombre;
     }
 
-    public void setDni(int dni) {
+    public void setDni(long dni) {
         this.dni = dni;
     }
 
@@ -80,7 +80,7 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
