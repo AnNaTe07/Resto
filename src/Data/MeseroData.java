@@ -88,6 +88,42 @@ public class MeseroData {
         }
         return exito;
     }
+    
+    public boolean modificarMesero(Mesero mesero){
+        boolean exito = true;
+        String sql = "UPDATE mesero SET  nombre = ?, apellido = ?, dni = ?, telefono = ?  WHERE dni = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, mesero.getNombre());
+            ps.setString(2, mesero.getApellido());
+            ps.setInt(3, mesero.getDni());
+            ps.setInt(4, mesero.getTelefono());
+            ps.setInt(5, mesero.getDni());
+            int rs = ps.executeUpdate();
+            if(rs == 0){
+                exito = false;
+            }
+        }catch(SQLException ne){
+            JOptionPane.showMessageDialog(null, "Error de sintaxis: modificar " + ne);
+        }
+        return exito;
+    }
+    public boolean activarMesero(Mesero mesero){
+        boolean exito = true;
+        String sql = "UPDATE mesero SET activo = 1 WHERE dni = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mesero.getDni());
+            int rs = ps.executeUpdate();
+            
+            if(rs == 0){
+                exito = false;
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return exito;
+    }
 
     public ArrayList<Mesero> obtenerMeseros() {
         ArrayList<Mesero> listaMeseros = new ArrayList();
@@ -111,6 +147,82 @@ public class MeseroData {
             JOptionPane.showMessageDialog(null, e);
         }
         return listaMeseros;
+    }
+    
+    public ArrayList<Mesero> obtenerMeserosActivos(){
+        ArrayList<Mesero> listaMeseros = new ArrayList();
+        String sql = "SELECT * FROM mesero WHERE activo = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            Mesero m;
+            while (rs.next()) {
+                m = new Mesero();
+
+                m.setIdMesero(rs.getInt("idMesero"));
+                m.setNombre(rs.getString("nombre"));
+                m.setApellido(rs.getString("apellido"));
+                m.setDni(rs.getInt("dni"));
+                m.setTelefono(rs.getInt("telefono"));
+                m.setActivo(rs.getBoolean("activo"));
+
+                listaMeseros.add(m);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return listaMeseros;
+    }
+    
+    public ArrayList<Mesero> obtenerMeserosInactivos(){
+        ArrayList<Mesero> listaMeseros = new ArrayList();
+        String sql = "SELECT * FROM mesero WHERE activo = 0";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            Mesero m;
+            while (rs.next()) {
+                m = new Mesero();
+
+                m.setIdMesero(rs.getInt("idMesero"));
+                m.setNombre(rs.getString("nombre"));
+                m.setApellido(rs.getString("apellido"));
+                m.setDni(rs.getInt("dni"));
+                m.setTelefono(rs.getInt("telefono"));
+                m.setActivo(rs.getBoolean("activo"));
+
+                listaMeseros.add(m);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return listaMeseros;
+    }
+    
+    public Mesero obtenerMeseroxDNI(int DNI){
+        Mesero mesero = new Mesero();
+        String sql = "SELECT * FROM mesero WHERE dni = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, DNI);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                mesero.setIdMesero(rs.getInt("idMesero"));
+                mesero.setNombre(rs.getString("nombre"));
+                mesero.setApellido(rs.getString("apellido"));
+                mesero.setDni(DNI);
+                mesero.setTelefono(rs.getInt("telefono"));
+                mesero.setActivo(rs.getBoolean("activo"));
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo obtener el mesero");
+            }
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return mesero;
     }
 
     public boolean tomarPedido(Mesero mesero, Pedido pedido) {

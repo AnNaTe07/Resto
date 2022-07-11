@@ -34,6 +34,14 @@ public class Mesero {
         this.activo = activo;
     }
 
+    public Mesero(String nombre, String apellido, int dni, int telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.telefono = telefono;
+    }
+    
+
     public int getIdMesero() {
         return idMesero;
     }
