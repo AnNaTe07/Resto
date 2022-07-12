@@ -2,6 +2,7 @@
 package Vistas;
 
 import Data.Conexion;
+import Data.MesaData;
 
 import Data.ProductoData;
 
@@ -17,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
     private ProductoData pd;
     private MeseroData md;
     private ReservaData rd;
+    private MesaData mesad;
 
     public Menu() {
         conexion = new Conexion();
@@ -25,6 +27,7 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         md = new MeseroData(conexion);
         rd = new ReservaData(conexion);
+        mesad=new MesaData(conexion);
     }
 
     private Component obtenerPrincipal(){
@@ -216,7 +219,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMesasActionPerformed
         jpPrincipal.removeAll();
-        MesasView mesas = new MesasView();
+        MesasView mesas = new MesasView(mesad);
         mesas.setVisible(true);
         jpPrincipal.add(mesas);
         mesas.moveToFront();
