@@ -78,10 +78,8 @@ public class MeserosView extends javax.swing.JInternalFrame {
             public void mouseClicked(MouseEvent me) {
                 int x = jtLista.getSelectedRow();
                 if(x > -1){
+                    jbEliminar.setEnabled(true);
                     jbModificar.setEnabled(true);
-                    if(rbActivos.isSelected()){
-                        jbEliminar.setEnabled(true);
-                    }
                 }
  
             }
@@ -395,7 +393,6 @@ public class MeserosView extends javax.swing.JInternalFrame {
     private void rbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInactivosActionPerformed
         if(rbInactivos.isSelected()){
             rbActivos.setSelected(false);
-            jbEliminar.setEnabled(false);
             limpiarTabla();
             llenarTablaInactivos();
         }
@@ -404,8 +401,6 @@ public class MeserosView extends javax.swing.JInternalFrame {
     private void rbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbActivosActionPerformed
         if(rbActivos.isSelected()){
             rbInactivos.setSelected(false);
-            jbEliminar.setEnabled(false);
-            jbModificar.setEnabled(false);
             limpiarTabla();
             llenarTablaActivos();
         }
