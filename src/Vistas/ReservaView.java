@@ -38,7 +38,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
         jtHora.setText("");
         jdFecha.setCalendar(null);
         
-        limpiarTabla();
+       // limpiarTabla();
         jbModificar.setEnabled(false);
         jtReservas.setVisible(false);
         jbCancelar.setEnabled(false);
@@ -59,14 +59,14 @@ public class ReservaView extends javax.swing.JInternalFrame {
         jtReservas.setModel(modelo);
     }
         
-      private void limpiarTabla() {
+   /*   private void limpiarTabla() {
        int a = jtReservas.getRowCount()-1;
          if(a > -1){
               for (int i = a; i >= 0; i--) {
               modelo.removeRow(i);
           }
          }
-    }
+    }*/
       
 
     
@@ -312,7 +312,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
 
     private void jbReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservasActionPerformed
    
-        limpiarTabla();
+       // limpiarTabla();
         java.util.List<Reserva> Reservas = rd.obtenerReservas();
         
         for (Reserva aux : Reservas) {
