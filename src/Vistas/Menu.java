@@ -2,25 +2,25 @@
 package Vistas;
 
 import Data.Conexion;
-<<<<<<< HEAD
+
 import Data.ProductoData;
-=======
+
 import Data.MeseroData;
->>>>>>> 21c721d774eb071394569c4f156ad80e8c66e48d
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 
 public class Menu extends javax.swing.JFrame {
-<<<<<<< HEAD
+
     private Conexion conexion;
     private ProductoData pd;
     
-=======
 
-    private Conexion conexion;
+
+
     private MeseroData mesero;
->>>>>>> 21c721d774eb071394569c4f156ad80e8c66e48d
+
     public Menu() {
         conexion = new Conexion();
         pd = new ProductoData(conexion);
@@ -377,11 +377,11 @@ public class Menu extends javax.swing.JFrame {
           
     }//GEN-LAST:event_jpEscritorioMouseClicked
 
-<<<<<<< HEAD
+
     private void jpMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jpMenu3MouseClicked
-=======
+
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
       jpPrincipal.removeAll();
       jpPrincipal.repaint();
@@ -390,7 +390,6 @@ public class Menu extends javax.swing.JFrame {
       rv.setVisible(true);
       jpPrincipal.setVisible(true);
     }//GEN-LAST:event_jbLoginActionPerformed
->>>>>>> 21c721d774eb071394569c4f156ad80e8c66e48d
 
     /**
      * @param args the command line arguments
