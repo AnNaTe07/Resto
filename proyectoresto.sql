@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2022 a las 23:19:35
+-- Tiempo de generación: 13-07-2022 a las 00:40:38
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -120,6 +120,7 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `categoria
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
   `nombre` varchar(40) NOT NULL,
+  `dni` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `idMesa` int(11) NOT NULL,
@@ -183,12 +184,6 @@ ALTER TABLE `reserva`
 --
 ALTER TABLE `detalle`
   MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `mesa`
---
-ALTER TABLE `mesa`
-  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `mesero`
