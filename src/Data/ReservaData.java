@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -31,7 +32,7 @@ public class ReservaData {
             ps.setString(2, reserva.getNombre());
             ps.setInt(3, reserva.getDni());
             ps.setDate(4, Date.valueOf(reserva.getFecha()));
-            ps.setTime(5,reserva.getHora());
+           // ps.setTime(5,reserva.getHora());
             ps.setInt(6, reserva.getIdMesa());
             ps.setBoolean(7,reserva.isActivo());
             
@@ -95,7 +96,7 @@ public class ReservaData {
             ps.setString(2, reserva.getNombre());
             ps.setInt(3, reserva.getDni());
             ps.setDate(4, Date.valueOf(reserva.getFecha()));
-            ps.setTime(5,reserva.getHora());
+            ps.setTime(5, Time.valueOf(reserva.getHora()));
             ps.setInt(6, reserva.getIdMesa());
             ps.setBoolean(7,reserva.isActivo());
             
@@ -129,7 +130,7 @@ public class ReservaData {
                 reserva.setNombre(resultSet.getString("nombre"));
                 reserva.setDni(resultSet.getInt("dni"));
                 reserva.setFecha(resultSet.getDate("fecha").toLocalDate());
-                reserva.setHora(resultSet.getTime("hora"));
+                reserva.setHora(resultSet.getTime("hora").toLocalTime());
                 reserva.setIdMesa(resultSet.getInt("idMesa"));
                 reserva.setActivo(resultSet.getBoolean("activo"));
 
@@ -159,7 +160,7 @@ public class ReservaData {
                 reserva.setNombre(resultSet.getString("nombre"));
                 reserva.setDni(resultSet.getInt("dni"));
                 reserva.setFecha(resultSet.getDate("fecha").toLocalDate());
-                reserva.setHora(resultSet.getTime("hora"));
+                reserva.setHora(resultSet.getTime("hora").toLocalTime());
                 reserva.setIdMesa(resultSet.getInt("idMesa"));
                 reserva.setActivo(resultSet.getBoolean("activo"));
 
