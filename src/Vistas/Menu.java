@@ -1,15 +1,18 @@
 
 package Vistas;
 
+import Data.Conexion;
+import Data.ProductoData;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 public class Menu extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Menu
-     */
+    private Conexion conexion;
+    private ProductoData pd;
+    
     public Menu() {
+        conexion = new Conexion();
+        pd = new ProductoData(conexion);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -129,6 +132,9 @@ public class Menu extends javax.swing.JFrame {
 
         jpMenu3.setBackground(new java.awt.Color(29, 19, 32));
         jpMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpMenu3MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jpMenu3MouseEntered(evt);
             }
@@ -325,7 +331,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpMenu1MouseClicked
 
     private void jpProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpProductosMouseClicked
-          Productos p = new Productos();
+          Productos p = new Productos(pd);
           p.setSize(1000, 610);
           p.setLocation(0,0);
           
@@ -344,6 +350,10 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.setVisible(true);
           
     }//GEN-LAST:event_jpEscritorioMouseClicked
+
+    private void jpMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMenu3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpMenu3MouseClicked
 
     /**
      * @param args the command line arguments

@@ -7,7 +7,7 @@ public class Producto {
     private int cantidad;
     private double precio;
     private boolean activo;
-    private int categaoria;
+    private int categoria;
 
     public Producto() {
     }
@@ -18,7 +18,7 @@ public class Producto {
         this.cantidad = cantidad;
         this.precio = precio;
         this.activo = activo;
-        this.categaoria = categaoria;
+        this.categoria = categaoria;
     }
 
     public Producto(String nombre, int cantidad, double precio, boolean activo, int categaoria) {
@@ -26,15 +26,15 @@ public class Producto {
         this.cantidad = cantidad;
         this.precio = precio;
         this.activo = activo;
-        this.categaoria = categaoria;
+        this.categoria = categaoria;
     }
 
-    public int getCategaoria() {
-        return categaoria;
+    public int getCategoria() {
+        return categoria;
     }
 
-    public void setCategaoria(int categaoria) {
-        this.categaoria = categaoria;
+    public void setCategoria(int categaoria) {
+        this.categoria = categaoria;
     }
 
     public boolean isActivo() {
@@ -79,7 +79,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "nombre= " + nombre + ", cantidad= " + cantidad + ", precio= " + precio + ", activo= " + activo + ", categaoria= " + categaoria + '}';
+        return "nombre= " + nombre + ", cantidad= " + cantidad + ", precio= " + precio + ", activo= " + activo + ", categaoria= " + categoria + '}';
     }
 
     

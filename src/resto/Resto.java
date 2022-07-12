@@ -34,16 +34,21 @@ public class Resto {
 //          }
 
 //        for (Producto aux : pd.obtenerProductos()) {
-//            System.out.println(aux);
+//            System.out.println(aux.getNombre());
 //        }
 
 //        System.out.println(pd.obtenerProductosXnombre("pizza 2"));
 
 //        System.out.println(pd.obtenerProductoXId(3));
 
-        for (Producto aux : pd.productosXStock(10)) {
+//        for (Producto aux : pd.productosXStock(10)) {
+//            System.out.println(aux);
+//        }
+
+        for (Producto aux : pd.buscarXCategoria(0)) {
             System.out.println(aux);
         }
+
 
           
 

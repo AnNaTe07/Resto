@@ -31,7 +31,7 @@ public class ProductoData {
             ps.setInt(2, producto.getCantidad());
             ps.setDouble(3, producto.getPrecio());
             ps.setBoolean(4, producto.isActivo());
-            ps.setInt(5, producto.getCategaoria());
+            ps.setInt(5, producto.getCategoria());
 
             ps.executeUpdate();
 
@@ -91,7 +91,7 @@ public class ProductoData {
             ps.setInt(2, producto.getCantidad());
             ps.setDouble(3, producto.getPrecio());
             ps.setBoolean(4, producto.isActivo());
-            ps.setInt(5, producto.getCategaoria());
+            ps.setInt(5, producto.getCategoria());
             ps.setInt(6, producto.getIdProducto());
 
             if (ps.executeUpdate() != 0) {
@@ -112,7 +112,7 @@ public class ProductoData {
     public ArrayList<Producto> obtenerProductos() {
         ArrayList<Producto> productos = new ArrayList();
 
-        String sql = "SELECT * FROM producto";
+        String sql = "SELECT * FROM producto WHERE activo = 1 ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class ProductoData {
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
                 producto.setActivo(resultSet.getBoolean("activo"));
-                producto.setCategaoria(resultSet.getInt("categoria"));
+                producto.setCategoria(resultSet.getInt("categoria"));
 
                 productos.add(producto);
             }
@@ -138,17 +138,16 @@ public class ProductoData {
         return productos;
     }
 
-    public Producto obtenerProductosXnombre(String nombre) {
-        Producto producto = null;
-
+    public ArrayList<Producto> obtenerProductosXnombre(String nombre) {
+        ArrayList<Producto> productos =  new ArrayList();
         String sql = "SELECT * FROM producto WHERE nombre LIKE ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, nombre);
+            ps.setString(1, nombre+"%");
             ResultSet resultSet = ps.executeQuery();
-
+            Producto producto;
             while (resultSet.next()) {
                 producto = new Producto();
                 producto.setIdProducto(resultSet.getInt("idProducto"));
@@ -156,15 +155,15 @@ public class ProductoData {
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
                 producto.setActivo(resultSet.getBoolean("activo"));
-                producto.setCategaoria(resultSet.getInt("categoria"));
-
+                producto.setCategoria(resultSet.getInt("categoria"));
+                productos.add(producto);
             }
             ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener los productos");
         }
-        return producto;
+        return productos;
     }
 
     public Producto obtenerProductoXId(int id) {
@@ -186,7 +185,7 @@ public class ProductoData {
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
                 producto.setActivo(resultSet.getBoolean("activo"));
-                producto.setCategaoria(resultSet.getInt("categoria"));
+                producto.setCategoria(resultSet.getInt("categoria"));
             }
             ps.close();
 
@@ -215,7 +214,7 @@ public class ProductoData {
                 producto.setPrecio(resultSet.getDouble("precio"));
                 producto.setCantidad(resultSet.getInt("cantidad"));
                 producto.setActivo(resultSet.getBoolean("activo"));
-                producto.setCategaoria(resultSet.getInt("categoria"));
+                producto.setCategoria(resultSet.getInt("categoria"));
 
                 productos.add(producto);
             }
@@ -223,6 +222,36 @@ public class ProductoData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener los productos");
+        }
+        return productos;
+    }
+    
+    public ArrayList<Producto> buscarXCategoria(int categoria){
+        ArrayList<Producto> productos = new ArrayList();
+        
+        String sql ="SELECT * FROM producto WHERE categoria = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, categoria);
+            ResultSet resultSet = ps.executeQuery();
+
+            Producto producto;
+            while (resultSet.next()) {
+                producto = new Producto();
+                producto.setIdProducto(resultSet.getInt("idProducto"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+                producto.setCategoria(resultSet.getInt("categoria"));
+
+                productos.add(producto);
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return productos;
     }
