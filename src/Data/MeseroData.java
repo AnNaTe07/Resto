@@ -216,7 +216,7 @@ public class MeseroData {
                 mesero.setTelefono(rs.getInt("telefono"));
                 mesero.setActivo(rs.getBoolean("activo"));
             }else{
-                JOptionPane.showMessageDialog(null, "No se pudo obtener el mesero");
+                return null;
             }
             
         }catch(SQLException e){
