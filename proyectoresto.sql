@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 07-07-2022 a las 04:41:24
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-07-2022 a las 23:19:35
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,18 +35,6 @@ CREATE TABLE `detalle` (
   `expirado` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `detalle`
---
-
-INSERT INTO `detalle` (`idDetalle`, `idPedido`, `idProducto`, `cantidad`, `expirado`) VALUES
-(1, 1, 2, 12, 0),
-(2, 1, 2, 2, 0),
-(3, 2, 1, 3, 0),
-(4, 2, 1, 1, 1),
-(5, 3, 2, 2, 1),
-(6, 1, 1, 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -56,21 +44,9 @@ INSERT INTO `detalle` (`idDetalle`, `idPedido`, `idProducto`, `cantidad`, `expir
 CREATE TABLE `mesa` (
   `idMesa` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `estado` tinyint(4) NOT NULL
+  `estado` tinyint(3) NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `mesa`
---
-
-INSERT INTO `mesa` (`idMesa`, `capacidad`, `estado`) VALUES
-(1, 12, 1),
-(2, 1, 1),
-(6, 12, 1),
-(7, 12, 1),
-(12, 12, 1),
-(13, 1, 1),
-(14, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -82,9 +58,9 @@ CREATE TABLE `mesero` (
   `idMesero` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
-  `dni` bigint(20) NOT NULL,
+  `dni` int(11) NOT NULL,
   `telefono` int(11) NOT NULL,
-  `activo` tinyint(4) NOT NULL
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -111,18 +87,6 @@ CREATE TABLE `pedido` (
   `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`idPedido`, `idMesa`, `idMesero`, `activo`, `cobrado`, `fecha`, `hora`) VALUES
-(1, 1, 1, 1, 0, '2022-07-06', '00:14:34'),
-(2, 1, 1, 0, 0, '2022-07-06', '00:14:34'),
-(3, 3, 1, 1, 0, '2022-07-06', '23:54:44'),
-(4, 3, 1, 1, 0, '2022-07-06', '23:54:44'),
-(5, 6, 1, 1, 0, '2022-07-07', '21:36:01'),
-(6, 2, 2, 1, 0, '2022-07-07', '21:36:42');
-
 -- --------------------------------------------------------
 
 --
@@ -134,16 +98,18 @@ CREATE TABLE `producto` (
   `nombre` varchar(50) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio` double NOT NULL,
-  `categoria` int(11) NOT NULL
+  `categoria` tinyint(2) NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `categoria`) VALUES
-(1, 'Lomo', 10, 2100, 0),
-(2, 'Pollo frito', 3, 1200, 0);
+INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `categoria`, `activo`) VALUES
+(1, 'Lomo', 10, 2100, 0, 1),
+(2, 'Pollo frito', 3, 1200, 0, 0),
+(3, 'pizza 2', 100, 100, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -154,9 +120,10 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `categoria
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
   `nombre` varchar(40) NOT NULL,
-  `dni` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` time NOT NULL
+  `hora` time NOT NULL,
+  `idMesa` int(11) NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -182,7 +149,9 @@ ALTER TABLE `mesa`
 --
 ALTER TABLE `mesero`
   ADD PRIMARY KEY (`idMesero`),
-  ADD UNIQUE KEY `apellido` (`apellido`);
+  ADD UNIQUE KEY `apellido` (`apellido`),
+  ADD UNIQUE KEY `dni` (`dni`),
+  ADD UNIQUE KEY `apellido_2` (`apellido`);
 
 --
 -- Indices de la tabla `pedido`
@@ -203,9 +172,7 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`idReserva`),
-  ADD UNIQUE KEY `cliente` (`dni`),
-  ADD UNIQUE KEY `dni` (`dni`),
-  ADD KEY `cliente_2` (`dni`);
+  ADD UNIQUE KEY `idMesa` (`idMesa`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -239,7 +206,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
@@ -259,10 +226,17 @@ ALTER TABLE `detalle`
   ADD CONSTRAINT `detalle_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idMesero`) REFERENCES `mesero` (`idMesero`),
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`idMesa`) REFERENCES `mesa` (`idMesa`);
+
+--
 -- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `mesa` (`idMesa`);
+  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`idMesa`) REFERENCES `mesa` (`idMesa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
