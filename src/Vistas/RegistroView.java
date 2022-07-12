@@ -40,10 +40,13 @@ public class RegistroView extends javax.swing.JInternalFrame {
         jtContraseña = new javax.swing.JTextField();
         jbIngresar = new javax.swing.JButton();
 
-        jLabel4.setText("Ingrese sus datos");
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel4.setText("Log in");
 
+        jLabel5.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 24)); // NOI18N
         jLabel5.setText("Usuario:");
 
+        jLabel6.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 24)); // NOI18N
         jLabel6.setText("Contraseña:");
 
         jbIngresar.setText("jButton1");
@@ -64,19 +67,20 @@ public class RegistroView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4))
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(principalLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(principalLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
                                 .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtUsuario))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addComponent(jbIngresar)))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +97,7 @@ public class RegistroView extends javax.swing.JInternalFrame {
                     .addComponent(jtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(jbIngresar)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
