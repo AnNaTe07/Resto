@@ -3,7 +3,16 @@ package Vistas;
 
 import Data.MesaData;
 import Modelos.Mesa;
+import Modelos.Reserva;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MesasView extends javax.swing.JInternalFrame {
@@ -24,8 +33,10 @@ public class MesasView extends javax.swing.JInternalFrame {
         jtMesa.setText("");
         jtCapacidad.setText("");
         jcActivo.setText("");
+        bgMesa.clearSelection();
+        bgEstado.clearSelection();
              
-       // limpiarTabla();
+        limpiarTabla();
      }
      
         private void armarTabla(){
@@ -38,6 +49,18 @@ public class MesasView extends javax.swing.JInternalFrame {
         }
         listaMesa.setModel(modelo);
     }
+        
+           
+      private void limpiarTabla() {
+       int a = listaMesa.getRowCount()-1;
+         if(a > -1){
+              for (int i = a; i >= 0; i--) {
+              modelo.removeRow(i);
+          }
+         }
+    }
+        
+        
         
 
 
@@ -106,8 +129,18 @@ public class MesasView extends javax.swing.JInternalFrame {
         jLabel6.setText("Activo");
 
         jtMesa.setText("jTextField1");
+        jtMesa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMesaKeyTyped(evt);
+            }
+        });
 
         jtCapacidad.setText("jTextField2");
+        jtCapacidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCapacidadKeyTyped(evt);
+            }
+        });
 
         jcActivo.setText("jCheckBox1");
 
@@ -124,19 +157,26 @@ public class MesasView extends javax.swing.JInternalFrame {
             .addGroup(jPanelDatosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(47, 47, 47)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcActivo)
-                    .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrAtendida)
-                    .addComponent(jrLibre)
-                    .addComponent(jrOcupada))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(jPanelDatosLayout.createSequentialGroup()
+                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jrAtendida)
+                                    .addComponent(jrOcupada)
+                                    .addComponent(jcActivo)
+                                    .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jrLibre))))
+                            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanelDatosLayout.setVerticalGroup(
             jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,26 +185,22 @@ public class MesasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                .addGap(12, 12, 12)
                 .addComponent(jrLibre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)
+                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrOcupada)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jrOcupada, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDatosLayout.createSequentialGroup()
-                        .addComponent(jrAtendida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
-                        .addComponent(jcActivo)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel6))))
+                .addComponent(jrAtendida)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcActivo)
+                    .addComponent(jLabel6)))
         );
 
         listaMesa.setModel(new javax.swing.table.DefaultTableModel(
@@ -199,10 +235,10 @@ public class MesasView extends javax.swing.JInternalFrame {
         );
         jPanelListaLayout.setVerticalGroup(
             jPanelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelListaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListaLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,7 +259,7 @@ public class MesasView extends javax.swing.JInternalFrame {
                                     .addComponent(jrModificar)
                                     .addComponent(jrConsultar)
                                     .addComponent(jrListar))
-                                .addGap(40, 40, 40)
+                                .addGap(35, 35, 35)
                                 .addComponent(jbIr, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,23 +278,23 @@ public class MesasView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jrRegistrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
                                 .addComponent(jrModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(15, 15, 15)
                                 .addComponent(jrConsultar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addGap(33, 33, 33)
                                 .addComponent(jbIr)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jrListar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(jrListar))
+                    .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4))
         );
 
@@ -270,9 +306,158 @@ public class MesasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrRegistrarActionPerformed
 
     private void jbIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrActionPerformed
+       String estado="0", frase="0";
+       boolean activo= false;
+        try{
+        if(jrRegistrar.isSelected()){
+            
+               //validar si el capacidad y estado no estan vacios
+        if(!jtCapacidad.getText().isEmpty() && (jrLibre.isSelected()==false || jrOcupada.isSelected()==false || jrAtendida.isSelected()==false)){
+          try{
+         int mesa = Integer.parseInt(jtMesa.getText());
+         int capacidad=Integer.parseInt(jtCapacidad.getText()); 
+         
+         if(jrLibre.isSelected()){
+             estado="Libre";
+         }else if(jrOcupada.isSelected()){
+             estado="Ocupada";
+         }else if(jrAtendida.isSelected()){
+             estado="Atendida";
+         }else{
+             JOptionPane.showMessageDialog(this, "Debe seleccionar un 'estado'");
+         }
+         Mesa m = new Mesa(mesa,capacidad, true, estado);
+     
+         if( md.agregarMesa(m)){    
+            JOptionPane.showMessageDialog(this,"\nMesa n°: "+jtMesa+"\nCapacidad: "+jtCapacidad.getText()+"\nEstado: "+estado);
+            limpiarCampos();
+            }
+         }catch(NullPointerException e){
+             JOptionPane.showMessageDialog(this,"Llene los campos correctamente");
+         }
+        }
+        }    
+        
+        if(jrModificar.isSelected()){
+            
+               int id=0;
+        try{
+            id=Integer.parseInt(jtMesa.getText());
+        
+        
+        //validar si el capacidad y estado no estan vacios
+        if(!jtCapacidad.getText().isEmpty() && (jrLibre.isSelected()==false || jrOcupada.isSelected()==false || jrAtendida.isSelected()==false)){
+            
+        int mesa = Integer.parseInt(jtMesa.getText());
+        int capacidad = Integer.parseInt(jtCapacidad.getText());
+        
+        if(jrLibre.isSelected()){
+            estado="Libre";
+        }else if(jrOcupada.isSelected()){
+            estado="Ocupada";
+        }else if(jrAtendida.isSelected()){
+            estado="Atendida";
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un 'estado'");
+        }
+        
+        if(jcActivo.isSelected()){
+            activo=true;            
+        }else{
+            frase = "Mesa dada de baja";
+        }
        
+         
+        Mesa m=new Mesa(mesa,capacidad, activo, estado);
+        if(md.modificarMesa(m)){ 
+             JOptionPane.showMessageDialog(this, "Modificación realizada con éxito: \nMesa n°: "+jtMesa.getText()+"\nCapacidad: "+jtCapacidad.getText()+"\nEstado: "+estado+ frase);
+             limpiarCampos();
+        }else{
+             JOptionPane.showMessageDialog(this, "Error al intentar modificar los datos, inténtelo nuevamente");
+        }  
+        }else{
+              JOptionPane.showMessageDialog(this, "Complete los campos capacidad y estado correctamente");
+
+        }
+         
+        
+        }catch(NumberFormatException | NullPointerException e){
+             JOptionPane.showMessageDialog(this,"Llene los campos correctamente");
+        }    
+            
+        }
+        if(jrConsultar.isSelected()){
+            
+        //validar que mesa no este vacio
+        if(!jtMesa.getText().isEmpty()){
+        try{
+      
+        int mesa = Integer.parseInt(jtMesa.getText());
+        Mesa aux =md.obtenerMesaxId(mesa);
+        if(aux != null){
+            
+            jtMesa.setText(aux.getIdMesa()+"");
+            jtCapacidad.setText(aux.getCapacidad()+"");
+            if(aux.getEstado().equalsIgnoreCase("Libre")){
+                jrLibre.isSelected();                  
+            }else if(aux.getEstado().equalsIgnoreCase("Ocupada")){
+                jrOcupada.isSelected();
+            }else if(aux.getEstado().equalsIgnoreCase("Atendida")){
+               jrAtendida.isSelected();
+            }
+        if(aux.isActivo()){
+            jcActivo.isSelected();
+        }else{
+            JOptionPane.showMessageDialog(this,"Mesa temporalmente fuera de servicio");
+        }      
+        }else {
+            JOptionPane.showMessageDialog(this,"Número de mesa incorrecto");
+        }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"Complete el campo 'número de mesa' correctamente");
+            limpiarCampos();
+        }
+        }else{
+            JOptionPane.showMessageDialog(this,"Debe ingresar el número de mesa para buscarlo");
+            limpiarCampos();
+        }
+            
+        }
+        if(jrListar.isSelected()){
+            List<Mesa> listaMesas = md.obtenerMesasActivas();
+        
+        for (Mesa aux : listaMesas) {
+            modelo.addRow(new Object[]{aux.getIdMesa(), aux.getCapacidad(), aux.getEstado(), aux.isActivo()});
+        }
+            
+        }
+           
+        }catch(NumberFormatException e){
+             JOptionPane.showMessageDialog(this,"Complete los campos correctamente");
+             limpiarCampos();
+        }
         
     }//GEN-LAST:event_jbIrActionPerformed
+
+    private void jtMesaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMesaKeyTyped
+       
+          // no permite ingresar letras en el campo mesa
+        char c = evt.getKeyChar();
+        
+        if(c<'0'||c>'9'){
+        evt.consume();
+        }
+    }//GEN-LAST:event_jtMesaKeyTyped
+
+    private void jtCapacidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCapacidadKeyTyped
+      
+          // no permite ingresar letras en el campo mesa
+        char c = evt.getKeyChar();
+        
+        if(c<'0'||c>'9'){
+        evt.consume();
+        }
+    }//GEN-LAST:event_jtCapacidadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
