@@ -32,7 +32,7 @@ public class ReservaData {
             ps.setString(2, reserva.getNombre());
             ps.setInt(3, reserva.getDni());
             ps.setDate(4, Date.valueOf(reserva.getFecha()));
-           // ps.setTime(5,reserva.getHora());
+            ps.setTime(5,Time.valueOf(reserva.getHora()));
             ps.setInt(6, reserva.getIdMesa());
             ps.setBoolean(7,reserva.isActivo());
             

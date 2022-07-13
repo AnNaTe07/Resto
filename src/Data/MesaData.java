@@ -22,23 +22,23 @@ public class MesaData {
     
     public boolean agregarMesa(Mesa mesa) {
         boolean exito = true;
+       
         String sql = "INSERT INTO mesa(idMesa, capacidad,activo, estado) VALUES (? ,? , ?, ?)";
 
         try {
-            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, mesa.getIdMesa());
             ps.setInt(2, mesa.getCapacidad());
             ps.setBoolean(3,mesa.isActivo());
             ps.setString(4 ,mesa.getEstado());
              
             ps.executeUpdate();
-
-            ResultSet rs = ps.getGeneratedKeys();
-
+           
+            ResultSet rs = ps.getResultSet();
             if (rs.next()) {
-                mesa.setIdMesa(rs.getInt(1));
+                mesa.getIdMesa();
             } else {
-
+                //JOptionPane.showMessageDialog(null, "Error al intentar agregar la mesa");
                 exito = false;
             }
 
@@ -79,26 +79,23 @@ public class MesaData {
     }
  
     public boolean modificarMesa(Mesa mesa) {
+        
+
+        String sql = "UPDATE  mesa SET capacidad = ?, activo = ?, estado = ? WHERE idMesa = ? ";
         boolean exito = false;
-
-        String sql = "UPDATE  mesa SET idMesa = ?, capacidad = ?, activo = ?, estado = ? WHERE idMesa = ? ";
-
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setInt(1, mesa.getIdMesa());
-            ps.setInt(2, mesa.getCapacidad());
-            ps.setBoolean(3,mesa.isActivo());
-            ps.setString(4 ,mesa.getEstado());
+             PreparedStatement ps = con.prepareStatement(sql);            
+         
+            ps.setInt(1, mesa.getCapacidad());
+            ps.setBoolean(2,mesa.isActivo());
+            ps.setString(3 ,mesa.getEstado());
+            ps.setInt(4, mesa.getIdMesa());
             if (ps.executeUpdate() != 0) {
-
                 exito = true;
-            }
-
-            ps.close();
+            }         
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo modificar la mesa");
+            JOptionPane.showMessageDialog(null, "Error de sintaxis");
         }
 
         return exito;
@@ -155,5 +152,56 @@ public class MesaData {
 
         return mesa;
     }    
+    
+     public ArrayList<Mesa> obtenerMesasReservadas() {
+        ArrayList<Mesa> listaMesa = new ArrayList();       
+
+        try {
+            String sql = "SELECT mesa.idMesa, mesa.capacidad,mesa.estado FROM reserva, mesa +"
+                    + "WHERE  (mesa.idMesa = reserva.idMesa) AND reserva.activo=1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            
+            Mesa mesa;
+            while (resultSet.next()) {
+                mesa = new Mesa();
+                mesa.setIdMesa(resultSet.getInt("idMesa"));
+                mesa.setCapacidad(resultSet.getInt("capacidad"));
+                mesa.setEstado(resultSet.getString("estado"));
+
+                listaMesa.add(mesa);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede obtener las mesas");
+        }
+        return listaMesa;
+    }
+     public ArrayList<Mesa> obtenerMesasSinReservas() {
+        ArrayList<Mesa> listaMesa = new ArrayList();       
+
+        try {
+            String sql = "SELECT mesa.idMesa, mesa.capacidad, mesa.estado FROM reserva, mesa +"
+                    + "WHERE  (mesa.idMesa != reserva.idMesa) AND reserva.activo=1 AND mesa.activo=1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            
+            Mesa mesa;
+            while (resultSet.next()) {
+                mesa = new Mesa();
+                mesa.setIdMesa(resultSet.getInt("idMesa"));
+                mesa.setCapacidad(resultSet.getInt("capacidad"));
+                mesa.setEstado(resultSet.getString("estado"));
+
+                listaMesa.add(mesa);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede obtener las mesas");
+        }
+        return listaMesa;
+    }
    
 }

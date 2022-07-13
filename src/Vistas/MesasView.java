@@ -3,15 +3,7 @@ package Vistas;
 
 import Data.MesaData;
 import Modelos.Mesa;
-import Modelos.Reserva;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,18 +20,18 @@ public class MesasView extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
         listaMesas = md.obtenerMesasActivas();
         armarTabla();
+        jcActivo.setEnabled(false);
     }
      private void limpiarCampos() {
         jtMesa.setText("");
         jtCapacidad.setText("");
         jcActivo.setText("");
         bgMesa.clearSelection();
-        bgEstado.clearSelection();
-             
-        limpiarTabla();
+        bgEstado.clearSelection();             
+        
      }
      
-        private void armarTabla(){
+     private void armarTabla(){
         ArrayList<Object> columnas = new ArrayList();
         columnas.add("Mesa");
         columnas.add("Capacidad");
@@ -51,7 +43,7 @@ public class MesasView extends javax.swing.JInternalFrame {
     }
         
            
-      private void limpiarTabla() {
+     private void limpiarTabla() {
        int a = listaMesa.getRowCount()-1;
          if(a > -1){
               for (int i = a; i >= 0; i--) {
@@ -59,10 +51,144 @@ public class MesasView extends javax.swing.JInternalFrame {
           }
          }
     }
+       
+     private void guardar(){
+       String estado="0";
+         
+      
+          //validar si el capacidad y estado no estan vacios
+        if(!jtCapacidad.getText().isEmpty() && (jrLibre.isSelected()==false || jrOcupada.isSelected()==false || jrAtendida.isSelected()==false)){
+          try{
+         int mesa = Integer.parseInt(jtMesa.getText());
+         int capacidad=Integer.parseInt(jtCapacidad.getText()); 
+         
+         
+         if(jrLibre.isSelected()){
+             estado="Libre";
+         }else if(jrOcupada.isSelected()){
+             estado="Ocupada";
+         }else if(jrAtendida.isSelected()){
+             estado="Atendida";
+         }else{
+             JOptionPane.showMessageDialog(this, "No seleccionó un 'estado', se le aplicará 'Libre' por defecto");
+             estado="Libre";
+         }
+         
+         Mesa m = new Mesa(mesa,capacidad, true, estado);//por defecto se crean activa
+     
+         if(md.agregarMesa(m)){    
+            JOptionPane.showMessageDialog(this,"\nMesa n°: "+jtMesa.getText()+"\nCapacidad: "+jtCapacidad.getText()+"\nEstado: "+estado);
+            limpiarCampos();
+          }else{
+             JOptionPane.showMessageDialog(this,"No se pudo concretar la operación");
+         }
+         }catch(NullPointerException e){
+             JOptionPane.showMessageDialog(this,"Llene los campos correctamente");
+         }
+        }else{
+            JOptionPane.showMessageDialog(this,"Complete los campos de la mesa");
+        }
+     }   
         
+     private void modificar(){
+         
+         if(jrModificar.isSelected()){
+            jcActivo.setEnabled(true);
+         }
+         String estado="0", frase="0";
+         boolean activo=false;
+           int id=0;
+        try{
+            id=Integer.parseInt(jtMesa.getText());        
         
+        //validar si el capacidad y estado no estan vacios
+        if(!jtCapacidad.getText().isEmpty()){ 
+            
+        int mesa = Integer.parseInt(jtMesa.getText());
+        int capacidad = Integer.parseInt(jtCapacidad.getText());
+      
+        if(jrLibre.isSelected()){
+            estado="Libre";
+        }else if(jrOcupada.isSelected()){
+            estado="Ocupada";
+        }else if(jrAtendida.isSelected()){
+            estado="Atendida";
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un 'estado'");
+            jrLibre.getFocusCycleRootAncestor();
+        }
         
+        if(jcActivo.isSelected()){
+            activo=true;            
+        }else{
+            frase = "Mesa dada de baja";
+        }
+       
+         
+        Mesa m=new Mesa(mesa,capacidad, activo, estado);
+        if(md.modificarMesa(m)){ 
+             JOptionPane.showMessageDialog(this, "Modificación realizada con éxito: \nMesa n°: "+jtMesa.getText()+"\nCapacidad: "+jtCapacidad.getText()+"\nEstado: "+estado+ frase);
+             limpiarCampos();
+        }else{
+             JOptionPane.showMessageDialog(this, "Error al intentar modificar los datos, inténtelo nuevamente");
+        }  
+        }else{
+              JOptionPane.showMessageDialog(this, "Complete el campo capacidad correctamente");
 
+        }
+         
+        
+        }catch(NumberFormatException | NullPointerException e){
+             JOptionPane.showMessageDialog(this,"Llene los campos correctamente");
+        }    
+     }
+     
+     private void buscar(){
+         
+        jcActivo.setEnabled(true);
+         //validar que mesa no este vacio
+        if(!jtMesa.getText().isEmpty()){
+        try{
+      
+        int mesa = Integer.parseInt(jtMesa.getText());
+        Mesa aux =md.obtenerMesaxId(mesa);
+        if(aux != null){
+            
+            jtMesa.setText(aux.getIdMesa()+"");
+            jtCapacidad.setText(aux.getCapacidad()+"");
+            if(aux.getEstado().equalsIgnoreCase("Libre")){
+                jrLibre.setSelected(true);
+            }else if(aux.getEstado().equalsIgnoreCase("Ocupada")){
+                jrOcupada.setSelected(true);
+            }else if(aux.getEstado().equalsIgnoreCase("Atendida")){
+               jrAtendida.setSelected(true);
+            }
+        if(aux.isActivo()){
+            jcActivo.setSelected(true);
+        }else{
+            JOptionPane.showMessageDialog(this,"Mesa temporalmente fuera de servicio");
+        }      
+        }else {
+            JOptionPane.showMessageDialog(this,"Número de mesa incorrecto");
+        }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this,"Complete el campo 'número de mesa' correctamente");
+            limpiarCampos();
+        }
+        }else{
+            JOptionPane.showMessageDialog(this,"Debe ingresar el número de mesa para buscarlo");
+            limpiarCampos();
+        }
+     }
+
+     private void listarMesasActivas(){
+         limpiarTabla();
+         listaMesas = md.obtenerMesasActivas();
+        
+        for (Mesa aux : listaMesas) {
+            modelo.addRow(new Object[]{aux.getIdMesa(), aux.getCapacidad(), aux.getEstado(), aux.isActivo()});
+        }
+     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -144,10 +270,13 @@ public class MesasView extends javax.swing.JInternalFrame {
 
         jcActivo.setText("jCheckBox1");
 
+        bgEstado.add(jrLibre);
         jrLibre.setText("Libre");
 
+        bgEstado.add(jrOcupada);
         jrOcupada.setText("Ocupada");
 
+        bgEstado.add(jrAtendida);
         jrAtendida.setText("Atendida");
 
         javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
@@ -306,130 +435,22 @@ public class MesasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrRegistrarActionPerformed
 
     private void jbIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrActionPerformed
-       String estado="0", frase="0";
-       boolean activo= false;
+    
         try{
         if(jrRegistrar.isSelected()){
-            
-               //validar si el capacidad y estado no estan vacios
-        if(!jtCapacidad.getText().isEmpty() && (jrLibre.isSelected()==false || jrOcupada.isSelected()==false || jrAtendida.isSelected()==false)){
-          try{
-         int mesa = Integer.parseInt(jtMesa.getText());
-         int capacidad=Integer.parseInt(jtCapacidad.getText()); 
-         
-         if(jrLibre.isSelected()){
-             estado="Libre";
-         }else if(jrOcupada.isSelected()){
-             estado="Ocupada";
-         }else if(jrAtendida.isSelected()){
-             estado="Atendida";
-         }else{
-             JOptionPane.showMessageDialog(this, "Debe seleccionar un 'estado'");
-         }
-         Mesa m = new Mesa(mesa,capacidad, true, estado);
-     
-         if( md.agregarMesa(m)){    
-            JOptionPane.showMessageDialog(this,"\nMesa n°: "+jtMesa+"\nCapacidad: "+jtCapacidad.getText()+"\nEstado: "+estado);
-            limpiarCampos();
-            }
-         }catch(NullPointerException e){
-             JOptionPane.showMessageDialog(this,"Llene los campos correctamente");
-         }
-        }
-        }    
-        
-        if(jrModificar.isSelected()){
-            
-               int id=0;
-        try{
-            id=Integer.parseInt(jtMesa.getText());
-        
-        
-        //validar si el capacidad y estado no estan vacios
-        if(!jtCapacidad.getText().isEmpty() && (jrLibre.isSelected()==false || jrOcupada.isSelected()==false || jrAtendida.isSelected()==false)){
-            
-        int mesa = Integer.parseInt(jtMesa.getText());
-        int capacidad = Integer.parseInt(jtCapacidad.getText());
-        
-        if(jrLibre.isSelected()){
-            estado="Libre";
-        }else if(jrOcupada.isSelected()){
-            estado="Ocupada";
-        }else if(jrAtendida.isSelected()){
-            estado="Atendida";
-        }else{
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un 'estado'");
-        }
-        
-        if(jcActivo.isSelected()){
-            activo=true;            
-        }else{
-            frase = "Mesa dada de baja";
-        }
-       
-         
-        Mesa m=new Mesa(mesa,capacidad, activo, estado);
-        if(md.modificarMesa(m)){ 
-             JOptionPane.showMessageDialog(this, "Modificación realizada con éxito: \nMesa n°: "+jtMesa.getText()+"\nCapacidad: "+jtCapacidad.getText()+"\nEstado: "+estado+ frase);
-             limpiarCampos();
-        }else{
-             JOptionPane.showMessageDialog(this, "Error al intentar modificar los datos, inténtelo nuevamente");
-        }  
-        }else{
-              JOptionPane.showMessageDialog(this, "Complete los campos capacidad y estado correctamente");
-
-        }
-         
-        
-        }catch(NumberFormatException | NullPointerException e){
-             JOptionPane.showMessageDialog(this,"Llene los campos correctamente");
-        }    
-            
-        }
-        if(jrConsultar.isSelected()){
-            
-        //validar que mesa no este vacio
-        if(!jtMesa.getText().isEmpty()){
-        try{
       
-        int mesa = Integer.parseInt(jtMesa.getText());
-        Mesa aux =md.obtenerMesaxId(mesa);
-        if(aux != null){
+            guardar();
+        } else if(jrModificar.isSelected()){
+            jcActivo.setEnabled(true);
+            modificar();            
+        }else if(jrConsultar.isSelected()){
             
-            jtMesa.setText(aux.getIdMesa()+"");
-            jtCapacidad.setText(aux.getCapacidad()+"");
-            if(aux.getEstado().equalsIgnoreCase("Libre")){
-                jrLibre.isSelected();                  
-            }else if(aux.getEstado().equalsIgnoreCase("Ocupada")){
-                jrOcupada.isSelected();
-            }else if(aux.getEstado().equalsIgnoreCase("Atendida")){
-               jrAtendida.isSelected();
-            }
-        if(aux.isActivo()){
-            jcActivo.isSelected();
+             buscar();            
+        }else if(jrListar.isSelected()){
+           
+            listarMesasActivas();
         }else{
-            JOptionPane.showMessageDialog(this,"Mesa temporalmente fuera de servicio");
-        }      
-        }else {
-            JOptionPane.showMessageDialog(this,"Número de mesa incorrecto");
-        }
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this,"Complete el campo 'número de mesa' correctamente");
-            limpiarCampos();
-        }
-        }else{
-            JOptionPane.showMessageDialog(this,"Debe ingresar el número de mesa para buscarlo");
-            limpiarCampos();
-        }
-            
-        }
-        if(jrListar.isSelected()){
-            List<Mesa> listaMesas = md.obtenerMesasActivas();
-        
-        for (Mesa aux : listaMesas) {
-            modelo.addRow(new Object[]{aux.getIdMesa(), aux.getCapacidad(), aux.getEstado(), aux.isActivo()});
-        }
-            
+             JOptionPane.showMessageDialog(this,"Debe seleccionar una opción");
         }
            
         }catch(NumberFormatException e){
