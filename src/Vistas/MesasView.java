@@ -17,15 +17,14 @@ public class MesasView extends javax.swing.JInternalFrame {
         limpiarCampos();   
         this.md=md;
         modelo = new DefaultTableModel();
-        listaMesas = md.obtenerMesas();
+        listaMesas = md.obtenerMesasActivas();
         armarTabla();
     }
      private void limpiarCampos() {
         jtMesa.setText("");
         jtCapacidad.setText("");
         jcActivo.setText("");
-        jtEstado.setText("");
-        
+             
        // limpiarTabla();
      }
      
@@ -39,6 +38,7 @@ public class MesasView extends javax.swing.JInternalFrame {
         }
         listaMesa.setModel(modelo);
     }
+        
 
 
     @SuppressWarnings("unchecked")
@@ -46,6 +46,7 @@ public class MesasView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         bgMesa = new javax.swing.ButtonGroup();
+        bgEstado = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jrRegistrar = new javax.swing.JRadioButton();
@@ -60,8 +61,10 @@ public class MesasView extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jtMesa = new javax.swing.JTextField();
         jtCapacidad = new javax.swing.JTextField();
-        jtEstado = new javax.swing.JTextField();
         jcActivo = new javax.swing.JCheckBox();
+        jrLibre = new javax.swing.JRadioButton();
+        jrOcupada = new javax.swing.JRadioButton();
+        jrAtendida = new javax.swing.JRadioButton();
         jPanelLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaMesa = new javax.swing.JTable();
@@ -106,9 +109,13 @@ public class MesasView extends javax.swing.JInternalFrame {
 
         jtCapacidad.setText("jTextField2");
 
-        jtEstado.setText("jTextField3");
-
         jcActivo.setText("jCheckBox1");
+
+        jrLibre.setText("Libre");
+
+        jrOcupada.setText("Ocupada");
+
+        jrAtendida.setText("Atendida");
 
         javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
         jPanelDatos.setLayout(jPanelDatosLayout);
@@ -123,11 +130,13 @@ public class MesasView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6))
                 .addGap(47, 47, 47)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcActivo)
                     .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcActivo))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(jrAtendida)
+                    .addComponent(jrLibre)
+                    .addComponent(jrOcupada))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanelDatosLayout.setVerticalGroup(
             jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,19 +145,26 @@ public class MesasView extends javax.swing.JInternalFrame {
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jrLibre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jrOcupada, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jcActivo))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(jPanelDatosLayout.createSequentialGroup()
+                        .addComponent(jrAtendida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                        .addComponent(jcActivo)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel6))))
         );
 
         listaMesa.setModel(new javax.swing.table.DefaultTableModel(
@@ -209,7 +225,7 @@ public class MesasView extends javax.swing.JInternalFrame {
                                     .addComponent(jrListar))
                                 .addGap(40, 40, 40)
                                 .addComponent(jbIr, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,7 +258,7 @@ public class MesasView extends javax.swing.JInternalFrame {
                         .addComponent(jrListar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanelLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jLabel4))
         );
 
@@ -254,11 +270,13 @@ public class MesasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrRegistrarActionPerformed
 
     private void jbIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIrActionPerformed
-        // TODO add your handling code here:
+       
+        
     }//GEN-LAST:event_jbIrActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgEstado;
     private javax.swing.ButtonGroup bgMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -271,12 +289,14 @@ public class MesasView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbIr;
     private javax.swing.JCheckBox jcActivo;
+    private javax.swing.JRadioButton jrAtendida;
     private javax.swing.JRadioButton jrConsultar;
+    private javax.swing.JRadioButton jrLibre;
     private javax.swing.JRadioButton jrListar;
     private javax.swing.JRadioButton jrModificar;
+    private javax.swing.JRadioButton jrOcupada;
     private javax.swing.JRadioButton jrRegistrar;
     private javax.swing.JTextField jtCapacidad;
-    private javax.swing.JTextField jtEstado;
     private javax.swing.JTextField jtMesa;
     private javax.swing.JTable listaMesa;
     // End of variables declaration//GEN-END:variables
