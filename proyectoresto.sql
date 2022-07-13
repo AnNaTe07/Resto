@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-07-2022 a las 00:40:38
+-- Tiempo de generación: 13-07-2022 a las 02:48:03
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -44,9 +44,19 @@ CREATE TABLE `detalle` (
 CREATE TABLE `mesa` (
   `idMesa` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `estado` tinyint(3) NOT NULL,
+  `estado` varchar(9) NOT NULL,
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mesa`
+--
+
+INSERT INTO `mesa` (`idMesa`, `capacidad`, `estado`, `activo`) VALUES
+(1, 2, 'libre', 1),
+(2, 2, 'libre', 0),
+(3, 4, 'libre', 1),
+(4, 4, 'libre', 1);
 
 -- --------------------------------------------------------
 
