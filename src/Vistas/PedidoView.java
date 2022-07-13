@@ -46,7 +46,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         modelo2 = new DefaultTableModel();
         mesas = mesada.obtenerMesasActivas();
         productos = productoda.obtenerProductos();
-        meseros = meseroda.obtenerMeseros();
+        meseros = meseroda.obtenerMeserosActivos();
         pedidos = pedidoda.mostrarPedidos();
         detalles = detalleda.todoDetalleDePedido();
 
