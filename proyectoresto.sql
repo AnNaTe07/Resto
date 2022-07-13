@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2022 a las 23:19:35
+-- Tiempo de generación: 13-07-2022 a las 02:48:03
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,9 +44,19 @@ CREATE TABLE `detalle` (
 CREATE TABLE `mesa` (
   `idMesa` int(11) NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `estado` tinyint(3) NOT NULL,
+  `estado` varchar(9) NOT NULL,
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mesa`
+--
+
+INSERT INTO `mesa` (`idMesa`, `capacidad`, `estado`, `activo`) VALUES
+(1, 2, 'libre', 1),
+(2, 2, 'libre', 0),
+(3, 4, 'libre', 1),
+(4, 4, 'libre', 1);
 
 -- --------------------------------------------------------
 
@@ -120,6 +130,7 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `cantidad`, `precio`, `categoria
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
   `nombre` varchar(40) NOT NULL,
+  `dni` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `idMesa` int(11) NOT NULL,
@@ -183,12 +194,6 @@ ALTER TABLE `reserva`
 --
 ALTER TABLE `detalle`
   MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `mesa`
---
-ALTER TABLE `mesa`
-  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `mesero`

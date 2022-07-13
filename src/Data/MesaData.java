@@ -3,10 +3,10 @@ package Data;
 
 import Modelos.Mesa;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -25,11 +25,11 @@ public class MesaData {
         String sql = "INSERT INTO mesa(idMesa, capacidad,activo, estado) VALUES (? ,? , ?, ?)";
 
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, mesa.getIdMesa());
             ps.setInt(2, mesa.getCapacidad());
-            ps.setBoolean(5,mesa.isActivo());
-            ps.setString(6 ,mesa.getEstado());
+            ps.setBoolean(3,mesa.isActivo());
+            ps.setString(4 ,mesa.getEstado());
              
             ps.executeUpdate();
 
@@ -88,8 +88,8 @@ public class MesaData {
             
             ps.setInt(1, mesa.getIdMesa());
             ps.setInt(2, mesa.getCapacidad());
-            ps.setBoolean(5,mesa.isActivo());
-            ps.setString(6 ,mesa.getEstado());
+            ps.setBoolean(3,mesa.isActivo());
+            ps.setString(4 ,mesa.getEstado());
             if (ps.executeUpdate() != 0) {
 
                 exito = true;
@@ -105,7 +105,7 @@ public class MesaData {
 
     }
 
-    public ArrayList<Mesa> obtenerMesas() {
+    public ArrayList<Mesa> obtenerMesasActivas() {
         ArrayList<Mesa> listaMesa = new ArrayList();       
 
         try {
