@@ -16,6 +16,7 @@ import Modelos.Pedido;
 import Modelos.Producto;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PedidoView extends javax.swing.JInternalFrame {
@@ -53,6 +54,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         armaCabeceraTablaProducto();
         armaCabeceraTablaPedidos();
         cargarProductos();
+        cargarPedidosActivos();
         initComponents();
     }
 
@@ -70,8 +72,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jtIdPedido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
         jCBCategoria = new javax.swing.JComboBox<>();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
@@ -116,11 +116,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel5.setText("Subtotal");
 
         jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel6.setText("TOTAL");
-
-        jTextField4.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
 
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -270,17 +265,12 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(587, 587, 587)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(198, 198, 198)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel10))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(45, 45, 45)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -299,13 +289,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel5))
+                                        .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField3)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(63, 63, 63)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,7 +334,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel12)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBBuscarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jBBuscarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(198, 198, 198)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10)
+                                .addGap(116, 116, 116)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)))
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -409,33 +401,26 @@ public class PedidoView extends javax.swing.JInternalFrame {
                             .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(532, 532, 532)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jCBAgregaMozo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCBAgregaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(529, 529, 529)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(532, 532, 532)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jCBAgregaMozo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCBAgregaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))))
-                        .addGap(0, 36, Short.MAX_VALUE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(187, Short.MAX_VALUE)
@@ -468,7 +453,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
         columns.add("Producto");
         columns.add("Stock");
         columns.add("Precio");
+        columns.add("Categoria");
         columns.add("Cantidad");
+
         for (Object it : columns) {
             modelo.addColumn(it);
         }
@@ -517,25 +504,27 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     }
 
+    
     //CARGA PRODUCTOS
     public void cargarProductos() {
+        
         borrarFilasTabla();
         if (jCBCategoria.getSelectedIndex() == 0) {
             for (Producto prod : productos) {
                 if (prod.isActivo() == true) {
-                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                    modelo2.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
                 }
             }
         } else {
             for (Producto prod : productos) {
                 if (prod.isActivo() == true && prod.getCategoria() == jCBCategoria.getSelectedIndex() - 1) {
-                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                    modelo2.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
                 }
             }
         }
     }
 
-    // LIMPIA CAMPOS EN DETALLES DE PEDIDO
+    // LIMPIA CHECK EN DETALLES DE PEDIDO
     public void limpiaDetalle() {
 
         jcPedido.setSelected(false);
@@ -546,6 +535,19 @@ public class PedidoView extends javax.swing.JInternalFrame {
         CBMesas.setSelectedIndex(-1);
         CBMozo.setSelectedIndex(-1);
     }
+    
+    //CARGAR DETALLE DE TODOS LOS PEDIDOS ACTIVOS NO EXPIRADOS
+    public void cargarPedidosActivos() {
+        borrarFilasTablaPedido();
+        if (jcMesa.isSelected()) {
+            ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect(false);
+            for (DetallePedido ped : depe) {
+                if (ped.isExpirado() != true) {
+                    modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
+                }
+            }
+        }
+    }
 
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR MESA
     public void cargarPedidosMesa() {
@@ -554,7 +556,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMesa((Mesa) CBMesas.getSelectedItem());
             for (DetallePedido ped : depe) {
                 if (ped.isExpirado() != true) {
-                    modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
+                    modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
                 }
             }
         }
@@ -567,7 +569,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMesaMozo((Mesa) CBMesas.getSelectedItem(), (Mesero) CBMozo.getSelectedItem());
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
+                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
             }
         }
 
@@ -580,7 +582,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMozo((Mesero) CBMozo.getSelectedItem());
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
+                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
             }
         }
 
@@ -593,7 +595,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<Pedido> depe = pedidoda.listaPedidosxMesa(((Mesa) CBMesas.getSelectedItem()).getIdMesa(), LocalDate.EPOCH);
         for (Pedido ped : depe) {
             if (ped.isActivo() != true) {
-                modelo.addRow(new Object[]{ped.isActivo(), ped.isCobrado(), null, null, null, ped.getMesa().getIdMesa(), ped.getFecha(), ped.getHorario()});
+                modelo2.addRow(new Object[]{ped.isActivo(), ped.isCobrado(), null, null, null, ped.getMesa().getIdMesa(), ped.getFecha(), ped.getHorario()});
             }
         }
 
@@ -602,11 +604,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR ID
     public void cargarPedidoPorId() {
         borrarFilasTablaPedido();
-
+        
         DetallePedido ped = detalleda.detallePedidoPorId(Integer.parseInt(jtIdPedido.getText()));
 
         if (ped.isExpirado() != true) {
-            modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
+            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario()});
         }
 
     }
@@ -620,17 +622,42 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         jCBCategoria.setSelectedIndex(0);
         ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
-        for (Producto prod : prodNomb) {
-            if (prod.isActivo()) {
-                modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+
+        if (prodNomb != null) {
+            for (Producto prod : prodNomb) {
+                if (prod.isActivo()) {
+                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                }
             }
+        } else {
+            
+            JOptionPane.showMessageDialog(null, "No se ha encontrado un producto con ese nombre.");
         }
 
+
     }//GEN-LAST:event_jBBuscarActionPerformed
+    
     // AGREGAR PEDIDOS
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        int fila = jTProductos.getSelectedRow();
+        Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
+        Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
+        Double subTotal;
 
-
+        int cant = (int) (jTProductos.getValueAt(fila, 6));
+        Producto prod = new Producto();
+        prod.setIdProducto(Integer.parseInt(jTProductos.getValueAt(fila, 1).toString()));
+        prod.setNombre(jTProductos.getValueAt(fila, 2).toString());
+        prod.setCantidad((int) (jTProductos.getValueAt(fila, 3)));
+        prod.setPrecio((Double) (jTProductos.getValueAt(fila, 4)));
+        prod.setActivo(true);
+        prod.setCategoria((int) (jTProductos.getValueAt(fila, 5)));
+        subTotal = cant * ((Double)(jTProductos.getValueAt(fila, 4)));
+        Pedido pedido = new Pedido(mesa, mozo, subTotal);
+        pedidoda.cargarPedido(pedido);
+        DetallePedido detape = new DetallePedido(pedido, prod, cant, true);
+        detalleda.agregarPedido(detape);
+        cargarPedidosActivos();
 
     }//GEN-LAST:event_jBAgregarActionPerformed
 
@@ -670,7 +697,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcPedidoActionPerformed
 
     //CHECKET BUSQUEDA POR MESA
-
     private void jcMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMesaActionPerformed
 
         if (jcMesa.isSelected()) {
@@ -679,7 +705,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jcMesaActionPerformed
 
-
+    // CHECKET BUSQUEDA POR MOZO
     private void jcMozoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMozoActionPerformed
 
         if (jcMozo.isSelected()) {
@@ -695,7 +721,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     //HISTORIAL DE TODOS LOS PEDIDOS
     private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed
-
+        borrarFilasTablaPedido();
         limpiaDetalle();
         ArrayList<DetallePedido> det = detalleda.todoDetalleDePedido();
 
@@ -706,8 +732,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbHistorialActionPerformed
 
+    //BUSQUEDA DE DETALLES DE PEDIDO 
     private void jBBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarPedidoActionPerformed
-
+        
         if (jcMesa.isSelected()) {
             cargarPedidosMesa();
         } else if (jcMozo.isSelected()) {
@@ -716,8 +743,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
             cargarPedidosMesaMozo();
         } else if (jcPedido.isSelected()) {
             cargarPedidoPorId();
-        } else {
+        } else if (jcFecha.isSelected()){
             cargarPedidosPorFecha();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar alguna opcion para buscar.");
         }
 
     }//GEN-LAST:event_jBBuscarPedidoActionPerformed
@@ -745,7 +774,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -756,7 +784,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTPedidos;
     private javax.swing.JTable jTProductos;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton jbHistorial;
     private javax.swing.JCheckBox jcFecha;
     private javax.swing.JCheckBox jcMesa;

@@ -31,6 +31,12 @@ public class Pedido {
         this.horario = horario;
       
     }
+     public Pedido(Mesa mesa, Mesero mozo, double subTotal) {
+        this.mesa = mesa;
+        this.mozo = mozo;
+        this.subTotal = subTotal;
+        
+    }
     public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, LocalTime horario, boolean activo) {
         this.mesa = mesa;
         this.mozo = mozo;

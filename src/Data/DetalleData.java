@@ -38,15 +38,15 @@ public class DetalleData {
     }
 
     //  AGREGAR PRODUCTOS AL PEDIDO
-    public boolean agregarPedido(DetallePedido dped, Pedido ped, Producto product) {
+    public boolean agregarPedido(DetallePedido dped) {
         boolean check = true;
         String sql = "INSERT INTO detalle (idPedido, idProducto, cantidad) VALUES = (?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, ped.getIdPedido());
-            dped.setPed(ped);
-            ps.setInt(2, product.getIdProducto());
-            dped.setProd(product);
+            ps.setInt(1, dped.getPed().getIdPedido());
+            dped.setPed(dped.getPed());
+            ps.setInt(2, dped.getProd().getIdProducto());
+            dped.setProd(dped.getProd());
             ps.setInt(3, dped.getCant());
             ps.executeUpdate();
             ps.close();

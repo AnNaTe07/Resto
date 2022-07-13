@@ -73,7 +73,7 @@ public class PedidoData {
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("horario"));
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 allPed.add(pedido);
