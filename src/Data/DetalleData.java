@@ -78,7 +78,7 @@ public class DetalleData {
                 Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = new Producto();
+                Producto product = null;
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -111,7 +111,7 @@ public class DetalleData {
                 Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = new Producto();
+                Producto product = null;
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -142,10 +142,10 @@ public class DetalleData {
             while (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
+                Pedido ped = null;
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = new Producto();
+                Producto product = null;
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -199,10 +199,10 @@ public class DetalleData {
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
+                Pedido ped = null;
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = new Producto();
+                Producto product = null;
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -232,10 +232,10 @@ public class DetalleData {
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
+                Pedido ped = null;
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = new Producto();
+                Producto product = null;
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -266,10 +266,10 @@ public class DetalleData {
             while (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
+                Pedido ped = null;
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = new Producto();
+                Producto product = null;
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
