@@ -11,12 +11,15 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-
-        <group/>
-
         <group>
             <file>file:/C:/Users/duvar/OneDrive/Documentos/GitHub/Resto/src/Vistas/Login.java</file>
         </group>
-
+        <group>
+            <file>file:/C:/Users/duvar/OneDrive/Documentos/GitHub/Resto/src/Vistas/MeserosView.java</file>
+            <file>file:/C:/Users/duvar/OneDrive/Documentos/GitHub/Resto/src/Vistas/Register.java</file>
+            <file>file:/C:/Users/duvar/OneDrive/Documentos/GitHub/Resto/src/Vistas/MesasView.java</file>
+            <file>file:/C:/Users/duvar/OneDrive/Documentos/GitHub/Resto/src/Modelos/Mesero.java</file>
+            <file>file:/C:/Users/duvar/OneDrive/Documentos/GitHub/Resto/src/Data/MeseroData.java</file>
+        </group>
     </open-files>
 </project-private>

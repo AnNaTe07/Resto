@@ -136,7 +136,7 @@ public class Register extends javax.swing.JFrame {
         String nombre = jtNombre.getText();
         String apellido = jtApellido.getText();
         int DNI = Integer.parseInt(jtDNI.getText());
-        int telefono = Integer.parseInt(jtTelefono.getText());
+        Long telefono = Long.parseLong(jtTelefono.getText());
         if(!"".equals(nombre) && !"".equals(apellido)){
             Mesero mesero = new Mesero(nombre, apellido, DNI, telefono, cbActivo.isSelected());
             if(md.agregarMesero(mesero)){

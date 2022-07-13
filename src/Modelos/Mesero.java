@@ -8,7 +8,7 @@ public class Mesero {
     private String nombre;
     private String apellido;
     private int dni;
-    private int telefono;
+    private Long telefono;
     private boolean activo;
 
     
@@ -17,7 +17,7 @@ public class Mesero {
     public Mesero() {
     }
 
-    public Mesero(String nombre, String apellido, int dni, int telefono, boolean activo) {
+    public Mesero(String nombre, String apellido, int dni, Long telefono, boolean activo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -25,7 +25,7 @@ public class Mesero {
         this.activo = activo;
     }
 
-    public Mesero(int idMesero, String nombre, String apellido, int dni, int telefono, boolean activo) {
+    public Mesero(int idMesero, String nombre, String apellido, int dni, Long telefono, boolean activo) {
         this.idMesero = idMesero;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,7 +34,7 @@ public class Mesero {
         this.activo = activo;
     }
 
-    public Mesero(String nombre, String apellido, int dni, int telefono) {
+    public Mesero(String nombre, String apellido, int dni, Long telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -74,11 +74,11 @@ public class Mesero {
         this.dni = dni;
     }
 
-    public int getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 

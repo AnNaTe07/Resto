@@ -417,7 +417,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
             String nombre = (String) jtLista.getValueAt(jtLista.getSelectedRow(), 0);
             String apellido = (String) jtLista.getValueAt(jtLista.getSelectedRow(), 1);
             int dni = Integer.parseInt(jtLista.getValueAt(jtLista.getSelectedRow(), 2).toString());
-            int telefono = Integer.parseInt(jtLista.getValueAt(jtLista.getSelectedRow(), 3).toString());
+            Long telefono = Long.parseLong(jtLista.getValueAt(jtLista.getSelectedRow(), 3).toString());
             mesero.setNombre(nombre);
             mesero.setApellido(apellido);
             mesero.setDni(dni);
@@ -446,7 +446,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
                 String nombre = jtNombre.getText();
                 String apellido = jtApellido.getText();
                 int DNI = Integer.parseInt(jtDNI.getText());
-                int telefono = Integer.parseInt(jtTelefono.getText());
+                Long telefono = Long.parseLong(jtTelefono.getText());
                 if (!"".equals(nombre) && !"".equals(apellido)) {
                     Mesero mesero = new Mesero(nombre, apellido, DNI, telefono, cbActivo.isSelected());
                     if (md.agregarMesero(mesero)) {
