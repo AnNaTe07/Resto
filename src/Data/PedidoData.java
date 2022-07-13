@@ -65,8 +65,8 @@ public class PedidoData {
             while (rs.next()) {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
-                Mesa ms = new Mesa();
-                Mesero mese = new Mesero();
+                Mesa ms = null;
+                Mesero mese = null;
                 ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
                 mese = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setIdPedido(rs.getInt(1));
