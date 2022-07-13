@@ -226,8 +226,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jbReservasActionPerformed
 
     private void jbMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMesasActionPerformed
-        jpPrincipal.removeAll();
         MesasView mesas = new MesasView(mesad);
+        mesas.setSize(1000, 610);
+        mesas.setLocation(0,0);
+        jpPrincipal.removeAll();
+        
         mesas.setVisible(true);
         jpPrincipal.add(mesas);
         mesas.moveToFront();

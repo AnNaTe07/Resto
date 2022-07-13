@@ -3,6 +3,7 @@ package resto;
 import Data.Conexion;
 import Data.MesaData;
 import Data.MeseroData;
+import Data.PedidoData;
 import Data.ProductoData;
 import Data.ReservaData;
 import Modelos.Mesa;
@@ -10,6 +11,7 @@ import Modelos.Mesero;
 import Modelos.Pedido;
 import Modelos.Producto;
 import Modelos.Reserva;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class Resto {
         ProductoData pd = new ProductoData(conexion);
         MesaData mesad= new MesaData(conexion);
         ReservaData rd= new ReservaData(conexion);
+        PedidoData ped = new PedidoData(conexion);
         /////----------------AGREGANDO PRODUCTOS----------------------------
         //creamos el objeto
       //  Producto pizza = new Producto("mondongo", 300, 400.0,true,0);
@@ -63,7 +66,7 @@ public class Resto {
 
         //Mesero
         MeseroData md = new MeseroData(conexion);
-//        Mesero mesero = new Mesero("Claudio", "Duvara", 44358778, 232131, true);
+        Mesero mesero = new Mesero("Claudio", "Duvara", 44358778, 232131, true);
 //        md.agregarMesero(mesero);
         //Mesero mesero = md.buscarMesero(1);
        //md.borrarMesero(mesero);
@@ -97,8 +100,8 @@ public class Resto {
         Mesa mesa = new Mesa(10, 8,true, -1);
         Mesa mesa = new Mesa(11, 8,true, -1);*/
 
-          mesad.agregarMesa(m);
-          mesad.agregarMesa(mesa);
+         // mesad.agregarMesa(m);
+          //mesad.agregarMesa(mesa);
           Mesa me=mesad.obtenerMesaxId(2);
          // mesad.borrarMesa(2);
          // m=mesad.obtenerMesaxId(2);
@@ -111,7 +114,30 @@ public class Resto {
          System.out.println(aux);
          }
 */
-      
+        /////----------------Pedido----------------------------
+        //crear  pedido
+   
+        LocalDate fecha=LocalDate.now();
+        
+        LocalTime hora=LocalTime.now();
+       // Pedido p = new Pedido(m,mesero,true,1000,fecha, hora,true);
+       Pedido p = new Pedido(m,mesero,true,0, null,null,true);
+        ped.cargarPedido(p);
+/*
+          mesad.agregarMesa(m);
+          mesad.agregarMesa(mesa);
+          Mesa me=mesad.obtenerMesaxId(2);*/
+         // mesad.borrarMesa(2);
+         // m=mesad.obtenerMesaxId(2);
+          
+        //  me.setEstado("ocupada");
+         // mesad.modificarMesa(m);
+          /*
+         ArrayList<Mesa> Mesas = mesad.obtenerMesasActivas();
+         for(Mesa aux: Mesas){
+         System.out.println(aux);
+         }
+*/
      
 
     }
