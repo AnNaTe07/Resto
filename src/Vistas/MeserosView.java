@@ -20,9 +20,10 @@ import javax.swing.table.TableCellEditor;
  * @author duvar
  */
 public class MeserosView extends javax.swing.JInternalFrame {
-
+    
     private MeseroData md;
     private DefaultTableModel modelo;
+
     public MeserosView(MeseroData mesero) {
         initComponents();
         md = mesero;
@@ -33,8 +34,8 @@ public class MeserosView extends javax.swing.JInternalFrame {
         armarTabla();
         llenarTablaActivos();
     }
-
-    private void armarTabla(){
+    
+    private void armarTabla() {
         ArrayList<Object> columnas = new ArrayList();
         columnas.add("Nombre");
         columnas.add("Apellido");
@@ -48,68 +49,80 @@ public class MeserosView extends javax.swing.JInternalFrame {
     }
     
     private void limpiarTabla() {
-       int a = jtLista.getRowCount()-1;
-          for (int i = a; i >= 0; i--) {
-              modelo.removeRow(i);
-          }
+        int a = jtLista.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
     }
     
-    private void llenarTablaActivos(){
-          limpiarTabla();
-          ArrayList<Mesero> listaMeseros = md.obtenerMeserosActivos();
-          
-          for (Mesero mesero : listaMeseros) {
-             
+    private void llenarTablaActivos() {
+        limpiarTabla();
+        ArrayList<Mesero> listaMeseros = md.obtenerMeserosActivos();
+        
+        for (Mesero mesero : listaMeseros) {
+            
             modelo.addRow(new Object[]{mesero.getNombre(), mesero.getApellido(), mesero.getDni(), mesero.getTelefono()});
         }
-      }
-    private void llenarTablaInactivos(){
-          limpiarTabla();
-          ArrayList<Mesero> listaMeseros = md.obtenerMeserosInactivos();
-          
-          for (Mesero mesero : listaMeseros) {
-  
+    }
+
+    private void llenarTablaInactivos() {
+        limpiarTabla();
+        ArrayList<Mesero> listaMeseros = md.obtenerMeserosInactivos();
+        
+        for (Mesero mesero : listaMeseros) {
+            
             modelo.addRow(new Object[]{mesero.getNombre(), mesero.getApellido(), mesero.getDni(), mesero.getTelefono()});
         }
-      }
+    }
     
-    private void opcionesLista(){
+    private void opcionesLista() {
         MouseListener mouse = new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 int x = jtLista.getSelectedRow();
-                if(x > -1){
+                if (x > -1) {
                     jbModificar.setEnabled(true);
-                    if(rbActivos.isSelected()){
+                    if (rbActivos.isSelected()) {
                         jbEliminar.setEnabled(true);
                     }
                 }
- 
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent me) {
                 
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent me) {
                 
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent me) {
-               
+                
             }
-
+            
             @Override
             public void mouseExited(MouseEvent me) {
-               
+                
             }
             
         };
         jtLista.addMouseListener(mouse);
     }
+    
+    public boolean validarCadenas(String aux) {
+        boolean exito = true;
+        for (int i = 0; i < aux.length(); i++) {
+            if (aux.charAt(i) > '0' && aux.charAt(i) < '9') {
+                exito = false;
+            }
+        }
+        return exito;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -195,44 +208,24 @@ public class MeserosView extends javax.swing.JInternalFrame {
 
         cbActivo.setText("Activo");
 
-        jtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtApellidoActionPerformed(evt);
-            }
-        });
         jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtApellidoKeyTyped(evt);
             }
         });
 
-        jtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNombreActionPerformed(evt);
-            }
-        });
         jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtNombreKeyTyped(evt);
             }
         });
 
-        jtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTelefonoActionPerformed(evt);
-            }
-        });
         jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtTelefonoKeyTyped(evt);
             }
         });
 
-        jtDNI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtDNIActionPerformed(evt);
-            }
-        });
         jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtDNIKeyTyped(evt);
@@ -294,29 +287,27 @@ public class MeserosView extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addGap(106, 106, 106)
                         .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(57, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(rbActivos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rbInactivos)
-                                .addGap(141, 141, 141))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(50, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(rbActivos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rbInactivos)
+                        .addGap(141, 141, 141))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(208, 208, 208)
                         .addComponent(jbModificar)
-                        .addGap(174, 174, 174))))
+                        .addGap(121, 121, 121))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(106, 462, Short.MAX_VALUE)
+                .addGap(106, 455, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(215, 215, 215))
             .addGroup(layout.createSequentialGroup()
@@ -338,7 +329,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
                     .addComponent(rbActivos)
                     .addComponent(rbInactivos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -357,101 +348,20 @@ public class MeserosView extends javax.swing.JInternalFrame {
                             .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(53, 53, 53)
                         .addComponent(cbActivo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        int dni = (int) jtLista.getValueAt(jtLista.getSelectedRow(), 2);
-        Mesero mesero = md.obtenerMeseroxDNI(dni);
-        if(md.borrarMesero(mesero)){
-             if(rbActivos.isSelected()){
-                    llenarTablaActivos();
-                }else{
-                    llenarTablaInactivos();
-                }
-        }
-        
-        
-    }//GEN-LAST:event_jbEliminarActionPerformed
-
-    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-
-        try{
-         String nombre = (String) jtLista.getValueAt(jtLista.getSelectedRow(), 0);
-         String apellido = (String) jtLista.getValueAt(jtLista.getSelectedRow(), 1);
-         int dni = (int) jtLista.getValueAt(jtLista.getSelectedRow(), 2);
-         int telefono = Integer.parseInt( jtLista.getValueAt(jtLista.getSelectedRow(), 3).toString());
-         Mesero meseroModificado = new Mesero(nombre, apellido, dni, telefono);
-         if(md.modificarMesero(meseroModificado)){
-             JOptionPane.showMessageDialog(this, "Modificado con exito");
-         }else{
-             JOptionPane.showMessageDialog(this, "Error al modificar");
-         }
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "DNI Y TELEFONO DEBEN SER NUMEROS");
-        }catch(ClassCastException a){
-            JOptionPane.showMessageDialog(this, "DNI Y TELEFONO DEBEN SER NUMEROS");
-        }
-        
-    }//GEN-LAST:event_jbModificarActionPerformed
-
-    private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtApellidoActionPerformed
-
-    private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtNombreActionPerformed
-
-    private void jtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtTelefonoActionPerformed
-
-    private void jtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDNIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtDNIActionPerformed
-
-    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        if(rbInactivos.isSelected()){
-            Mesero mesero = md.obtenerMeseroxDNI((int) jtLista.getValueAt(jtLista.getSelectedRow(), 2));
-            md.activarMesero(mesero);
-            llenarTablaInactivos();
-        }else{
-            try{
-        String nombre = jtNombre.getText();
-        String apellido = jtApellido.getText();
-        int DNI = Integer.parseInt(jtDNI.getText());
-        int telefono = Integer.parseInt(jtTelefono.getText());
-        if(!"".equals(nombre) && !"".equals(apellido)){
-            Mesero mesero = new Mesero(nombre, apellido, DNI, telefono, cbActivo.isSelected());
-            if(md.agregarMesero(mesero)){
-                if(rbActivos.isSelected()){
-                    llenarTablaActivos();
-                }else{
-                    llenarTablaInactivos();
-                }
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "El campo nombre y apellido deben ser rellenados");
-        }
-            
-        }catch(NumberFormatException ne){
-            JOptionPane.showMessageDialog(this, "El campo DNI y Telefono deben ser llenados con numeros:" + ne);
-        }
-        }
-    }//GEN-LAST:event_jbAgregarActionPerformed
-
     private void rbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInactivosActionPerformed
-        if(rbInactivos.isSelected()){
+        if (rbInactivos.isSelected()) {
             rbActivos.setSelected(false);
             jbEliminar.setEnabled(false);
             limpiarTabla();
@@ -460,7 +370,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbInactivosActionPerformed
 
     private void rbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbActivosActionPerformed
-        if(rbActivos.isSelected()){
+        if (rbActivos.isSelected()) {
             rbInactivos.setSelected(false);
             jbEliminar.setEnabled(false);
             jbModificar.setEnabled(false);
@@ -471,28 +381,28 @@ public class MeserosView extends javax.swing.JInternalFrame {
 
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
         char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && (c != ' ')){
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' ')) {
             evt.consume();
         }
     }//GEN-LAST:event_jtNombreKeyTyped
 
     private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
         char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && (c != ' ')){
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != ' ')) {
             evt.consume();
         }
     }//GEN-LAST:event_jtApellidoKeyTyped
 
     private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
+        if (c < '0' || c > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_jtDNIKeyTyped
 
     private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
         char c = evt.getKeyChar();
-        if(c<'0' || c>'9'){
+        if (c < '0' || c > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_jtTelefonoKeyTyped
@@ -500,6 +410,74 @@ public class MeserosView extends javax.swing.JInternalFrame {
     private void jtListaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtListaKeyTyped
 
     }//GEN-LAST:event_jtListaKeyTyped
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        try {
+            Mesero mesero = new Mesero();
+            String nombre = (String) jtLista.getValueAt(jtLista.getSelectedRow(), 0);
+            String apellido = (String) jtLista.getValueAt(jtLista.getSelectedRow(), 1);
+            int dni = Integer.parseInt(jtLista.getValueAt(jtLista.getSelectedRow(), 2).toString());
+            int telefono = Integer.parseInt(jtLista.getValueAt(jtLista.getSelectedRow(), 3).toString());
+            mesero.setNombre(nombre);
+            mesero.setApellido(apellido);
+            mesero.setDni(dni);
+            mesero.setTelefono(telefono);
+            if (validarCadenas(nombre) && validarCadenas(apellido)) {
+                if(md.modificarMesero(mesero)){
+                    JOptionPane.showMessageDialog(this, "Modificado con exito");
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se pudo modificar");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "NOMBRE Y APELLIDO SOLO DEBEN CONTENER LETRAS");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "DNI Y TELEFONO DEBEN SER NUMEROS");
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        if (rbInactivos.isSelected()) {
+            Mesero mesero = md.obtenerMeseroxDNI((int) jtLista.getValueAt(jtLista.getSelectedRow(), 2));
+            md.activarMesero(mesero);
+            llenarTablaInactivos();
+        } else {
+            try {
+                String nombre = jtNombre.getText();
+                String apellido = jtApellido.getText();
+                int DNI = Integer.parseInt(jtDNI.getText());
+                int telefono = Integer.parseInt(jtTelefono.getText());
+                if (!"".equals(nombre) && !"".equals(apellido)) {
+                    Mesero mesero = new Mesero(nombre, apellido, DNI, telefono, cbActivo.isSelected());
+                    if (md.agregarMesero(mesero)) {
+                        if (rbActivos.isSelected()) {
+                            llenarTablaActivos();
+                        } else {
+                            llenarTablaInactivos();
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El campo nombre y apellido deben ser rellenados");
+                }
+                
+            } catch (NumberFormatException ne) {
+                JOptionPane.showMessageDialog(this, "El campo DNI y Telefono deben ser llenados con numeros:" + ne);
+            }
+        }
+    }//GEN-LAST:event_jbAgregarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        int dni = (int) jtLista.getValueAt(jtLista.getSelectedRow(), 2);
+        Mesero mesero = md.obtenerMeseroxDNI(dni);
+        if (md.borrarMesero(mesero)) {
+            if (rbActivos.isSelected()) {
+                llenarTablaActivos();
+            } else {
+                llenarTablaInactivos();
+            }
+        }
+
+    }//GEN-LAST:event_jbEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

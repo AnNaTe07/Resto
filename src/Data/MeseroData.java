@@ -104,7 +104,7 @@ public class MeseroData {
                 exito = false;
             }
         }catch(SQLException ne){
-            JOptionPane.showMessageDialog(null, "Error de sintaxis: modificar " + ne);
+            
         }
         return exito;
     }
