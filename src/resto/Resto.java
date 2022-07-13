@@ -1,12 +1,19 @@
 package resto;
 
 import Data.Conexion;
+import Data.MesaData;
 import Data.MeseroData;
 import Data.ProductoData;
+import Data.ReservaData;
+import Modelos.Mesa;
 import Modelos.Mesero;
 import Modelos.Pedido;
 import Modelos.Producto;
+import Modelos.Reserva;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.scripts.JO;
 
@@ -16,9 +23,11 @@ public class Resto {
 
         Conexion conexion = new Conexion();
         ProductoData pd = new ProductoData(conexion);
+        MesaData mesad= new MesaData(conexion);
+        ReservaData rd= new ReservaData(conexion);
         /////----------------AGREGANDO PRODUCTOS----------------------------
         //creamos el objeto
-        Producto pizza = new Producto("mondongo", 300, 400.0,true,0);
+      //  Producto pizza = new Producto("mondongo", 300, 400.0,true,0);
 
 //        if(pd.agregarProducto(pizza)){
 //            JOptionPane.showMessageDialog(null, "Prodcuto agregado con exito");
@@ -45,9 +54,9 @@ public class Resto {
 //            System.out.println(aux);
 //        }
 
-        for (Producto aux : pd.buscarXCategoria(0)) {
-            System.out.println(aux);
-        }
+   //     for (Producto aux : pd.buscarXCategoria(0)) {
+   //         System.out.println(aux);
+   //     }
 
 
           
@@ -64,6 +73,46 @@ public class Resto {
 //            System.out.println(listaMesero);
 //        }
  //       md.cobrarPedido(pedido);
-    }
+    
+    
+          /////----------------Reservas----------------------------
+        //crear la reserva
+    /*
+        LocalDate fecha=LocalDate.parse("05-01-2022");
+        LocalTime hora=LocalTime.parse("20:30");
+        Reserva reserva = new Reserva("Juan Perez",13456789,fecha ,hora , 1, true);
+*/
+        
+        /////----------------Mesas----------------------------
+        //crear  mesa
+   
+        //Mesa mesa = new Mesa(1, 2,true, "libre");
+        //Mesa mesa2 = new Mesa(2, 2,true,"libre");
+        Mesa m = new Mesa(3, 4,true, "libre");
+        Mesa mesa = new Mesa(4, 4,true, "libre");
+       /* Mesa mesa = new Mesa(5, 4,true, -1);
+        Mesa mesa = new Mesa(7, 6,true, -1);
+        Mesa mesa = new Mesa(8, 6,true, -1);
+        Mesa mesa = new Mesa(9, 6,true, -1);
+        Mesa mesa = new Mesa(10, 8,true, -1);
+        Mesa mesa = new Mesa(11, 8,true, -1);*/
 
+          mesad.agregarMesa(m);
+          mesad.agregarMesa(mesa);
+          Mesa me=mesad.obtenerMesaxId(2);
+         // mesad.borrarMesa(2);
+         // m=mesad.obtenerMesaxId(2);
+          
+          me.setEstado("ocupada");
+          mesad.modificarMesa(m);
+          /*
+         ArrayList<Mesa> Mesas = mesad.obtenerMesasActivas();
+         for(Mesa aux: Mesas){
+         System.out.println(aux);
+         }
+*/
+      
+     
+
+    }
 }

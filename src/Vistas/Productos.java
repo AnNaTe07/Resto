@@ -472,7 +472,7 @@ public class Productos extends javax.swing.JPanel {
                 }
             }
         }else{
-            JOptionPane.showMessageDialog(null,"LLene el campo primero"); 
+//            JOptionPane.showMessageDialog(null,"LLene el campo primero"); 
         } 
 
         
@@ -495,7 +495,7 @@ public class Productos extends javax.swing.JPanel {
         }
         }catch(NumberFormatException e){
                            JOptionPane.showMessageDialog(null,"LLene el campo primero"); 
-                 }
+         }
         limpiarCampos();
 
     }//GEN-LAST:event_jpBuscarMouseClicked

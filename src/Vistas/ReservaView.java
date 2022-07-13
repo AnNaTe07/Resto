@@ -312,7 +312,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
 
     private void jbReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservasActionPerformed
    
-        limpiarTabla();
+       // limpiarTabla();
         java.util.List<Reserva> Reservas = rd.obtenerReservas();
         
         for (Reserva aux : Reservas) {
