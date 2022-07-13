@@ -2,11 +2,8 @@
 package Vistas;
 
 import Data.Conexion;
+import Data.*;
 
-import Data.ProductoData;
-
-import Data.MeseroData;
-import Data.ReservaData;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -17,6 +14,9 @@ public class Menu extends javax.swing.JFrame {
     private ProductoData pd;
     private MeseroData md;
     private ReservaData rd;
+    private MesaData mesa;
+    private PedidoData pedido;
+    private DetalleData detalle;
 
     public Menu() {
         conexion = new Conexion();
@@ -25,6 +25,10 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         md = new MeseroData(conexion);
         rd = new ReservaData(conexion);
+        mesa = new MesaData(conexion);
+        pedido = new PedidoData(conexion);
+        detalle = new DetalleData(conexion);
+        
     }
 
     private Component obtenerPrincipal(){
@@ -189,7 +193,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPedidosActionPerformed
          jpPrincipal.removeAll();
-         PedidoView pv = new PedidoView();
+         PedidoView pv = new PedidoView(mesa, md, pd, pedido, detalle);
          pv.setVisible(true);
          jpPrincipal.add(pv);
          pv.moveToFront();

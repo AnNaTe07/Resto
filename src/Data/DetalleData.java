@@ -184,8 +184,8 @@ public class DetalleData {
         return total;
     }
 
-    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS ACTIVOS O NO ACTIVOS
-    public ArrayList<DetallePedido> todoDetalleDePedido(boolean exp) {
+    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS SOLO, O ACTIVOS O NO ACTIVOS
+    public ArrayList<DetallePedido> todoDetalleDePedidoSelect(boolean exp) {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
 
@@ -194,6 +194,39 @@ public class DetalleData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setBoolean(1, exp);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                DetallePedido dped = new DetallePedido();
+                dped.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
+                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
+                dped.setPed(ped);
+                Producto product = new Producto();
+                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dped.setProd(product);
+                dped.setCant(rs.getInt("cantidad"));
+                dped.setExpirado(rs.getBoolean("expirado"));
+                allDet.add(dped);
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo obtener la informacion.");
+
+        }
+        return allDet;
+    }
+    
+    //MUESTRA TODOS LOS DETALLES
+    public ArrayList<DetallePedido> todoDetalleDePedido() {
+
+        ArrayList<DetallePedido> allDet = new ArrayList();
+
+        String sql = "SELECT * FROM detalle ";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {

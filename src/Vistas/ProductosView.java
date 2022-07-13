@@ -213,7 +213,7 @@ public class ProductosView extends javax.swing.JPanel {
         add(jlCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 160, 20));
 
         jpEliminar.setBackground(new java.awt.Color(198, 174, 206));
-        jpEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpEliminarMouseClicked(evt);
@@ -250,7 +250,7 @@ public class ProductosView extends javax.swing.JPanel {
         add(jpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, 90, 30));
 
         jpBuscar.setBackground(new java.awt.Color(198, 174, 206));
-        jpBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpBuscarMouseClicked(evt);
@@ -288,7 +288,7 @@ public class ProductosView extends javax.swing.JPanel {
         add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 90, 30));
 
         jpGuardar.setBackground(new java.awt.Color(198, 174, 206));
-        jpGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpGuardarMouseClicked(evt);
@@ -325,7 +325,7 @@ public class ProductosView extends javax.swing.JPanel {
         add(jpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 90, 30));
 
         jpActualizar.setBackground(new java.awt.Color(198, 174, 206));
-        jpActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpActualizarMouseClicked(evt);
@@ -361,7 +361,7 @@ public class ProductosView extends javax.swing.JPanel {
         add(jpActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 90, 30));
 
         jpNuevo1.setBackground(new java.awt.Color(198, 174, 206));
-        jpNuevo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpNuevo1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpNuevo1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpNuevo1MouseClicked(evt);
@@ -400,6 +400,11 @@ public class ProductosView extends javax.swing.JPanel {
 
         jcbCategoria.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Bebida s/ alcohol", "Bebida c/ alcohol" }));
+        jcbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCategoriaActionPerformed(evt);
+            }
+        });
         add(jcbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 120, 30));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -623,6 +628,10 @@ public class ProductosView extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_jtPrecioKeyTyped
+
+    private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbCategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
