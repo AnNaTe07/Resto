@@ -36,7 +36,7 @@ public class PedidoData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, ped.getMesa().getIdMesa());
             ps.setInt(2, ped.getMozo().getIdMesero());
-            ps.setTime(3, ped.getHorario());
+            ps.setTime(3, Time.valueOf(ped.getHorario().toString()));
             ps.executeUpdate();
             ps.close();
             ResultSet rs = ps.getGeneratedKeys();
@@ -107,7 +107,7 @@ public class PedidoData {
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("horario"));
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
 
@@ -142,7 +142,7 @@ public class PedidoData {
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("hora"));
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
                 ps.close();
             }
         } catch (Exception e) {
@@ -178,7 +178,7 @@ public class PedidoData {
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setSubTotal(rs.getDouble("subTotal"));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("horario"));
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
 
                 lista.add(pedido);
             }
@@ -210,7 +210,7 @@ public class PedidoData {
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("hora"));
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
                 ps.close();
                 pddo.add(pedido);
             }
@@ -241,7 +241,7 @@ public class PedidoData {
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("hora"));
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
                 ps.close();
                 pddo.add(pedido);
             }
