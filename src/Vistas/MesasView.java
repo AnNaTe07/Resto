@@ -361,7 +361,6 @@ public class MesasView extends javax.swing.JInternalFrame {
 
         jcActivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jcActivo.setForeground(new java.awt.Color(255, 255, 255));
-        jcActivo.setText("jCheckBox1");
 
         javax.swing.GroupLayout jPanelListaLayout = new javax.swing.GroupLayout(jPanelLista);
         jPanelLista.setLayout(jPanelListaLayout);

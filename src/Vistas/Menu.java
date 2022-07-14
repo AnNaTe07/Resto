@@ -89,6 +89,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jbSalir.setBackground(new java.awt.Color(51, 0, 51));
+        jbSalir.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
         jbSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -99,6 +100,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbMeseros.setBackground(new java.awt.Color(51, 0, 51));
+        jbMeseros.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbMeseros.setForeground(new java.awt.Color(255, 255, 255));
         jbMeseros.setText("Meseros");
         jbMeseros.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -109,6 +111,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbPedidos.setBackground(new java.awt.Color(51, 0, 51));
+        jbPedidos.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbPedidos.setForeground(new java.awt.Color(255, 255, 255));
         jbPedidos.setText("Pedidos");
         jbPedidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -119,6 +122,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbProductos.setBackground(new java.awt.Color(51, 0, 51));
+        jbProductos.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbProductos.setForeground(new java.awt.Color(255, 255, 255));
         jbProductos.setText("Productos");
         jbProductos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -129,6 +133,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbReservas.setBackground(new java.awt.Color(51, 0, 51));
+        jbReservas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbReservas.setForeground(new java.awt.Color(255, 255, 255));
         jbReservas.setText("Reservas");
         jbReservas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -139,6 +144,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbMesas.setBackground(new java.awt.Color(51, 0, 51));
+        jbMesas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbMesas.setForeground(new java.awt.Color(255, 255, 255));
         jbMesas.setText("Mesas");
         jbMesas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
