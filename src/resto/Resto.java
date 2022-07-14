@@ -75,21 +75,41 @@ public class Resto {
  //       md.cobrarPedido(pedido);
     
     
-          /////----------------Reservas----------------------------
+////////////////////////////----------------Reservas----------------------------
         //crear la reserva
-    /*
-        LocalDate fecha=LocalDate.parse("05-01-2022");
+   
+        LocalDate fecha=LocalDate.parse("2022-01-29");
         LocalTime hora=LocalTime.parse("20:30");
-        Reserva reserva = new Reserva("Juan Perez",13456789,fecha ,hora , 1, true);
-*/
+        Reserva reserva = new Reserva("Carlos sillerossssssss",32223664,fecha ,hora , 1, true);
+        
+        
+//        if(rd.agregarReserva(reserva)){
+//            JOptionPane.showMessageDialog(null,"reserva agregada con exito");
+//        }
+
+//        if(rd.borrarReserva(4)){
+//              JOptionPane.showMessageDialog(null,"reserva borrada con exito");
+//        }
+
+//        if(rd.modificarReserva(reserva = new Reserva(5,"Cejas luciano",39993664,fecha ,hora , 1, true))){
+//                JOptionPane.showMessageDialog(null,"reserva modificada con exito");
+//        }
+            
+//          for (Reserva re : rd.obtenerReservas()) {
+//                System.out.println(re);
+//                System.out.println("\n");
+//          }
+
+//            System.out.println(rd.obtenerReservaxId(5));
+
         
         /////----------------Mesas----------------------------
         //crear  mesa
    
         //Mesa mesa = new Mesa(1, 2,true, "libre");
         //Mesa mesa2 = new Mesa(2, 2,true,"libre");
-        Mesa m = new Mesa(3, 4,true, "libre");
-        Mesa mesa = new Mesa(4, 4,true, "libre");
+//        Mesa m = new Mesa(3, 4,true, "libre");
+//        Mesa mesa = new Mesa(4, 4,true, "libre");
        /* Mesa mesa = new Mesa(5, 4,true, -1);
         Mesa mesa = new Mesa(7, 6,true, -1);
         Mesa mesa = new Mesa(8, 6,true, -1);
@@ -97,14 +117,14 @@ public class Resto {
         Mesa mesa = new Mesa(10, 8,true, -1);
         Mesa mesa = new Mesa(11, 8,true, -1);*/
 
-          mesad.agregarMesa(m);
-          mesad.agregarMesa(mesa);
-          Mesa me=mesad.obtenerMesaxId(2);
+//          mesad.agregarMesa(m);
+//          mesad.agregarMesa(mesa);
+//          Mesa me=mesad.obtenerMesaxId(2);
          // mesad.borrarMesa(2);
          // m=mesad.obtenerMesaxId(2);
-          
-          me.setEstado("ocupada");
-          mesad.modificarMesa(m);
+//          
+//          me.setEstado("ocupada");
+//          mesad.modificarMesa(m);
           /*
          ArrayList<Mesa> Mesas = mesad.obtenerMesasActivas();
          for(Mesa aux: Mesas){

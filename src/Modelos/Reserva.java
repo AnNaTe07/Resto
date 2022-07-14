@@ -95,7 +95,7 @@ public class Reserva {
  
     @Override
     public String toString() {
-        return "Reserva n°: "+idReserva+"\nMesa n°=" + idMesa+ "\n Cliente=" + nombre +" \nDni:"+dni+ "\nFecha Y hora=" + fecha + ", "+hora+"hs";
+        return "Reserva n°: "+idReserva+"\nMesa n°= " + idMesa+ "\nCliente= " + nombre +" \nDni: "+dni+ "\nFecha Y hora= " + fecha + ", "+hora+"hs";
     }
     
     
