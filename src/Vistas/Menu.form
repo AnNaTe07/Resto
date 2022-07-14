@@ -43,10 +43,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="277" max="32767" attributes="0"/>
                   <Component id="jlMenu" min="-2" pref="562" max="-2" attributes="0"/>
-                  <EmptySpace pref="346" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -86,7 +86,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="1000" height="60"/>
+          <AbsoluteConstraints x="0" y="0" width="1030" height="60"/>
         </Constraint>
       </Constraints>
 
@@ -106,7 +106,7 @@
                   <Component id="jbProductos" min="-2" pref="87" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jbReservas" min="-2" pref="87" max="-2" attributes="0"/>
-                  <EmptySpace pref="414" max="32767" attributes="0"/>
+                  <EmptySpace pref="446" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
