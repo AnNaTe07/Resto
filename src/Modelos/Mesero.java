@@ -92,7 +92,7 @@ public class Mesero {
 
     @Override
     public String toString() {
-        return "Mesero{" + "idMesero=" + idMesero + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", telefono=" + telefono + ", activo=" + activo + '}';
+        return this.nombre + " " + apellido;
     }
     
     
