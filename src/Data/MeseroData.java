@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -39,8 +40,10 @@ public class MeseroData {
                 JOptionPane.showMessageDialog(null, "Error al agregar mesero");
                 exito = false;
             }
-        } catch (SQLException sqle) {
-            JOptionPane.showMessageDialog(null, "ERROR DE SENTENCIA:" + sqle);
+        } catch (SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(null, "DNI YA EXISTENTE--- ERROR: " +  e);
+        }catch(SQLException s){
+            JOptionPane.showMessageDialog(null, "ERROR DE SENTENCIA");
         }
         return exito;
     }

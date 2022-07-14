@@ -193,9 +193,11 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.removeAll();
         MeserosView meseros = new MeserosView(md);
         meseros.setVisible(true);
+        meseros.setLocation(0,0);
+        
         jpPrincipal.add(meseros);
         meseros.moveToFront();
-                
+        jpPrincipal.repaint();
     }//GEN-LAST:event_jbMeserosActionPerformed
 
     private void jbPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPedidosActionPerformed
@@ -204,6 +206,7 @@ public class Menu extends javax.swing.JFrame {
          pv.setVisible(true);
          jpPrincipal.add(pv);
          pv.moveToFront();
+         jpPrincipal.repaint();
     }//GEN-LAST:event_jbPedidosActionPerformed
 
     private void jbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductosActionPerformed
@@ -225,6 +228,7 @@ public class Menu extends javax.swing.JFrame {
         rv.setVisible(true);
         jpPrincipal.add(rv);
         rv.moveToFront();
+        jpPrincipal.repaint();
     }//GEN-LAST:event_jbReservasActionPerformed
 
     private void jbMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMesasActionPerformed
@@ -236,6 +240,7 @@ public class Menu extends javax.swing.JFrame {
         mesas.setVisible(true);
         jpPrincipal.add(mesas);
         mesas.moveToFront();
+        jpPrincipal.repaint();
     }//GEN-LAST:event_jbMesasActionPerformed
 
 
