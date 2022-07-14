@@ -201,12 +201,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jbMeserosActionPerformed
 
     private void jbPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPedidosActionPerformed
-         jpPrincipal.removeAll();
-         PedidoView pv = new PedidoView(mesa, md, pd, pedido, detalle);
+        PedidoView pv = new PedidoView(mesa, md, pd, pedido, detalle);
+         pv.setSize(1200, 700);
+         pv.setLocation(0,0);
+         jpPrincipal.removeAll();        
          pv.setVisible(true);
          jpPrincipal.add(pv);
          pv.moveToFront();
-         jpPrincipal.repaint();
+         
     }//GEN-LAST:event_jbPedidosActionPerformed
 
     private void jbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductosActionPerformed
@@ -221,10 +223,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jbProductosActionPerformed
 
     private void jbReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservasActionPerformed
-        jpPrincipal.removeAll();
+        
         ReservaView rv = new ReservaView(rd);
         rv.setSize(1000, 610);
         rv.setLocation(0,0);
+        jpPrincipal.removeAll();
         rv.setVisible(true);
         jpPrincipal.add(rv);
         rv.moveToFront();
