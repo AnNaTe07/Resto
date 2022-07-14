@@ -35,12 +35,12 @@ public class MesaData {
             ps.executeUpdate();
            
             ResultSet rs = ps.getResultSet();
-            if (rs.next()) {
+          /*  if (rs.next()) {
                 mesa.getIdMesa();
             } else {
                 //JOptionPane.showMessageDialog(null, "Error al intentar agregar la mesa");
                 exito = false;
-            }
+            }*/
 
             ps.close();
 
