@@ -50,13 +50,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
         meseros = meseroda.obtenerMeserosActivos();
         pedidos = pedidoda.mostrarPedidos();
         detalles = detalleda.todoDetalleDePedido();
-
+        initComponents();
         cargarCombo();
         armaCabeceraTablaProducto();
         armaCabeceraTablaPedidos();
         cargarProductos();
         cargarPedidosActivos();
-        initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -520,13 +520,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
         if (jCBCategoria.getSelectedIndex() == 0) {
             for (Producto prod : productos) {
                 if (prod.isActivo() == true) {
-                    modelo2.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
                 }
             }
         } else {
             for (Producto prod : productos) {
                 if (prod.isActivo() == true && prod.getCategoria() == jCBCategoria.getSelectedIndex() - 1) {
-                    modelo2.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
                 }
             }
         }
