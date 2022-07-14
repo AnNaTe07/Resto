@@ -63,7 +63,7 @@ public class PedidoData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedido = new Pedido();
+                Pedido pedido = null;
                 pedido.setIdPedido(rs.getInt("idPedido"));
                 Mesa ms = null;
                 Mesero mese = null;
@@ -72,9 +72,12 @@ public class PedidoData {
                 pedido.setIdPedido(rs.getInt(1));
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
-
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+                pedido.setHorario(rs.getTime("horario").toLocalTime());
+                pedido.setActivo(rs.getBoolean("activo"));
+                pedido.setCobrado(rs.getBoolean("cobrado"));
                 allPed.add(pedido);
-
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos");
@@ -94,7 +97,7 @@ public class PedidoData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedido = new Pedido();
+                Pedido pedido = null;
                 pedido.setIdPedido(rs.getInt("idPedido"));
                 Mesa ms = new Mesa();
                 Mesero mese = new Mesero();
@@ -103,6 +106,10 @@ public class PedidoData {
                 pedido.setIdPedido(rs.getInt(1));
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+                pedido.setHorario(rs.getTime("horario"));
+                pedido.setActivo(rs.getBoolean("activo"));
+                pedido.setCobrado(rs.getBoolean("cobrado"));
 
                 allPed.add(pedido);
 
@@ -126,8 +133,8 @@ public class PedidoData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 pedido.setIdPedido(idPedido);
-                Mesa ms = new Mesa();
-                Mesero mesero = new Mesero();
+                Mesa ms = null;
+                Mesero mesero = null;
                 ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
                 mesero = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setMesa(ms);
@@ -158,7 +165,7 @@ public class PedidoData {
             Pedido pedido;
 
             while (rs.next()) {
-                pedido = new Pedido();
+                pedido = null;
                 pedido.setIdPedido(rs.getInt("idPedido"));
 
                 Mesa me = mesa.obtenerMesaxId(rs.getInt("idMesa"));
@@ -194,9 +201,9 @@ public class PedidoData {
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedido = new Pedido();
+                Pedido pedido = null;
                 pedido.setIdPedido(rs.getInt("idPedido"));
-                Mesa ms = new Mesa();
+                Mesa ms = null;
                 ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
                 pedido.setMesa(ms);
                 pedido.setMozo(mozo);
@@ -225,9 +232,9 @@ public class PedidoData {
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedido = new Pedido();
+                Pedido pedido = null;
                 pedido.setIdPedido(rs.getInt("idPedido"));
-                Mesero mozzo =new Mesero();
+                Mesero mozzo = null;
                 mozzo = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setMesa(mesa);
                 pedido.setMozo(mozzo);

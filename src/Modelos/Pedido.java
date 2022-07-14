@@ -4,7 +4,6 @@
  */
 package Modelos;
 
-import java.util.Date;
 import java.sql.*;
 import java.time.*;
 
@@ -21,12 +20,24 @@ public class Pedido {
     private boolean cobrado;
     private double subTotal;
     private LocalDate fecha;
-    private Time horario;
+    private LocalTime horario;//cambiar esto
 
     public Pedido() {
     }
 
-    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario, boolean activo) {
+     public Pedido(Mesa mesa, Mesero mozo,  LocalTime horario) {
+        this.mesa = mesa;
+        this.mozo = mozo;
+        this.horario = horario;
+      
+    }
+     public Pedido(Mesa mesa, Mesero mozo, double subTotal) {
+        this.mesa = mesa;
+        this.mozo = mozo;
+        this.subTotal = subTotal;
+        
+    }
+    public Pedido(Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, LocalTime horario, boolean activo) {
         this.mesa = mesa;
         this.mozo = mozo;
         this.cobrado = cobrado;
@@ -36,7 +47,7 @@ public class Pedido {
         this.activo = activo;
     }
 
-    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, Time horario, boolean activo) {
+    public Pedido(int idPedido, Mesa mesa, Mesero mozo, boolean cobrado, double subTotal, LocalDate fecha, LocalTime horario, boolean activo) {
         this.idPedido = idPedido;
         this.mesa = mesa;
         this.mozo = mozo;
@@ -103,11 +114,11 @@ public class Pedido {
         this.fecha = fecha;
     }
 
-    public Time getHorario() {
+    public LocalTime getHorario() {
         return horario;
     }
 
-    public void setHorario(Time horario) {
+    public void setHorario(LocalTime horario) {
         this.horario = horario;
     }
 

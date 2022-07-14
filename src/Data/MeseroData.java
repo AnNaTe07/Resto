@@ -26,7 +26,7 @@ public class MeseroData {
             ps.setString(1, mesero.getNombre());
             ps.setString(2, mesero.getApellido());
             ps.setInt(3, mesero.getDni());
-            ps.setInt(4, mesero.getTelefono());
+            ps.setLong(4, mesero.getTelefono());
             ps.setBoolean(5, mesero.isActivo());
             ps.executeUpdate();
 
@@ -97,14 +97,14 @@ public class MeseroData {
             ps.setString(1, mesero.getNombre());
             ps.setString(2, mesero.getApellido());
             ps.setInt(3, mesero.getDni());
-            ps.setInt(4, mesero.getTelefono());
+            ps.setLong(4, mesero.getTelefono());
             ps.setInt(5, mesero.getDni());
             int rs = ps.executeUpdate();
             if(rs == 0){
                 exito = false;
             }
         }catch(SQLException ne){
-            JOptionPane.showMessageDialog(null, "Error de sintaxis: modificar " + ne);
+            
         }
         return exito;
     }
@@ -125,29 +125,29 @@ public class MeseroData {
         return exito;
     }
 
-    public ArrayList<Mesero> obtenerMeseros() {
-        ArrayList<Mesero> listaMeseros = new ArrayList();
-        String sql = "SELECT * FROM mesero";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            Mesero m;
-            while (rs.next()) {
-                m = new Mesero();
-
-                m.setIdMesero(rs.getInt("idMesero"));
-                m.setNombre(rs.getString("nombre"));
-                m.setApellido(rs.getString("apellido"));
-                m.setDni(rs.getInt("dni"));
-
-                listaMeseros.add(m);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return listaMeseros;
-    }
+//    public ArrayList<Mesero> obtenerMeseros() {
+//        ArrayList<Mesero> listaMeseros = new ArrayList();
+//        String sql = "SELECT * FROM mesero";
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+//
+//            Mesero m;
+//            while (rs.next()) {
+//                m = new Mesero();
+//
+//                m.setIdMesero(rs.getInt("idMesero"));
+//                m.setNombre(rs.getString("nombre"));
+//                m.setApellido(rs.getString("apellido"));
+//                m.setDni(rs.getInt("dni"));
+//
+//                listaMeseros.add(m);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        return listaMeseros;
+//    }
     
     public ArrayList<Mesero> obtenerMeserosActivos(){
         ArrayList<Mesero> listaMeseros = new ArrayList();
@@ -164,7 +164,7 @@ public class MeseroData {
                 m.setNombre(rs.getString("nombre"));
                 m.setApellido(rs.getString("apellido"));
                 m.setDni(rs.getInt("dni"));
-                m.setTelefono(rs.getInt("telefono"));
+                m.setTelefono(rs.getLong("telefono"));
                 m.setActivo(rs.getBoolean("activo"));
 
                 listaMeseros.add(m);
@@ -190,7 +190,7 @@ public class MeseroData {
                 m.setNombre(rs.getString("nombre"));
                 m.setApellido(rs.getString("apellido"));
                 m.setDni(rs.getInt("dni"));
-                m.setTelefono(rs.getInt("telefono"));
+                m.setTelefono(rs.getLong("telefono"));
                 m.setActivo(rs.getBoolean("activo"));
 
                 listaMeseros.add(m);
@@ -213,7 +213,7 @@ public class MeseroData {
                 mesero.setNombre(rs.getString("nombre"));
                 mesero.setApellido(rs.getString("apellido"));
                 mesero.setDni(DNI);
-                mesero.setTelefono(rs.getInt("telefono"));
+                mesero.setTelefono(rs.getLong("telefono"));
                 mesero.setActivo(rs.getBoolean("activo"));
             }else{
                 return null;
