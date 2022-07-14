@@ -81,18 +81,20 @@
                                           <Component id="jLabel11" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jcbHoras" max="32767" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jcbMinutos" min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jcbHoras" max="32767" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jcbMinutos" min="-2" pref="52" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jtDni" min="-2" pref="129" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jDateChoss" min="-2" pref="129" max="-2" attributes="0"/>
-                                          <Component id="jtDni" min="-2" pref="129" max="-2" attributes="0"/>
+                                          <Component id="jdFecha" min="-2" pref="194" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jbModificar" pref="117" max="32767" attributes="0"/>
                                   <Component id="jbBuscar" pref="117" max="32767" attributes="0"/>
@@ -116,7 +118,9 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="jtHora" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="651" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -168,7 +172,7 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDateChoss" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jdFecha" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -182,8 +186,16 @@
                   <Component id="jbCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbReservas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="142" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="142" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jtHora" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace min="-2" pref="296" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -286,7 +298,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChoss">
+    <Component class="com.toedter.calendar.JDateChooser" name="jdFecha">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy HH:mm:ss&#xa;"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jcbHoras">
       <Properties>
@@ -316,7 +331,7 @@
             <StringItem index="21" value="21"/>
             <StringItem index="22" value="22"/>
             <StringItem index="23" value="23"/>
-            <StringItem index="24" value="23"/>
+            <StringItem index="24" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -423,6 +438,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRealizaReservaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtHora">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

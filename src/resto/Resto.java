@@ -81,9 +81,9 @@ public class Resto {
 ////////////////////////////----------------Reservas----------------------------
         //crear la reserva
    
-        LocalDate fecha=LocalDate.parse("2022-01-29");
-        LocalTime hora=LocalTime.parse("20:30");
-        Reserva reserva = new Reserva("Carlos sillerossssssss",32223664,fecha ,hora , 1, true);
+        LocalDate fecha=LocalDate.parse("2022-07-30 18:30:00");
+       // LocalTime hora=LocalTime.parse("18:30");
+        Reserva reserva = new Reserva("Bob Esponja",33444555,fecha , 1, true);
         
         
 //        if(rd.agregarReserva(reserva)){
@@ -94,7 +94,7 @@ public class Resto {
 //              JOptionPane.showMessageDialog(null,"reserva borrada con exito");
 //        }
 
-//        if(rd.modificarReserva(reserva = new Reserva(5,"Cejas luciano",39993664,fecha ,hora , 1, true))){
+//        if(rd.modificarReserva(reserva = new Reserva(5,"Patricio Estrella",44555666,fecha ,hora , 1, true))){
 //                JOptionPane.showMessageDialog(null,"reserva modificada con exito");
 //        }
             
@@ -140,31 +140,7 @@ public class Resto {
          System.out.println(aux);
          }
 */
-        /////----------------Pedido----------------------------
-        //crear  pedido
-   
-//        LocalDate fecha=LocalDate.now();
-//        
-//        LocalTime hora=LocalTime.now();
-       // Pedido p = new Pedido(m,mesero,true,1000,fecha, hora,true);
-////       Pedido p = new Pedido(m,mesero,true,0, null,null,true);
-//        ped.cargarPedido(p);
-/*
-          mesad.agregarMesa(m);
-          mesad.agregarMesa(mesa);
-          Mesa me=mesad.obtenerMesaxId(2);*/
-         // mesad.borrarMesa(2);
-         // m=mesad.obtenerMesaxId(2);
-          
-        //  me.setEstado("ocupada");
-         // mesad.modificarMesa(m);
-          /*
-         ArrayList<Mesa> Mesas = mesad.obtenerMesasActivas();
-         for(Mesa aux: Mesas){
-         System.out.println(aux);
-         }
-*/
-     
+  
 
     }
 }
