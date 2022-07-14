@@ -59,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpPrincipal.setBackground(new java.awt.Color(64, 44, 72));
-        jpPrincipal.setPreferredSize(new java.awt.Dimension(1110, 620));
+        jpPrincipal.setPreferredSize(new java.awt.Dimension(1110, 590));
 
         jlMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/resssssst.jpg"))); // NOI18N
         jlMenu.setText("jLabel7");
@@ -80,10 +80,10 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(jlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 620));
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 590));
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -194,6 +194,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.removeAll();
         MeserosView meseros = new MeserosView(md);
         meseros.setVisible(true);
+        meseros.setSize(1110, 600);
         meseros.setLocation(0,0);
         
         jpPrincipal.add(meseros);
@@ -203,7 +204,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPedidosActionPerformed
         PedidoView pv = new PedidoView(mesa, md, pd, pedido, detalle);
-         pv.setSize(1200, 700);
+         pv.setSize(1110, 600);
          pv.setLocation(0,0);
          jpPrincipal.removeAll();        
          pv.setVisible(true);
@@ -214,7 +215,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductosActionPerformed
           ProductosView p = new ProductosView(pd);
-          p.setSize(1000, 610);
+          p.setSize(1110, 600);
           p.setLocation(0,0);
           
           jpPrincipal.removeAll();
@@ -226,7 +227,7 @@ public class Menu extends javax.swing.JFrame {
     private void jbReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservasActionPerformed
         
         ReservaView rv = new ReservaView(rd);
-        rv.setSize(1000, 610);
+        rv.setSize(1110, 600);
         rv.setLocation(0,0);
         jpPrincipal.removeAll();
         rv.setVisible(true);
@@ -237,7 +238,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMesasActionPerformed
         MesasView mesas = new MesasView(mesad);
-        mesas.setSize(1000, 610);
+        mesas.setSize(1110, 600);
         mesas.setLocation(0,0);
         jpPrincipal.removeAll();
         
