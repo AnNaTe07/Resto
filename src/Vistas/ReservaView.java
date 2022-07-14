@@ -4,12 +4,9 @@ package Vistas;
 import Data.ReservaData;
 import Modelos.Reserva;
 import java.sql.Date;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -91,11 +88,9 @@ public class ReservaView extends javax.swing.JInternalFrame {
         jbModificar = new javax.swing.JButton();
         jdFecha = new com.toedter.calendar.JDateChooser();
         jcbHoras = new javax.swing.JComboBox<>();
-        jcbMinutos = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtReservas = new javax.swing.JTable();
         jbRealizaReserva = new javax.swing.JButton();
-        jtHora = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,8 +104,6 @@ public class ReservaView extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        setClosable(true);
 
         jLabel1.setText("Reservas");
 
@@ -190,11 +183,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
             }
         });
 
-        jdFecha.setDateFormatString("dd/MM/yyyy HH:mm:ss\n");
-
         jcbHoras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " " }));
-
-        jcbMinutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         jtReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,8 +204,6 @@ public class ReservaView extends javax.swing.JInternalFrame {
                 jbRealizaReservaActionPerformed(evt);
             }
         });
-
-        jtHora.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,8 +243,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                     .addComponent(jcbHoras, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jcbMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(70, 70, 70))
                                                 .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(132, 132, 132)
@@ -276,9 +262,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
                         .addGap(465, 465, 465)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
+                        .addGap(176, 176, 176)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 179, Short.MAX_VALUE))
         );
@@ -320,20 +304,14 @@ public class ReservaView extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbCancelar)
                     .addComponent(jbReservas))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(296, 296, 296))
         );
 
@@ -346,28 +324,26 @@ public class ReservaView extends javax.swing.JInternalFrame {
         System.out.println("si");
         
         for (Reserva aux : rd.obtenerReservas()) {
-            modelo.addRow(new Object[]{aux.getIdReserva(),aux.getIdMesa(), aux.getNombre(), aux.getDni(), aux.getFecha(),});
+            modelo.addRow(new Object[]{aux.getIdReserva(),aux.getIdMesa(), aux.getNombre(), aux.getDni(), aux.getFecha(),aux.getHora()});
         }
     }//GEN-LAST:event_jbReservasActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
       
+        int reserva;
          //validar que reserva n° no este vacio
         if(!jtReserva.getText().isEmpty()){
         try{
       
-        int reserva = Integer.parseInt(jtReserva.getText());
+        reserva = Integer.parseInt(jtReserva.getText());
         Reserva aux =rd.obtenerReservaxId(reserva);
         if((aux != null)&& (aux.isActivo())){
             
             jtMesa.setText(aux.getIdMesa()+"");
             jtDni.setText(aux.getDni()+"");
             jtNombre.setText(aux.getNombre());
-            jdFecha.setDate(Date.valueOf(aux.getFecha()));
-          //  jtHora.setText(aux.getHora().getHour()+":"+aux.getHora().getMinute()+"");
-             
-           // jcbHoras.setSelectedIndex(aux.getHora().getHour());
-           // jcbMinutos.setSelectedIndex(aux.getHora().getMinute());
+            jdFecha.setDate(Date.valueOf(aux.getFecha()));             
+            jcbHoras.setSelectedIndex(aux.getHora());          
             jbCancelar.setEnabled(true);
             jbModificar.setEnabled(true); 
             
@@ -473,33 +449,17 @@ public class ReservaView extends javax.swing.JInternalFrame {
         String nombre=jtNombre.getText();
         int dni=Integer.parseInt(jtDni.getText());
       
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = formato.format(jdFecha.getDate());
-        LocalDateTime fechaR = LocalDateTime.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+        LocalDate fechaR = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         int mesa = Integer.parseInt(jtMesa.getText());
-        
-       /*
-        SimpleDateFormat fhora = new SimpleDateFormat("HH:mm"); 
-        //String hora=fhora.format(jtHora.getText());
-        String h =jcbHoras.getSelectedIndex()+"";
-        String m=jcbMinutos.getSelectedIndex()+"";
-        String hora=(h+m);
-        JOptionPane.showMessageDialog(null,hora);
-        LocalTime horaR= LocalTime.parse(hora,DateTimeFormatter.ofPattern("HH:mm"));
-        
-        */
-        
-      //  LocalTime hora= jtHora.setText(aux.getHora().getHour()+":"+aux.getHora().getMinute()+"");
-             
-          //  jcbHoras.setSelectedIndex();
-          //  jcbMinutos.setSelectedIndex(aux.getHora().getMinute());
-        
-        
+        int hora = jcbHoras.getSelectedIndex();
+                  
          
-        Reserva r=new Reserva(id,nombre,dni,fechaR,  mesa, true);
+        Reserva r=new Reserva(id,nombre,dni,fechaR,hora, mesa, true);
         if(rd.modificarReserva(r)){ 
-            // String reserva=jtReserva.getText();
-             JOptionPane.showMessageDialog(this, "Modificación realizada con éxito: \nReserva n°: "+jtReserva.getText()+"\nNombre: "+jtNombre.getText()+"\nDni: "+dni+"\nMesa: "+mesa+"\nFecha y hora: "+fechaR);
+             String reserva=jtReserva.getText();
+             JOptionPane.showMessageDialog(this, "Modificación realizada con éxito: \nReserva n°: "+reserva+"\nNombre: "+jtNombre.getText()+"\nDni: "+dni+"\nMesa: "+mesa+"\nFecha: "+fechaR+"\nHora:"+hora);
              limpiarCampos();
             // jbModificar.setEnabled(false);
              //jbCancelar.setEnabled(false); 
@@ -522,12 +482,10 @@ public class ReservaView extends javax.swing.JInternalFrame {
        
         //validar si el nombre y dni no estan vacios
         if(!jtNombre.getText().isEmpty() && !jtDni.getText().isEmpty()){
-          try{
-         int dni=Integer.parseInt(jtDni.getText()); 
+          try{         
      
          String nombre=jtNombre.getText();    
-         
-         
+         int dni=Integer.parseInt(jtDni.getText());         
          
          //Obtenemos la fecha del jcalendar y la pasamos a LocalDate            
      
@@ -548,21 +506,9 @@ public class ReservaView extends javax.swing.JInternalFrame {
     
          
          LocalDate fechaR = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-         
-        int mesa = Integer.parseInt(jtMesa.getText());        
-       
-        SimpleDateFormat fhora = new SimpleDateFormat("HH:mm:ss");
-        String hora=fhora.format(jtHora.getText());
-       // String h =jcbHoras.getSelectedIndex()+"";
-       // String m=jcbMinutos.getSelectedIndex()+"";
-//        String hora= fhora.format(h+m+"00");
-      //  String hora= fhora.format(jtHora.getText());
-      //  LocalTime horaR= LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm:ss"));
-        
-       
-        
-
-         Reserva r=new Reserva(nombre,dni,fechaR, mesa, true);
+        int hora = jcbHoras.getSelectedIndex();
+        int mesa = Integer.parseInt(jtMesa.getText()); 
+         Reserva r=new Reserva(nombre,dni,fechaR,hora, mesa, true);
          jtReserva.setText(r.getIdReserva()+"");
          int idReserva=Integer.parseInt(jtReserva.getText());
          if((mesReserva>1 || mesReserva<0 )&&(diaReserva>31)){// Las Reservas se toman hasta con 1 mes de anticipacion
@@ -570,7 +516,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
          }else if( rd.agregarReserva(r)){    
                 jtReserva.setText(r.getIdReserva()+"");
                 idReserva=Integer.parseInt(jtReserva.getText());
-                JOptionPane.showMessageDialog(this,"\nReserva n°: "+jtReserva+"\nNombre: "+jtNombre.getText()+"\nDni: "+dni+"\nMesa: "+mesa+"\nFecha: "+fechaR+"\nHora: "+horaR+"\nReserva agregada con éxito!");
+                JOptionPane.showMessageDialog(this,"\nReserva n°: "+jtReserva+"\nNombre: "+jtNombre.getText()+"\nDni: "+dni+"\nMesa: "+mesa+"\nFecha: "+fechaR+"\nHora: "+hora+"\nReserva agregada con éxito!");
                 limpiarCampos();
             }
          }catch(NumberFormatException | NullPointerException e){
@@ -623,10 +569,8 @@ public class ReservaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbRealizaReserva;
     private javax.swing.JButton jbReservas;
     private javax.swing.JComboBox<String> jcbHoras;
-    private javax.swing.JComboBox<String> jcbMinutos;
     private com.toedter.calendar.JDateChooser jdFecha;
     private javax.swing.JTextField jtDni;
-    private javax.swing.JTextField jtHora;
     private javax.swing.JTextField jtMesa;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtReserva;

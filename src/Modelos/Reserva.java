@@ -2,21 +2,20 @@
 package Modelos;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Reserva {
     private int idReserva;
     private String nombre;
     private int dni;
     private LocalDate fecha;
-    private LocalTime hora;
+    private int hora;
     private int idMesa;
     private boolean activo;
 
     public Reserva() {
     }
 
-    public Reserva( String nombre, int dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
+    public Reserva( String nombre, int dni, LocalDate fecha, int hora, int idMesa, boolean activo) {
      
         this.nombre = nombre;
         this.dni = dni;
@@ -26,7 +25,7 @@ public class Reserva {
         this.activo = activo;
     }
 
-    public Reserva(int idReserva, String nombre, int dni, LocalDate fecha, LocalTime hora, int idMesa, boolean activo) {
+    public Reserva(int idReserva, String nombre, int dni, LocalDate fecha, int hora, int idMesa, boolean activo) {
         this.idReserva = idReserva;
         this.nombre = nombre;
         this.dni = dni;
@@ -56,7 +55,7 @@ public class Reserva {
         return fecha;
     }
 
-    public LocalTime getHora() {
+    public int getHora() {
         return hora;
     }
 
@@ -80,7 +79,7 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(int hora) {
         this.hora = hora;
     }
 
@@ -95,7 +94,7 @@ public class Reserva {
  
     @Override
     public String toString() {
-        return "Reserva n°: "+idReserva+"\nMesa n°= " + idMesa+ "\nCliente= " + nombre +" \nDni: "+dni+ "\nFecha Y hora= " + fecha + ", "+hora+"hs";
+        return "Reserva n°: "+idReserva+"\nMesa n°= " + idMesa+ "\nCliente= " + nombre +" \nDni: "+dni+ "\nFecha = " + fecha + ",\nHora "+hora+"hs";
     }
     
     

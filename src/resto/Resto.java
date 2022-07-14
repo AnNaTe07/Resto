@@ -83,7 +83,7 @@ public class Resto {
    
         LocalDate fecha=LocalDate.parse("2022-07-30 18:30:00");
        // LocalTime hora=LocalTime.parse("18:30");
-        Reserva reserva = new Reserva("Bob Esponja",33444555,fecha , 1, true);
+        Reserva reserva = new Reserva("Bob Esponja",33444555,fecha ,20, 1, true);
         
         
 //        if(rd.agregarReserva(reserva)){
