@@ -1,5 +1,6 @@
 package Data;
 
+import Modelos.Mesa;
 import Modelos.Mesero;
 import Modelos.Pedido;
 import java.sql.Connection;
@@ -273,46 +274,21 @@ public class MeseroData {
         return exito;
     }
 
-    public boolean cobrarPedido(Pedido pedido) {
+    public boolean cobrarPedido(Mesa mesa) {
         boolean exito = true;
-        String sql = "UPDATE pedido SET cobrado = 1 WHERE idPedido = ?";
-
-        try {
+        String sql = "UPDATE `pedido` SET `cobrado`= 1 AND activo = 1 WHERE idMesa = ? ";
+        try{
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, pedido.getIdPedido());
-
-            int rs = ps.executeUpdate();
-            if (rs == 1) {
-                JOptionPane.showMessageDialog(null, "Pedido cobrado");
-                String sql2 = "UPDATE detalle SET expirado = 1 WHERE idPedido = ?";
-                try {
-                    PreparedStatement p = con.prepareStatement(sql2);
-                    p.setInt(1, pedido.getIdPedido());
-
-                    int rx = p.executeUpdate();
-                    if (rx == 1) {
-                        String sql3 =  "UPDATE mesa SET estado = -1 WHERE idMesa = ?";
-                        try {
-                           PreparedStatement s = con.prepareStatement(sql3);
-                           s.setInt(1, pedido.getMesa().getIdMesa());
-                           
-                           int r = s.executeUpdate();
-                           if(r != 1){
-                               exito = false;
-                           }
-                        } catch (Exception x) {
-                            JOptionPane.showMessageDialog(null, x);
-                        }
-                    } else {
-                        exito = false;
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e);
-                }
-            } else {
+            ps.setInt(1, mesa.getIdMesa());
+            
+            if(ps.executeUpdate() == 1){
+                exito = false;
+                JOptionPane.showMessageDialog(null, "error");
+            }else{
                 JOptionPane.showMessageDialog(null, "Error");
                 exito = false;
             }
+           
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

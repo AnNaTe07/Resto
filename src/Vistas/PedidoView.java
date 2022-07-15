@@ -104,6 +104,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jbCobrar = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1300, 900));
         setPreferredSize(new java.awt.Dimension(1300, 700));
@@ -331,6 +332,16 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jbCobrar.setBackground(new java.awt.Color(51, 0, 51));
+        jbCobrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jbCobrar.setForeground(new java.awt.Color(255, 255, 255));
+        jbCobrar.setText("Cobrar Pedido");
+        jbCobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCobrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -345,7 +356,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(370, 370, 370)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,8 +379,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                         .addComponent(jtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(41, 41, 41)
                                 .addComponent(jbHistorial)
-                                .addGap(173, 173, 173)
-                                .addComponent(jBCancelar))))
+                                .addGap(27, 27, 27)
+                                .addComponent(jBCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbCobrar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -447,7 +460,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jCBCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jcPedido)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jcMesa)
@@ -495,7 +508,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbHistorial)
-                            .addComponent(jBCancelar))))
+                            .addComponent(jBCancelar)
+                            .addComponent(jbCobrar))))
                 .addContainerGap())
         );
 
@@ -768,7 +782,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             jtSubtotal.setText(subTotal.toString());
             Pedido pedido = new Pedido(mesa, mozo, subTotal);
             pedidoda.cargarPedido(pedido);
-            pedido = pedidoda.obtenerPedidoXId(18);
+            //pedido = pedidoda.obtenerPedidoXId(18);
             DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
             detalleda.agregarPedido(detape);
             cargarPedidosActivos();
@@ -887,6 +901,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
             jtSubtotal.setText(subTotal.toString());        
     }//GEN-LAST:event_jcbCantActionPerformed
 
+    private void jbCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCobrarActionPerformed
+        Mesa mesa = (Mesa) CBMesas.getSelectedItem();
+        meseroda.cobrarPedido(mesa);
+    }//GEN-LAST:event_jbCobrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Mesa> CBMesas;
@@ -920,6 +939,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFBuscaProducto;
     private javax.swing.JTable jTPedidos;
     private javax.swing.JTable jTProductos;
+    private javax.swing.JButton jbCobrar;
     private javax.swing.JButton jbHistorial;
     private javax.swing.JCheckBox jcFecha;
     private javax.swing.JCheckBox jcMesa;
