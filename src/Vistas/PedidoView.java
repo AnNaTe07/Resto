@@ -460,7 +460,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
                                     .addComponent(jTFBuscaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jBBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -585,7 +585,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     // BORRAR FILAS DE TABLA PEDIDO
     public void borrarFilasTablaPedido() {
 
-        int cant = modelo2.getRowCount() - 1;
+        int cant = modelo2.getRowCount()-1 ;
         for (int i = cant; i >= 0; i--) {
 
             modelo2.removeRow(i);
@@ -600,8 +600,21 @@ public class PedidoView extends javax.swing.JInternalFrame {
         borrarFilasTabla();
         if (jCBCategoria.getSelectedIndex() == 0) {
             for (Producto prod : productos) {
+                String categoria = "";
                 if (prod.isActivo() == true) {
-                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                    int aux = prod.getCategoria();
+                    switch(aux){
+                        case 0:
+                            categoria = "Comestible";
+                            break;
+                        case 1:
+                            categoria = "Bebida s/Alcohol";
+                            break;
+                        case 2:
+                            categoria ="Bebida c/Alcohol";
+                            break;
+                    }
+                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio(), categoria});
                 }
             }
         } else {
@@ -627,7 +640,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     
     //CARGAR DETALLE EN TABLA PEDIDOS
     public void cargarPedidosActivos() {
-        borrarFilasTablaPedido();
+            borrarFilasTablaPedido();
         
             ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
             for (DetallePedido ped : depe) {
@@ -693,8 +706,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR ID
     public void cargarPedidoPorId() {
         borrarFilasTablaPedido();
-        
-        DetallePedido ped = detalleda.detallePedidoPorId(Integer.parseInt(jtIdPedido.getText()));
+        int id = Integer.parseInt(jtIdPedido.getText());
+        DetallePedido ped = detalleda.detallePedidoPorId(id);
 
         if (ped.isExpirado() != true) {
             modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
@@ -728,17 +741,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
     
     // AGREGAR PEDIDOS
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-          int fila = jTProductos.getSelectedRow();
+         int fila = jTProductos.getSelectedRow();
         Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
         Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
         Double subTotal;
         int cant = jcbCant.getSelectedIndex()+1;
         Producto prod = null;
         prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
-                JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
+                //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
         subTotal = cant * prod.getPrecio();
         Pedido pedido = new Pedido(mesa, mozo, subTotal);
         pedidoda.cargarPedido(pedido);
+        pedido = pedidoda.obtenerPedidoXId(18);
         DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
         detalleda.agregarPedido(detape);
         cargarPedidosActivos();
@@ -748,8 +762,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     // CANCELAR PEDIDO
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        
-        int idDetalle = (int)jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 3);
+    
+        int idDetalle = (int)jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 2);
         DetallePedido detape = detalleda.detallePedidoPorId(idDetalle);
         Pedido pedi = detape.getPed();
         meseroda.cancelarPedido(pedi);
@@ -819,7 +833,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         for (DetallePedido ped : det) {
 
-            modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
 
         }
     }//GEN-LAST:event_jbHistorialActionPerformed

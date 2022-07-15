@@ -82,13 +82,9 @@ public class Resto {
 ////////////////////////////----------------Reservas----------------------------
         //crear la reserva
    
-
-        LocalDate fecha=LocalDate.parse("2022-07-30");
-
-       // LocalDate fecha=LocalDate.parse("2022-07-30 18:30:00");
-
+        //LocalDate fecha=LocalDate.parse("2022-07-30 18:30:00");
        // LocalTime hora=LocalTime.parse("18:30");
-      //  Reserva reserva = new Reserva("Bob Esponja",33444555,fecha ,20, 1, true);
+        //Reserva reserva = new Reserva("Bob Esponja",33444555,fecha ,20, 1, true);
         
         
 //        if(rd.agregarReserva(reserva)){
@@ -139,7 +135,13 @@ public class Resto {
          // mesad.agregarMesa(m);
           //mesad.agregarMesa(mesa);
          // Mesa me=mesad.obtenerMesaxId(2);
+
 //            System.out.println( mesad.obtenerMesasSinReservas());
+
+            System.out.println( mesad.obtenerMesasSinReservas());
+            System.out.println("******");
+                   System.out.println( mesad.obtenerMesasReservadas());
+
 
          // mesad.borrarMesa(2);
          // m=mesad.obtenerMesaxId(2);
@@ -154,10 +156,12 @@ public class Resto {
          A
          }
 */
-//          ArrayList<Mesa> Mesas = mesad.obtenerMesasSinReservas();
-//          System.out.println(Mesas);
-//             ArrayList<Mesa> Mesas = mesad.obtenerMesasReservadas();
-//             System.out.println(Mesas);
+
+          ArrayList<Pedido> x = ped.mostrarPedidos();
+          for (Pedido pedido : x) {
+              System.out.println(pedido);
+        }
+  
 
     }
 }
