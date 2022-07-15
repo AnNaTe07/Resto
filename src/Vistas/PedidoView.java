@@ -757,22 +757,25 @@ public class PedidoView extends javax.swing.JInternalFrame {
     // AGREGAR PEDIDOS
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
          int fila = jTProductos.getSelectedRow();
-        Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
-        Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
-        Double subTotal;
-        int cant = jcbCant.getSelectedIndex() ;
-        Producto prod = null;
-        prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
-                //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
-        subTotal = cant * prod.getPrecio();
-        jtSubtotal.setText(subTotal.toString());
-        Pedido pedido = new Pedido(mesa, mozo, subTotal);
-        pedidoda.cargarPedido(pedido);
-        pedido = pedidoda.obtenerPedidoXId(18);
-        DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
-        detalleda.agregarPedido(detape);
-        cargarPedidosActivos();
-
+        if(fila != -1){
+            Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
+            Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
+            Double subTotal;
+            int cant = jcbCant.getSelectedIndex() ;
+            Producto prod = null;
+            prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
+                    //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
+            subTotal = cant * prod.getPrecio();
+            jtSubtotal.setText(subTotal.toString());
+            Pedido pedido = new Pedido(mesa, mozo, subTotal);
+            pedidoda.cargarPedido(pedido);
+            pedido = pedidoda.obtenerPedidoXId(18);
+            DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
+            detalleda.agregarPedido(detape);
+            cargarPedidosActivos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto.");
+        }
 
     }//GEN-LAST:event_jBAgregarActionPerformed
 
