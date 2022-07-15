@@ -647,19 +647,19 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }
     
     //CARGAR DETALLE EN TABLA PEDIDOS
-    public void cargarPedidosActivos() {
-            borrarFilasTablaPedido();
-        
-            ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
-            
-                 for (DetallePedido ped : depe) {
-                     
-                if (ped.isExpirado() != true) {
-                    modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
-                }
-           
+  public void cargarPedidosActivos() {
+        borrarFilasTablaPedido();
+
+        ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
+
+        for (DetallePedido ped : depe) {
+
+            if (ped.isExpirado() != true) {
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
-        
+
+        }
+
     }
 
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR MESA

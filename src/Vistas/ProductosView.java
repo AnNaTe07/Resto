@@ -32,6 +32,8 @@ public class ProductosView extends javax.swing.JPanel {
         disableAlertas();
         desactivarCampos();
         jpBuscar.setVisible(false);
+        llenarTabla();
+
 
     }
 
@@ -527,6 +529,7 @@ public class ProductosView extends javax.swing.JPanel {
         producto.setPrecio(Double.parseDouble(jtPrecio.getText()));
 
         if(pd.agregarProducto(producto)){
+            llenarTabla();
             JOptionPane.showMessageDialog(null,"Producto guardado correctamente");
         }
         limpiarCampos();
@@ -556,7 +559,10 @@ public class ProductosView extends javax.swing.JPanel {
         productoNew.setPrecio(Double.parseDouble(jtPrecio.getText()));
 
         if (pd.modificarProducto(productoNew)) {
+            
+            llenarTabla();
             JOptionPane.showMessageDialog(null, "producto modificado con exito");
+            
         }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"complete los campos para actualizar correctamente");
@@ -597,6 +603,7 @@ public class ProductosView extends javax.swing.JPanel {
 
         if (pd.borrarProducto(idProducto)) {
             JOptionPane.showMessageDialog(null, "producto eliminado con exito");
+            llenarTabla();
         }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"complete los campos para actualizar correctamente");
