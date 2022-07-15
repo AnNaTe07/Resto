@@ -631,7 +631,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     public void cargarPedidosActivos() {
         borrarFilasTablaPedido();
         
-            ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect(false);
+            ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
             for (DetallePedido ped : depe) {
                 if (ped.isExpirado() != true) {
                     modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});

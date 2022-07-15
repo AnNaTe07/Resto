@@ -183,8 +183,8 @@ public class DetalleData {
         return total;
     }
 
-    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS SOLO, O ACTIVOS O NO ACTIVOS
-    public ArrayList<DetallePedido> todoDetalleDePedidoSelect(boolean exp) {
+    //  MOSTRAR TODOS LOS DETALLES DE PEDIDOS SOLO ACTIVOS
+    public ArrayList<DetallePedido> todoDetalleDePedidoSelect() {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
 
