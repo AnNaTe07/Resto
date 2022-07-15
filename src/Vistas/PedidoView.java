@@ -57,7 +57,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         armaCabeceraTablaPedidos();
         cargarProductos();
         cargarPedidosActivos();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -69,10 +69,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jBCancelar = new javax.swing.JButton();
         jbHistorial = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        jtSubtotal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jBAgregar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbCant = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jCBAgregaMesa = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -130,7 +130,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jtSubtotal.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,8 +146,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }));
-        jComboBox1.setSelectedIndex(1);
+        jcbCant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }));
+        jcbCant.setSelectedIndex(1);
+        jcbCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCantActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -352,7 +357,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                         .addGap(47, 47, 47)
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jcbCant, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jBAgregar))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -360,7 +365,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                         .addGap(47, 47, 47)
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(41, 41, 41)
                                 .addComponent(jbHistorial)
                                 .addGap(173, 173, 173)
@@ -473,7 +478,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcbCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel13))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -482,7 +487,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jCBAgregaMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -520,14 +525,14 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void cargarCombo() {
-      
+
         for (Mesero m : meseros) {
             jCBAgregaMozo.addItem(m);
             CBMozo.addItem(m);
 
         }
         for (Mesa me : mesas) {
-        
+
             jCBAgregaMesa.addItem(me);
             CBMesas.addItem(me);
         }
@@ -594,17 +599,16 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     }
 
-    
     //CARGA PRODUCTOS
     public void cargarProductos() {
-        
+
         borrarFilasTabla();
         if (jCBCategoria.getSelectedIndex() == 0) {
             for (Producto prod : productos) {
                 String categoria = "";
                 if (prod.isActivo() == true) {
                     int aux = prod.getCategoria();
-                    switch(aux){
+                    switch (aux) {
                         case 0:
                             categoria = "Comestible";
                             break;
@@ -612,7 +616,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                             categoria = "Bebida s/Alcohol";
                             break;
                         case 2:
-                            categoria ="Bebida c/Alcohol";
+                            categoria = "Bebida c/Alcohol";
                             break;
                     }
                     modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio(), categoria});
@@ -638,18 +642,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
         CBMesas.setSelectedIndex(-1);
         CBMozo.setSelectedIndex(-1);
     }
-    
+
     //CARGAR DETALLE EN TABLA PEDIDOS
     public void cargarPedidosActivos() {
         borrarFilasTablaPedido();
-        
-            ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
-            for (DetallePedido ped : depe) {
-                if (ped.isExpirado() != true) {
-                    modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
-                }
+
+        ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
+        for (DetallePedido ped : depe) {
+            if (ped.isExpirado() != true) {
+                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
             }
-        
+        }
+
     }
 
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR MESA
@@ -699,7 +703,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.listaDetallesPedidosxFecha(fechaN);
         for (DetallePedido ped : depe) {
             //if (ped.isActivo() != true) {
-                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             //}
         }
 
@@ -725,50 +729,64 @@ public class PedidoView extends javax.swing.JInternalFrame {
     //BUSCA PRODUCTOS POR NOMBRE
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         jCBCategoria.setSelectedIndex(0);
-        ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
+        if (jTFBuscaProducto.getText() != "") {
+            if (!"".equals(jTFBuscaProducto.getText())) {
+                borrarFilasTabla();
+                ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
 
-        if (prodNomb != null) {
-            for (Producto prod : prodNomb) {
-                if (prod.isActivo()) {
-                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                if (prodNomb != null) {
+                    for (Producto prod : prodNomb) {
+                        if (prod.isActivo()) {
+                            modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                            modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio(), prod.getCategoria()});
+                        }
+                    }
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado un producto con ese nombre.");
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre.");
             }
-        } else {
-            
-            JOptionPane.showMessageDialog(null, "No se ha encontrado un producto con ese nombre.");
         }
 
 
     }//GEN-LAST:event_jBBuscarActionPerformed
-    
+
     // AGREGAR PEDIDOS
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         int fila = jTProductos.getSelectedRow();
-        Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
-        Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
-        Double subTotal;
-        int cant = Integer.valueOf(jTProductos.getValueAt(fila, 5).toString());
-        Producto prod = null;
-        prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
-        
-        subTotal = cant * prod.getPrecio();
-        Pedido pedido = new Pedido(mesa, mozo, subTotal);
-        pedidoda.cargarPedido(pedido);
-        DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
-        detalleda.agregarPedido(detape);
-        cargarPedidosActivos();
+        if (fila != -1) {
+            Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
+            Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
+            Double subTotal;
+            int cant = jcbCant.getSelectedIndex();
+            Producto prod = null;
+            prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
+
+            subTotal = cant * prod.getPrecio();
+            jtSubtotal.setText(subTotal.toString());
+            Pedido pedido = new Pedido(mesa, mozo, subTotal);
+            pedidoda.cargarPedido(pedido);
+            pedido = pedidoda.obtenerPedidoXId(18);
+            DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
+            detalleda.agregarPedido(detape);
+            cargarPedidosActivos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto.");
+        }
 
 
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     // CANCELAR PEDIDO
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        
-        int idDetalle = (int)jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 3);
+
+        int idDetalle = Integer.parseInt(jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 2).toString());
         DetallePedido detape = detalleda.detallePedidoPorId(idDetalle);
         Pedido pedi = detape.getPed();
         meseroda.cancelarPedido(pedi);
-        detalleda.detallePedidoPorId(idDetalle).setExpirado(true);
+        detalleda.detallePedidoPorId(idDetalle).setExpirado(false);
         cargarPedidosActivos();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
@@ -779,7 +797,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jTFBuscaProducto.setText("");
         jCBAgregaMozo.setSelectedIndex(-1);
         jCBAgregaMesa.setSelectedIndex(-1);
-        jComboBox1.setSelectedIndex(0);
+        jcbCant.setSelectedIndex(0);
 
 
     }//GEN-LAST:event_jBLimpiarActionPerformed
@@ -834,14 +852,14 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         for (DetallePedido ped : det) {
 
-            modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
 
         }
     }//GEN-LAST:event_jbHistorialActionPerformed
 
     //BUSQUEDA DE DETALLES DE PEDIDO 
     private void jBBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarPedidoActionPerformed
-        
+
         if (jcMesa.isSelected()) {
             cargarPedidosMesa();
         } else if (jcMozo.isSelected()) {
@@ -850,13 +868,24 @@ public class PedidoView extends javax.swing.JInternalFrame {
             cargarPedidosMesaMozo();
         } else if (jcPedido.isSelected()) {
             cargarPedidoPorId();
-        } else if (jcFecha.isSelected()){
+        } else if (jcFecha.isSelected()) {
             cargarPedidosPorFecha();
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna opcion para buscar.");
         }
 
     }//GEN-LAST:event_jBBuscarPedidoActionPerformed
+
+    private void jcbCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCantActionPerformed
+            int fila = jTProductos.getSelectedRow();
+        
+            Double subTotal;
+            int cant = jcbCant.getSelectedIndex();
+            Producto prod = null;
+            prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
+            subTotal = cant * prod.getPrecio();
+            jtSubtotal.setText(subTotal.toString());        
+    }//GEN-LAST:event_jcbCantActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -871,7 +900,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Mesa> jCBAgregaMesa;
     private javax.swing.JComboBox<Mesero> jCBAgregaMozo;
     private javax.swing.JComboBox<String> jCBCategoria;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -892,13 +920,14 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFBuscaProducto;
     private javax.swing.JTable jTPedidos;
     private javax.swing.JTable jTProductos;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton jbHistorial;
     private javax.swing.JCheckBox jcFecha;
     private javax.swing.JCheckBox jcMesa;
     private javax.swing.JCheckBox jcMozo;
     private javax.swing.JCheckBox jcPedido;
+    private javax.swing.JComboBox<String> jcbCant;
     private com.toedter.calendar.JDateChooser jdateFecha;
     private javax.swing.JTextField jtIdPedido;
+    private javax.swing.JTextField jtSubtotal;
     // End of variables declaration//GEN-END:variables
 }
