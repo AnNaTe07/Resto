@@ -750,7 +750,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         int cant = Integer.valueOf(jTProductos.getValueAt(fila, 5).toString());
         Producto prod = null;
         prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
-                JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
+        
         subTotal = cant * prod.getPrecio();
         Pedido pedido = new Pedido(mesa, mozo, subTotal);
         pedidoda.cargarPedido(pedido);
