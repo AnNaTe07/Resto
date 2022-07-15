@@ -107,7 +107,7 @@ public class Resto {
 //            System.out.println(rd.obtenerReservaxId(11));
 //          Date date = Date.valueOf(fecha);
 //          System.out.println(date);
-//          for (Reserva re : rd.buscarReservaXFecha("2022-07-30")) {
+//          for (Reserva re : rd.buscarReservaXFecha("2022-07-31")) {
 //                System.out.println(re);
 //                System.out.println("\n");
 //          }
@@ -138,9 +138,9 @@ public class Resto {
 
 //            System.out.println( mesad.obtenerMesasSinReservas());
 
-            System.out.println( mesad.obtenerMesasSinReservas());
-            System.out.println("******");
-                   System.out.println( mesad.obtenerMesasReservadas());
+//            System.out.println( mesad.obtenerMesasSinReservas());
+//            System.out.println("******");
+//              System.out.println( mesad.obtenerMesasReservadas());
 
 
          // mesad.borrarMesa(2);
@@ -157,10 +157,10 @@ public class Resto {
          }
 */
 
-          ArrayList<Pedido> x = ped.mostrarPedidos();
-          for (Pedido pedido : x) {
-              System.out.println(pedido);
-        }
+//          ArrayList<Pedido> x = ped.mostrarPedidos();
+//          for (Pedido pedido : x) {
+//              System.out.println(pedido);
+//        }
   
 
     }

@@ -35,10 +35,11 @@ public class ReservaView extends javax.swing.JInternalFrame {
         llenarComboBMesa();
         jtReserva.setEnabled(false);
         desactivarCampos();
+        jdFecha.setMinSelectableDate(date);
+        
     }
 
     private void limpiarCampos() {
-        jtReserva.setText("");
         jtDni.setText("");
         jtNombre.setText("");
         jdFecha.setDate(null);
@@ -345,7 +346,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Ingrese un ID primero");
             }
         } else if (jbFecha.isSelected()) {
-
+            limpiarTabla();
             if (jdFecha.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "Ingrese una fecha primero");
             } else {
@@ -417,22 +418,33 @@ public class ReservaView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Llene los campos a modificar");
         } else {
             reservaN.setNombre(jtNombre.getText());
+            int idN = Integer.parseInt(jtReserva.getText());
             reservaN.setIdReserva(Integer.parseInt(jtReserva.getText()));
-            int mesa1 = (int)jcbMesas.getSelectedItem();
-            for (Mesa aux : md.obtenerMesasSinReservas()) {
-                if (aux.getIdMesa() != mesa1) {
-                    Date f = jdFecha.getDate();
-                    LocalDate fecha = f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    reservaN.setFecha(fecha);
-                    reservaN.setHora(jcbHoras.getSelectedIndex());
-                    reservaN.setDni(Integer.parseInt(jtDni.getText()));
-                    if (rd.modificarReserva(reservaN)) {
-                        JOptionPane.showMessageDialog(null, "modificado con exito");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "La mesa ya esta reservada");
+            int mesa1 = (int) jcbMesas.getSelectedItem();
+            int hora = jcbHoras.getSelectedIndex();
+            reservaN.setIdMesa(mesa1);
+            /////comparar fechas apra modificar reserva
+            Date f = jdFecha.getDate();
+            String fecha = (f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).toString();
+            int repetido = 0;
+            for (Reserva aux : rd.buscarReservaXFecha(fecha)) {
+                if (aux.getIdReserva() != idN && (aux.getIdMesa() == mesa1 && (hora >= aux.getHora() && hora <= (aux.getHora() + 2)))) {
+                    repetido += 1;
                 }
+            }
+            if (repetido == 0) {
+                Date j = jdFecha.getDate();
+                LocalDate fecha2 = f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                reservaN.setFecha(fecha2);
+                reservaN.setHora(jcbHoras.getSelectedIndex());
+                reservaN.setDni(Integer.parseInt(jtDni.getText()));
 
+                if (rd.modificarReserva(reservaN)) {
+                    JOptionPane.showMessageDialog(null, "modificado con exito");
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La mesa ya esta reservada");
             }
         }
 
@@ -440,15 +452,44 @@ public class ReservaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbRealizaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRealizaReservaActionPerformed
-        int mesa = Integer.parseInt(jtMesa.getText());
-        String nombre = jtNombre.getText();
-        int dni = Integer.parseInt(jtDni.getText());
-        Date f = jdFecha.getDate();
-        LocalDate fecha = f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int hora = jcbHoras.getSelectedIndex();
 
-        Reserva reservaN = new Reserva(nombre, dni, fecha, hora, mesa, true);
-        rd.agregarReserva(reservaN);
+        if (jtNombre.getText() != null && jtDni.getText() != null && jdFecha.getDate() != null) {
+            int mesaN = (int) (jcbMesas.getSelectedItem());
+            String nombre = jtNombre.getText();
+            int dni = Integer.parseInt(jtDni.getText());
+            Date f = jdFecha.getDate();
+            LocalDate fecha = f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            int hora = jcbHoras.getSelectedIndex();
+
+            Reserva reservaN = new Reserva();
+            String fecha2 = (f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()).toString();
+            int repetido = 0;
+            for (Reserva aux : rd.buscarReservaXFecha(fecha2)) {
+                if (aux.getIdMesa() == mesaN && (hora >= aux.getHora() && hora <= (aux.getHora() + 2))) {
+                    repetido += 1;
+                }
+            }
+            if (repetido == 0) {
+                Date j = jdFecha.getDate();
+                LocalDate fecha21 = j.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                reservaN.setFecha(fecha21);
+                reservaN.setHora(jcbHoras.getSelectedIndex());
+                reservaN.setDni(Integer.parseInt(jtDni.getText()));
+
+                reservaN = new Reserva(nombre, dni, fecha, hora, mesaN, true);
+                rd.agregarReserva(reservaN);
+                JOptionPane.showMessageDialog(null, "Reserva realizada con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "La mesa ya esta reservada");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese los datos");
+            jtDni.setEnabled(true);
+            jtNombre.setEnabled(true);
+            limpiarCampos();
+        }
     }//GEN-LAST:event_jbRealizaReservaActionPerformed
 
     private void jtReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtReservasMouseClicked
@@ -468,7 +509,7 @@ public class ReservaView extends javax.swing.JInternalFrame {
             jtNombre.setText(nombre);
             Mesa mm = md.obtenerMesaxId(mesa1);
 
-            jcbMesas.setSelectedItem("Mesa: " + mm.getIdMesa() + " Capacidad: " + mm.getCapacidad());
+            jcbMesas.setSelectedItem(mesa1);
             jtDni.setText(dni + "");
             ZoneId zona = ZoneId.systemDefault();
             Date fecha2 = Date.from(fecha.atStartOfDay(zona).toInstant());
@@ -517,4 +558,8 @@ public void desactivarCampos() {
         }
 
     }
+    
+    LocalDate ldate = LocalDate.now();
+    Instant instant = Instant.from(ldate.atStartOfDay(ZoneId.of("GMT")));
+    Date date = Date.from(instant);
 }
