@@ -148,6 +148,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         jcbCant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }));
         jcbCant.setSelectedIndex(1);
+        jcbCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCantActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -645,7 +650,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
             }
         }
 
@@ -758,7 +763,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             int cant = jcbCant.getSelectedIndex();
             Producto prod = null;
             prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
-            //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
+
             subTotal = cant * prod.getPrecio();
             jtSubtotal.setText(subTotal.toString());
             Pedido pedido = new Pedido(mesa, mozo, subTotal);
@@ -777,11 +782,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
     // CANCELAR PEDIDO
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
 
-        int idDetalle = (int) jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 3);
+        int idDetalle = Integer.parseInt(jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 2).toString());
         DetallePedido detape = detalleda.detallePedidoPorId(idDetalle);
         Pedido pedi = detape.getPed();
         meseroda.cancelarPedido(pedi);
-        detalleda.detallePedidoPorId(idDetalle).setExpirado(true);
+        detalleda.detallePedidoPorId(idDetalle).setExpirado(false);
         cargarPedidosActivos();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
@@ -847,7 +852,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         for (DetallePedido ped : det) {
 
-            modelo.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
 
         }
     }//GEN-LAST:event_jbHistorialActionPerformed
@@ -870,6 +875,17 @@ public class PedidoView extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jBBuscarPedidoActionPerformed
+
+    private void jcbCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCantActionPerformed
+            int fila = jTProductos.getSelectedRow();
+        
+            Double subTotal;
+            int cant = jcbCant.getSelectedIndex();
+            Producto prod = null;
+            prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
+            subTotal = cant * prod.getPrecio();
+            jtSubtotal.setText(subTotal.toString());        
+    }//GEN-LAST:event_jcbCantActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
