@@ -28,13 +28,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private ArrayList<Mesa> mesas;
     private ArrayList<Producto> productos;
     private ArrayList<Mesero> meseros;
-    private ArrayList<DetallePedido> detalles;
+    private ArrayList<DetallePedido> detalles ;
     private ArrayList<Pedido> pedidos;
     private MesaData mesada;
     private MeseroData meseroda;
     private ProductoData productoda;
     private PedidoData pedidoda;
-    private DetalleData detalleda;
+    private DetalleData detalleda ;
 
     public PedidoView(MesaData mesaD, MeseroData mozoD, ProductoData produD, PedidoData pedidD, DetalleData detalleD) {
 
@@ -49,7 +49,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         productos = productoda.obtenerProductos();
         meseros = meseroda.obtenerMeserosActivos();
         pedidos = pedidoda.mostrarPedidos();
-        detalles = detalleda.todoDetalleDePedido();
+        detalles = detalleda.todoDetalleDePedidoSelect();
         initComponents();
         cargarCombo();
         armaCabeceraTablaProducto();
@@ -651,10 +651,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
             borrarFilasTablaPedido();
         
             ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
-            for (DetallePedido ped : depe) {
+            
+                 for (DetallePedido ped : depe) {
+                     
                 if (ped.isExpirado() != true) {
-                    modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+                    modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
                 }
+           
             }
         
     }
@@ -871,7 +874,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     private void jcbCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCantActionPerformed
         int cant = jcbCant.getSelectedIndex() ;
-        Producto prod = null;
+        Producto prod = new Producto();
         prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(jTProductos.getSelectedRow(), 0).toString()));
         Double st = cant * prod.getPrecio();
         jtSubtotal.setText(st.toString());

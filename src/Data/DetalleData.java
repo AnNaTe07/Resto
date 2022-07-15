@@ -51,7 +51,7 @@ public class DetalleData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dped.setIdDetalle(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Productos cargados con exito." + e);
+                JOptionPane.showMessageDialog(null, "Productos cargados con exito.");
             }else{
                 check = false;
                 
@@ -198,14 +198,17 @@ public class DetalleData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                DetallePedido dped = new DetallePedido();
-                dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
+            DetallePedido dped;
+            Pedido ped;
+            Producto product;
+            while (rs.next()) {
+                dped = new DetallePedido();
+                 ped = new Pedido();
+                 product = new Producto();
+                
+                dped.setIdDetalle(rs.getInt("idDetalle"));                
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
-                dped.setPed(ped);
-                Producto product = new Producto();
+                dped.setPed(ped);                
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -231,11 +234,11 @@ public class DetalleData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
+            Pedido ped;
+            while (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = null;
+                ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
                 Producto product = null;
