@@ -71,24 +71,25 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
-                .addGap(202, 202, 202)
+                .addGap(252, 252, 252)
                 .addComponent(jlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(74, 74, 74)
                 .addComponent(jlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 590));
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1110, 590));
 
         jPanel1.setBackground(new java.awt.Color(51, 0, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jbSalir.setBackground(new java.awt.Color(51, 0, 51));
+        jbSalir.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
         jbSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -99,6 +100,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbMeseros.setBackground(new java.awt.Color(51, 0, 51));
+        jbMeseros.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbMeseros.setForeground(new java.awt.Color(255, 255, 255));
         jbMeseros.setText("Meseros");
         jbMeseros.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -109,6 +111,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbPedidos.setBackground(new java.awt.Color(51, 0, 51));
+        jbPedidos.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbPedidos.setForeground(new java.awt.Color(255, 255, 255));
         jbPedidos.setText("Pedidos");
         jbPedidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -119,6 +122,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbProductos.setBackground(new java.awt.Color(51, 0, 51));
+        jbProductos.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbProductos.setForeground(new java.awt.Color(255, 255, 255));
         jbProductos.setText("Productos");
         jbProductos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -129,6 +133,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbReservas.setBackground(new java.awt.Color(51, 0, 51));
+        jbReservas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbReservas.setForeground(new java.awt.Color(255, 255, 255));
         jbReservas.setText("Reservas");
         jbReservas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -139,6 +144,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jbMesas.setBackground(new java.awt.Color(51, 0, 51));
+        jbMesas.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         jbMesas.setForeground(new java.awt.Color(255, 255, 255));
         jbMesas.setText("Mesas");
         jbMesas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -165,7 +171,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(526, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +187,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
