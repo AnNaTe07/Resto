@@ -54,13 +54,15 @@ public class DetalleData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dped.setIdDetalle(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Productos cargados con exito.");
             }else{
                 check = false;
+                
             }            
             ps.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos X" + e);
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos Xx" + e);
             
         }
         return check;
@@ -237,8 +239,7 @@ public class DetalleData {
                 dped.setIdDetalle(rs.getInt("idDetalle"));
                 Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
-                dped.setPed(ped);
-                Producto product = new Producto();
+                dped.setPed(ped);                
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -264,11 +265,11 @@ public class DetalleData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
+            Pedido ped;
+            while (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = null;
+                ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
                 Producto product = null;
