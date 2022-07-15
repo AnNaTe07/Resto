@@ -226,7 +226,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservasActionPerformed
         
-        ReservaView rv = new ReservaView(rd);
+        ReservaView rv = new ReservaView(rd,mesad);
         rv.setSize(1110, 600);
         rv.setLocation(0,0);
         jpPrincipal.removeAll();

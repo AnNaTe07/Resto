@@ -11,6 +11,7 @@ import Modelos.Mesero;
 import Modelos.Pedido;
 import Modelos.Producto;
 import Modelos.Reserva;
+import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -81,7 +82,7 @@ public class Resto {
 ////////////////////////////----------------Reservas----------------------------
         //crear la reserva
    
-        LocalDate fecha=LocalDate.parse("2022-07-30 18:30:00");
+        LocalDate fecha=LocalDate.parse("2022-07-30");
        // LocalTime hora=LocalTime.parse("18:30");
         Reserva reserva = new Reserva("Bob Esponja",33444555,fecha ,20, 1, true);
         
@@ -90,11 +91,11 @@ public class Resto {
 //            JOptionPane.showMessageDialog(null,"reserva agregada con exito");
 //        }
 
-//        if(rd.borrarReserva(4)){
+//        if(rd.borrarReserva(10)){
 //              JOptionPane.showMessageDialog(null,"reserva borrada con exito");
 //        }
 
-//        if(rd.modificarReserva(reserva = new Reserva(5,"Patricio Estrella",44555666,fecha ,hora , 1, true))){
+//        if(rd.modificarReserva(reserva = new Reserva(12,"Patricio Estrella",44555666,fecha ,21 , 1, true))){
 //                JOptionPane.showMessageDialog(null,"reserva modificada con exito");
 //        }
             
@@ -103,7 +104,13 @@ public class Resto {
 //                System.out.println("\n");
 //          }
 
-//            System.out.println(rd.obtenerReservaxId(5));
+//            System.out.println(rd.obtenerReservaxId(11));
+//          Date date = Date.valueOf(fecha);
+//          System.out.println(date);
+          for (Reserva re : rd.buscarReservaXFecha("2022-07-30")) {
+                System.out.println(re);
+                System.out.println("\n");
+          }
 
         
         /////----------------Mesas----------------------------
@@ -138,9 +145,14 @@ public class Resto {
          ArrayList<Mesa> Mesas = mesad.obtenerMesasActivas();
          for(Mesa aux: Mesas){
          System.out.println(aux);
+
+         A
          }
 */
-  
+//          ArrayList<Mesa> Mesas = mesad.obtenerMesasSinReservas();
+//          System.out.println(Mesas);
+//             ArrayList<Mesa> Mesas = mesad.obtenerMesasReservadas();
+//             System.out.println(Mesas);
 
     }
 }
