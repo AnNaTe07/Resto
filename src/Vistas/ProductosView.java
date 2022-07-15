@@ -75,15 +75,16 @@ public class ProductosView extends javax.swing.JPanel {
         jpNuevo1 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jcbCategoria = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(64, 44, 72));
-        setPreferredSize(new java.awt.Dimension(1000, 610));
+        setMinimumSize(new java.awt.Dimension(1100, 590));
+        setPreferredSize(new java.awt.Dimension(1100, 590));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(29, 19, 32));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Cambria", 0, 48)); // NOI18N
         jLabel2.setText("    GESTIÓN DE PRODUCTOS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -91,16 +92,16 @@ public class ProductosView extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(266, 266, 266)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, -1));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1240, 80));
 
         jcbListar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jcbListar.setMaximumRowCount(4);
@@ -110,10 +111,11 @@ public class ProductosView extends javax.swing.JPanel {
                 jcbListarActionPerformed(evt);
             }
         });
-        add(jcbListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 170, -1));
+        add(jcbListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 170, -1));
 
-        jtProductos.setBackground(new java.awt.Color(204, 204, 255));
-        jtProductos.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        jtProductos.setBackground(new java.awt.Color(64, 44, 72));
+        jtProductos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtProductos.setForeground(new java.awt.Color(255, 255, 255));
         jtProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -132,85 +134,85 @@ public class ProductosView extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jtProductos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 630, 130));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 630, 130));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("LISTAR  POR");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 130, 60));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 150, 60));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 130, 50));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 130, 50));
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cantidad");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 130, 50));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 130, 50));
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Categoria");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 130, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 130, 30));
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 530, 130, 30));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, 130, 30));
 
         jtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtPrecioKeyTyped(evt);
             }
         });
-        add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 530, 100, 30));
+        add(jtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 530, 100, 30));
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("ID");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 130, 50));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 130, 50));
 
         jtID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtIDKeyTyped(evt);
             }
         });
-        add(jtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 100, 30));
+        add(jtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 100, 30));
 
         jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtNombreKeyTyped(evt);
             }
         });
-        add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 100, 30));
+        add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 100, 30));
 
         jtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtCantidadKeyTyped(evt);
             }
         });
-        add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 100, 30));
+        add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 450, 100, 30));
 
         jlPrecio.setForeground(new java.awt.Color(204, 0, 51));
         jlPrecio.setText("* INGRESE  PRECIO *");
-        add(jlPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 140, 20));
+        add(jlPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 140, 20));
 
         jlId.setForeground(new java.awt.Color(204, 0, 51));
         jlId.setText("* INGRESE  ID *");
-        add(jlId, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 90, 20));
+        add(jlId, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 90, 20));
 
         jlNombre.setForeground(new java.awt.Color(204, 0, 51));
         jlNombre.setText("* INGRESE NOMBRE *");
-        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, 130, 20));
+        add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 130, 20));
 
         jlCantidad.setForeground(new java.awt.Color(204, 0, 51));
         jlCantidad.setText("* INGRESE  CANTIDAD *");
-        add(jlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, 150, 20));
+        add(jlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 150, 20));
 
         jlCategoria.setForeground(new java.awt.Color(204, 0, 51));
         jlCategoria.setText("* INGRESE  CATEGORIA *");
-        add(jlCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 160, 20));
+        add(jlCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 500, 160, 20));
 
         jpEliminar.setBackground(new java.awt.Color(198, 174, 206));
         jpEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -234,20 +236,17 @@ public class ProductosView extends javax.swing.JPanel {
         jpEliminar.setLayout(jpEliminarLayout);
         jpEliminarLayout.setHorizontalGroup(
             jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEliminarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jpEliminarLayout.setVerticalGroup(
             jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEliminarLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        add(jpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, 90, 30));
+        add(jpEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 520, 90, 30));
 
         jpBuscar.setBackground(new java.awt.Color(198, 174, 206));
         jpBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -274,18 +273,17 @@ public class ProductosView extends javax.swing.JPanel {
             jpBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBuscarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpBuscarLayout.setVerticalGroup(
             jpBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBuscarLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jlBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 90, 30));
+        add(jpBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 90, 30));
 
         jpGuardar.setBackground(new java.awt.Color(198, 174, 206));
         jpGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -316,13 +314,10 @@ public class ProductosView extends javax.swing.JPanel {
         );
         jpGuardarLayout.setVerticalGroup(
             jpGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpGuardarLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        add(jpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 90, 30));
+        add(jpGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 90, 30));
 
         jpActualizar.setBackground(new java.awt.Color(198, 174, 206));
         jpActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -346,19 +341,14 @@ public class ProductosView extends javax.swing.JPanel {
         jpActualizar.setLayout(jpActualizarLayout);
         jpActualizarLayout.setHorizontalGroup(
             jpActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpActualizarLayout.createSequentialGroup()
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpActualizarLayout.setVerticalGroup(
             jpActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpActualizarLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        add(jpActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 90, 30));
+        add(jpActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 470, 90, 30));
 
         jpNuevo1.setBackground(new java.awt.Color(198, 174, 206));
         jpNuevo1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -384,19 +374,15 @@ public class ProductosView extends javax.swing.JPanel {
         jpNuevo1Layout.setHorizontalGroup(
             jpNuevo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpNuevo1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jpNuevo1Layout.setVerticalGroup(
             jpNuevo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpNuevo1Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        add(jpNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 90, 30));
+        add(jpNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, 90, 30));
 
         jcbCategoria.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Bebida s/ alcohol", "Bebida c/ alcohol" }));
@@ -405,7 +391,22 @@ public class ProductosView extends javax.swing.JPanel {
                 jcbCategoriaActionPerformed(evt);
             }
         });
-        add(jcbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 120, 30));
+        add(jcbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, 120, 30));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1250, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarMouseExited
@@ -647,6 +648,7 @@ public class ProductosView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbCategoria;
     private javax.swing.JComboBox<String> jcbListar;

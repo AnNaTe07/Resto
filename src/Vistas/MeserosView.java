@@ -165,10 +165,12 @@ public class MeserosView extends javax.swing.JInternalFrame {
             }
         });
 
+        cbActivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbActivo.setForeground(new java.awt.Color(255, 255, 255));
         cbActivo.setText("Activo");
 
         jbEliminar.setBackground(new java.awt.Color(51, 0, 51));
+        jbEliminar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jbEliminar.setText("Eliminar");
         jbEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -180,6 +182,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
 
         jtLista.setBackground(new java.awt.Color(64, 44, 72));
         jtLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
+        jtLista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtLista.setForeground(new java.awt.Color(255, 255, 255));
         jtLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,10 +218,12 @@ public class MeserosView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre:");
 
         jbModificar.setBackground(new java.awt.Color(51, 0, 51));
+        jbModificar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbModificar.setForeground(new java.awt.Color(255, 255, 255));
         jbModificar.setText("Modificar");
         jbModificar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -240,16 +245,20 @@ public class MeserosView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Telefono:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Apellido:");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("DNI:");
 
         jbAgregar.setBackground(new java.awt.Color(51, 0, 51));
+        jbAgregar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregar.setText("Agregar");
         jbAgregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -259,10 +268,11 @@ public class MeserosView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Agregar Mesero");
 
+        rbActivos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbActivos.setForeground(new java.awt.Color(255, 255, 255));
         rbActivos.setSelected(true);
         rbActivos.setText("Activos");
@@ -273,6 +283,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
             }
         });
 
+        rbInactivos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         rbInactivos.setForeground(new java.awt.Color(255, 255, 255));
         rbInactivos.setText("Inactivos");
         rbInactivos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -285,8 +296,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Cambria", 0, 48)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Manipulacion de Meseros");
 
@@ -297,17 +307,17 @@ public class MeserosView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(335, 335, 335))
+                .addGap(273, 273, 273))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel7.setFont(new java.awt.Font("Franklin Gothic Demi", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Lista de Meseros");
 
@@ -346,7 +356,7 @@ public class MeserosView extends javax.swing.JInternalFrame {
                         .addComponent(rbInactivos)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
