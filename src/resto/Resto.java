@@ -111,10 +111,10 @@ public class Resto {
 //            System.out.println(rd.obtenerReservaxId(11));
 //          Date date = Date.valueOf(fecha);
 //          System.out.println(date);
-          for (Reserva re : rd.buscarReservaXFecha("2022-07-30")) {
-                System.out.println(re);
-                System.out.println("\n");
-          }
+//          for (Reserva re : rd.buscarReservaXFecha("2022-07-30")) {
+//                System.out.println(re);
+//                System.out.println("\n");
+//          }
 
         
         /////----------------Mesas----------------------------
@@ -139,7 +139,7 @@ public class Resto {
          // mesad.agregarMesa(m);
           //mesad.agregarMesa(mesa);
          // Mesa me=mesad.obtenerMesaxId(2);
-            System.out.println( mesad.obtenerMesasSinReservas());
+//            System.out.println( mesad.obtenerMesasSinReservas());
 
          // mesad.borrarMesa(2);
          // m=mesad.obtenerMesaxId(2);
