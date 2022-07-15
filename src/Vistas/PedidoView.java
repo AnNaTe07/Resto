@@ -734,13 +734,14 @@ public class PedidoView extends javax.swing.JInternalFrame {
     //BUSCA PRODUCTOS POR NOMBRE
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         jCBCategoria.setSelectedIndex(0);
-        if(jTFBuscaProducto.getText() != ""){
+        if(!"".equals(jTFBuscaProducto.getText())){
+            borrarFilasTabla();
             ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
 
             if (prodNomb != null) {
                 for (Producto prod : prodNomb) {
                     if (prod.isActivo()) {
-                        modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                        modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio(), prod.getCategoria()});
                     }
                 }
             } else {
