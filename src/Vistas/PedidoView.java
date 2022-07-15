@@ -217,7 +217,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Categoria");
 
-        jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Todos los productos>", "Platos principales", "Postres", "Bebidas sin alcohol", "Tragos" }));
+        jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Todos los productos>", "Platos principales", "Bebidas sin alcohol", "Bebidas con alcohol" }));
         jCBCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBCategoriaActionPerformed(evt);
@@ -649,7 +649,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
         for (DetallePedido ped : depe) {
-            if (ped.isExpirado() != true) {
+            if (ped.isExpirado() == false) {
                 modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
             }
         }
@@ -786,7 +786,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         DetallePedido detape = detalleda.detallePedidoPorId(idDetalle);
         Pedido pedi = detape.getPed();
         meseroda.cancelarPedido(pedi);
-        detalleda.detallePedidoPorId(idDetalle).setExpirado(false);
+        detalleda.cancelarPedidoPorId(idDetalle);
         cargarPedidosActivos();
     }//GEN-LAST:event_jBCancelarActionPerformed
 

@@ -134,6 +134,39 @@ public class DetalleData {
 
         return dped;
     }
+    
+    //CANCELAR PEDIDO
+    public DetallePedido cancelarPedidoPorId(int id) {
+
+        DetallePedido dped = new DetallePedido();
+
+        String sql = "SELECT * FROM detalle WHERE idDetalle = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                dped.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
+                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
+                dped.setPed(ped);
+                Producto product = null;
+                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dped.setProd(product);
+                dped.setCant(rs.getInt("cantidad"));
+                dped.setExpirado(true);
+
+            }
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se encontro el pedido con el ID ingresado.");
+
+        }
+
+        return dped;
+    }
 
     //  MOSTRAR DETALLES POR MOZO
     public ArrayList<DetallePedido> detallePedidoPorMozo(Mesero mozo) {
