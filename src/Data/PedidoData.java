@@ -126,18 +126,18 @@ public class PedidoData {
     }
     
     // OBTENER PEDIDO POR ID
-    public Pedido obtenerPedidoXId(int idPedido) {
+    public Pedido obtenerPedidoXId(int id) {
         String sql = "SELECT * FROM pedido WHERE idPedido = ?";
         Pedido pedido = new Pedido();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idPedido);
+            ps.setInt(1, id);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                pedido.setIdPedido(idPedido);
-                Mesa ms = null;
-                Mesero mesero = null;
+                pedido.setIdPedido(id);
+                Mesa ms = new Mesa();
+                Mesero mesero = new Mesero();
                 ms = mesa.obtenerMesaxId(rs.getInt("idMesa"));
                 mesero = mozo.buscarMesero(rs.getInt("idMesero"));
                 pedido.setMesa(ms);

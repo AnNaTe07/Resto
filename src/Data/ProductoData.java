@@ -229,7 +229,7 @@ public class ProductoData {
     public ArrayList<Producto> buscarXCategoria(int categoria){
         ArrayList<Producto> productos = new ArrayList();
         
-        String sql ="SELECT * FROM producto WHERE categoria = ?";
+        String sql ="SELECT * FROM producto WHERE categoria = ? AND activo = 1";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
