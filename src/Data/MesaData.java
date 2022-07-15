@@ -157,7 +157,7 @@ public class MesaData {
         ArrayList<Mesa> listaMesa = new ArrayList();       
 
         try {
-            String sql = "SELECT * FROM mesa WHERE  (mesa.idMesa = reserva.idMesa) AND reserva.activo=1";
+            String sql = "SELECT mesa.idMesa, mesa.capacidad, mesa.estado FROM reserva,mesa WHERE(mesa.idMesa = reserva.idMesa) AND reserva.activo=1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
             

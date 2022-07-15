@@ -140,6 +140,8 @@ public class Resto {
           //mesad.agregarMesa(mesa);
          // Mesa me=mesad.obtenerMesaxId(2);
             System.out.println( mesad.obtenerMesasSinReservas());
+            System.out.println("******");
+                   System.out.println( mesad.obtenerMesasReservadas());
 
          // mesad.borrarMesa(2);
          // m=mesad.obtenerMesaxId(2);
