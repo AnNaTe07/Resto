@@ -44,16 +44,15 @@ public class DetalleData {
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dped.getPed().getIdPedido());
-            dped.setPed(dped.getPed());
             ps.setInt(2, dped.getProd().getIdProducto());
-            dped.setProd(dped.getProd());
             ps.setInt(3, dped.getCant());
             ps.executeUpdate();
-            ps.close();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dped.setIdDetalle(rs.getInt(1));
-            }
+            }            
+            ps.close();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos");
             check = false;
@@ -189,11 +188,10 @@ public class DetalleData {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
 
-        String sql = "SELECT * FROM detalle WHERE expirado = ?";
+        String sql = "SELECT * FROM detalle WHERE expirado = 0";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setBoolean(1, exp);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
