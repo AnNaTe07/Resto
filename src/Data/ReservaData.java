@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ReservaData {
@@ -79,8 +82,8 @@ public class ReservaData {
     public boolean modificarReserva(Reserva reserva) {
         boolean exito = false;
 
-        String sql = "UPDATE reserva SET  nombre=?, dni=?, fecha=?, hora=?, idMesa=?, activo=? WHERE idReserva = ? ";
-
+        String sql = "UPDATE reserva SET  nombre=?, dni=?, fecha=?, hora=?, idMesa=? WHERE idReserva = ? ";
+        
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             
@@ -90,8 +93,7 @@ public class ReservaData {
             ps.setDate(3, Date.valueOf(reserva.getFecha()));
             ps.setInt(4,reserva.getHora());
             ps.setInt(5, reserva.getIdMesa());
-            ps.setBoolean(6,reserva.isActivo());
-            ps.setInt(7, reserva.getIdReserva());
+            ps.setInt(6, reserva.getIdReserva());
             
             if (ps.executeUpdate() != 0) {
 
@@ -167,6 +169,36 @@ public class ReservaData {
     }    
     
     
+    
+        public ArrayList<Reserva> buscarReservaXFecha(String fecha){
+        ArrayList<Reserva> reservas = new ArrayList();
+        
+        String sql = "SELECT * FROM reserva WHERE fecha = ?";
+        
+         try {
+             PreparedStatement ps = con.prepareStatement(sql);
+             ps.setString(1, fecha);
+             
+             ResultSet resultSet = ps.executeQuery();
+             Reserva reserva;
+             while (resultSet.next()) {
+                reserva = new Reserva();
+                reserva.setIdReserva(resultSet.getInt("idReserva"));
+                reserva.setNombre(resultSet.getString("nombre"));
+                reserva.setDni(resultSet.getInt("dni"));
+                reserva.setFecha(resultSet.getDate("fecha").toLocalDate());
+                reserva.setHora(resultSet.getInt("hora"));
+                reserva.setIdMesa(resultSet.getInt("idMesa"));
+                reserva.setActivo(resultSet.getBoolean("activo"));
+                reservas.add(reserva);
+            }
+             
+         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Error de sentencia");
+         }
+         
+         return reservas;
+    }
     
    
 }

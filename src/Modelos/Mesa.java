@@ -59,8 +59,7 @@ public class Mesa {
 
     @Override
     public String toString() {
-        return "Mesa: "+idMesa;
-      //  return "Mesa n°" + idMesa + "\nCapacidad=" + capacidad +  ",\nestado=" + estado ;
+        return "Mesa n° " + idMesa + " \nCapacidad= " + capacidad +  " \nestado= " + estado ;
     }    
 
    
@@ -71,4 +70,3 @@ public class Mesa {
     
     
     
-

@@ -157,22 +157,20 @@ public class MesaData {
         ArrayList<Mesa> listaMesa = new ArrayList();       
 
         try {
-            String sql = "SELECT mesa.idMesa, mesa.capacidad,mesa.estado FROM reserva, mesa +"
-                    + "WHERE  (mesa.idMesa = reserva.idMesa) AND reserva.activo=1";
+            String sql = "SELECT mesa.idMesa, mesa.capacidad, mesa.estado FROM reserva,mesa WHERE(mesa.idMesa = reserva.idMesa) AND reserva.activo=1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
             
             Mesa mesa;
             while (resultSet.next()) {
-                mesa = new Mesa();
+                mesa =new Mesa();
                 mesa.setIdMesa(resultSet.getInt("idMesa"));
                 mesa.setCapacidad(resultSet.getInt("capacidad"));
                 mesa.setEstado(resultSet.getString("estado"));
 
                 listaMesa.add(mesa);
             }
-            ps.close();
-
+     
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede obtener las mesas");
         }
@@ -182,8 +180,8 @@ public class MesaData {
         ArrayList<Mesa> listaMesa = new ArrayList();       
 
         try {
-            String sql = "SELECT mesa.idMesa, mesa.capacidad, mesa.estado FROM reserva, mesa +"
-                    + "WHERE  (mesa.idMesa != reserva.idMesa) AND reserva.activo=1 AND mesa.activo=1";
+            String sql = "SELECT mesa.idMesa, mesa.capacidad, mesa.estado FROM reserva,mesa WHERE mesa.idMesa not in ( reserva.idMesa) AND reserva.activo=1 AND mesa.activo=1;";
+          //  String sql = "SELECT *FROM *mesa WHERE idMesa not in(select idMesa from reserva where idReserva = ?) AND reserva.activo=1 AND mesa.activo=1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
             

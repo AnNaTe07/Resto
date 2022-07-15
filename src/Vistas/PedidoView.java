@@ -71,7 +71,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jBAgregar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbCant = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jCBAgregaMesa = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -145,8 +145,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }));
-        jComboBox1.setSelectedIndex(1);
+        jcbCant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }));
+        jcbCant.setSelectedIndex(1);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,7 +351,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                         .addGap(47, 47, 47)
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jcbCant, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jBAgregar))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -472,7 +472,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcbCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel13))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -745,7 +745,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
         Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
         Double subTotal;
-        int cant = Integer.valueOf(jTProductos.getValueAt(fila, 5).toString());
+        int cant = jcbCant.getSelectedIndex()+1;
         Producto prod = null;
         prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
                 //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
@@ -778,7 +778,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jTFBuscaProducto.setText("");
         jCBAgregaMozo.setSelectedIndex(-1);
         jCBAgregaMesa.setSelectedIndex(-1);
-        jComboBox1.setSelectedIndex(0);
+        jcbCant.setSelectedIndex(0);
 
 
     }//GEN-LAST:event_jBLimpiarActionPerformed
@@ -870,7 +870,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Mesa> jCBAgregaMesa;
     private javax.swing.JComboBox<Mesero> jCBAgregaMozo;
     private javax.swing.JComboBox<String> jCBCategoria;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -897,6 +896,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jcMesa;
     private javax.swing.JCheckBox jcMozo;
     private javax.swing.JCheckBox jcPedido;
+    private javax.swing.JComboBox<String> jcbCant;
     private com.toedter.calendar.JDateChooser jdateFecha;
     private javax.swing.JTextField jtIdPedido;
     // End of variables declaration//GEN-END:variables
