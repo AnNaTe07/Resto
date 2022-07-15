@@ -200,5 +200,31 @@ public class ReservaData {
          return reservas;
     }
     
+         public ArrayList<Reserva> obtenerMesasReservadasenR(int idMesa) {
+        ArrayList<Reserva> listaReservas = new ArrayList();       
+
+        try {
+            String sql = "SELECT * FROM reserva,mesa WHERE(reserva.idMesa = mesa.idMesa),  idMesa =?, AND reserva.activo=1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+              Reserva reserva;
+             while (resultSet.next()) {
+                reserva = new Reserva();
+                reserva.setIdReserva(resultSet.getInt("idReserva"));
+                reserva.setNombre(resultSet.getString("nombre"));
+                reserva.setDni(resultSet.getInt("dni"));
+                reserva.setFecha(resultSet.getDate("fecha").toLocalDate());
+                reserva.setHora(resultSet.getInt("hora"));
+                reserva.setIdMesa(resultSet.getInt("idMesa"));
+                reserva.setActivo(resultSet.getBoolean("activo"));
+                listaReservas.add(reserva);
+            }
+     
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede obtener las reservas"
+                    + "");
+        }
+        return listaReservas;
+    }
         
 }
