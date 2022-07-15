@@ -1,11 +1,13 @@
 package resto;
 
 import Data.Conexion;
+import Data.DetalleData;
 import Data.MesaData;
 import Data.MeseroData;
 import Data.PedidoData;
 import Data.ProductoData;
 import Data.ReservaData;
+import Modelos.DetallePedido;
 import Modelos.Mesa;
 import Modelos.Mesero;
 import Modelos.Pedido;
@@ -29,6 +31,7 @@ public class Resto {
         MesaData mesad= new MesaData(conexion);
         ReservaData rd= new ReservaData(conexion);
         PedidoData ped = new PedidoData(conexion);
+        DetalleData dp = new DetalleData(conexion);
         /////----------------AGREGANDO PRODUCTOS----------------------------
         //creamos el objeto
       //  Producto pizza = new Producto("mondongo", 300, 400.0,true,0);
@@ -161,7 +164,10 @@ public class Resto {
 //          for (Pedido pedido : x) {
 //              System.out.println(pedido);
 //        }
-  
+  Mesa mesa = mesad.obtenerMesaxId(7);
+  ArrayList<DetallePedido> x = dp.detallePedidoPorMesa(mesa);
+        System.out.println(x);
+          
 
     }
 }

@@ -10,9 +10,12 @@ import Modelos.Mesero;
 import Modelos.Pedido;
 import Modelos.Producto;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -166,6 +169,38 @@ public class DetalleData {
 
         return allDet;
     }
+    public ArrayList<DetallePedido> listaDetallesPedidosxFecha(LocalDate fecha) {
+        ArrayList<DetallePedido> lista = new ArrayList();
+
+        try {
+            String sql = "SELECT * FROM `detalle` WHERE detalle.idPedido IN (SELECT idPedido FROM `pedido` WHERE fecha = ?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            Date fechaN = Date.valueOf(fecha);
+            ps.setDate(1, fechaN);
+            ResultSet rs = ps.executeQuery();
+
+            DetallePedido dpedido;
+
+            while (rs.next()) {
+                dpedido = new DetallePedido();
+                dpedido.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
+                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
+                dpedido.setPed(ped);
+                Producto producto = new Producto();
+                producto = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                dpedido.setProd(producto);
+                dpedido.setCant(rs.getInt("cantidad"));
+                dpedido.setExpirado(rs.getBoolean("expirado"));
+                lista.add(dpedido);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pueden obtener las mesas" + ex);
+        }
+        return lista;
+    }
 
     // TOTAL DE PEDIDO $$ 
     public double totalDePedido(Pedido pedido) {
@@ -198,18 +233,14 @@ public class DetalleData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            DetallePedido dped;
-            Pedido ped;
-            Producto product;
-            while (rs.next()) {
-                dped = new DetallePedido();
-                 ped = new Pedido();
-                 product = new Producto();
-                
-                dped.setIdDetalle(rs.getInt("idDetalle"));                
+
+            while(rs.next()) {
+                DetallePedido dped = new DetallePedido();
+                dped.setIdDetalle(rs.getInt("idDetalle"));
+                Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);                
-                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                Producto product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
                 dped.setExpirado(rs.getBoolean("expirado"));
