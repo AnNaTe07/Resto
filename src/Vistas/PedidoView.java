@@ -731,19 +731,22 @@ public class PedidoView extends javax.swing.JInternalFrame {
     //BUSCA PRODUCTOS POR NOMBRE
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         jCBCategoria.setSelectedIndex(0);
-        ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
+        if(jTFBuscaProducto.getText() != ""){
+            ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
 
-        if (prodNomb != null) {
-            for (Producto prod : prodNomb) {
-                if (prod.isActivo()) {
-                    modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+            if (prodNomb != null) {
+                for (Producto prod : prodNomb) {
+                    if (prod.isActivo()) {
+                        modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio()});
+                    }
                 }
+            } else {
+
+                JOptionPane.showMessageDialog(null, "No se ha encontrado un producto con ese nombre.");
             }
         } else {
-            
-            JOptionPane.showMessageDialog(null, "No se ha encontrado un producto con ese nombre.");
+            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre.");
         }
-
 
     }//GEN-LAST:event_jBBuscarActionPerformed
     

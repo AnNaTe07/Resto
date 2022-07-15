@@ -51,8 +51,10 @@ public class DetalleData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dped.setIdDetalle(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Productos cargados con exito." + e);
             }else{
                 check = false;
+                
             }            
             ps.close();
 
