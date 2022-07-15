@@ -548,7 +548,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         columns.add("Stock");
         columns.add("Precio");
         columns.add("Categoria");
-        columns.add("Cantidad");
+
 
         for (Object it : columns) {
             modelo.addColumn(it);
