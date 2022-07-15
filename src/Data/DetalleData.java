@@ -136,36 +136,31 @@ public class DetalleData {
     }
     
     //CANCELAR PEDIDO
-    public DetallePedido cancelarPedidoPorId(int id) {
+    public boolean cancelarPedidoPorId(int id) {
 
         DetallePedido dped = new DetallePedido();
-
-        String sql = "SELECT * FROM detalle WHERE idDetalle = ?";
+        boolean exito = true;
+        String sql = "UPDATE detalle SET EXPIRADO = 1 WHERE idDetalle = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = new Pedido();
-                ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
-                dped.setPed(ped);
-                Producto product = null;
-                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
-                dped.setProd(product);
-                dped.setCant(rs.getInt("cantidad"));
-                dped.setExpirado(true);
-
+            
+            int rs = ps.executeUpdate();
+            if (rs == 1) {
+                JOptionPane.showMessageDialog(null, "Pedido cancelado");
+            } else {
+                JOptionPane.showMessageDialog(null, "error");
+                exito = false;
             }
-            rs.close();
-
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se encontro el pedido con el ID ingresado.");
-
+            JOptionPane.showMessageDialog(null, e);
         }
 
-        return dped;
+        return exito;
+            
+
+        
     }
 
     //  MOSTRAR DETALLES POR MOZO
