@@ -159,20 +159,59 @@ public class PedidoData {
     }
 
     //LISTAR PEDIDO X MESA EN UNA FECHA ENTRE HORAS
-    public ArrayList<Pedido> listaPedidosxMesa(int idMesa, LocalDate fecha) {
+//    public ArrayList<Pedido> listaPedidosxMesa(int idMesa, LocalDate fecha) {
+//        ArrayList<Pedido> lista = new ArrayList();
+//
+//        try {
+//            String sql = "SELECT * FROM pedido WHERE idMesa = ? AND fecha =?;";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, idMesa);
+//            Date fechaN = Date.valueOf(fecha);
+//            ps.setDate(2, fechaN);
+//            ResultSet rs = ps.executeQuery();
+//
+//            Pedido pedido;
+//
+//            while (rs.next()) {
+//                pedido = new Pedido();
+//                pedido.setIdPedido(rs.getInt("idPedido"));
+//                Mesa me = mesa.obtenerMesaxId(rs.getInt("idMesa"));
+//                pedido.setMesa(me);
+//
+//                Mesero mesero = mozo.buscarMesero(rs.getInt("idMesero"));
+//                pedido.setMozo(mesero);
+//
+//                pedido.setActivo(rs.getBoolean("activo"));
+//                pedido.setCobrado(rs.getBoolean("cobrado"));
+//                pedido.setSubTotal(rs.getDouble("subTotal"));
+//                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+//                pedido.setHorario(rs.getTime("hora").toLocalTime());
+//
+//                lista.add(pedido);
+//            }
+//            ps.close();
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "No se pueden obtener las mesas" + ex);
+//        }
+//        return lista;
+//    }
+    //
+    public ArrayList<Pedido> listaPedidosxFecha(LocalDate fecha) {
         ArrayList<Pedido> lista = new ArrayList();
 
         try {
-            String sql = "SELECT * FROM pedido WHERE idMesa = ? AND fecha =?;";
+            String sql = "SELECT * FROM pedido WHERE fecha = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
+            Date fechaN = Date.valueOf(fecha);
+            ps.setDate(1, fechaN);
             ResultSet rs = ps.executeQuery();
 
             Pedido pedido;
 
             while (rs.next()) {
-                pedido = null;
+                pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
-
                 Mesa me = mesa.obtenerMesaxId(rs.getInt("idMesa"));
                 pedido.setMesa(me);
 
@@ -183,17 +222,18 @@ public class PedidoData {
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setSubTotal(rs.getDouble("subTotal"));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("horario").toLocalTime());
+                pedido.setHorario(rs.getTime("hora").toLocalTime());
 
                 lista.add(pedido);
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pueden obtener las mesas");
+            JOptionPane.showMessageDialog(null, "No se pueden obtener las mesas" + ex);
         }
         return lista;
     }
+    
 
     // OBTENER PEDIDOS POR MOZO
     public ArrayList<Pedido> obtenerPedidoXMozo(Mesero mozo) {

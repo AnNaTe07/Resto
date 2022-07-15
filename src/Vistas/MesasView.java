@@ -488,8 +488,9 @@ public class MesasView extends javax.swing.JInternalFrame {
     
         try{
         if(jrRegistrar.isSelected()){
-      
+            
             guardar();
+            listarMesasActivas();
         } else if(jrModificar.isSelected()){
             jcActivo.setEnabled(true);
             modificar();            

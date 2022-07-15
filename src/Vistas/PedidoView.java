@@ -16,6 +16,7 @@ import Modelos.Pedido;
 import Modelos.Producto;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +57,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         armaCabeceraTablaPedidos();
         cargarProductos();
         cargarPedidosActivos();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -330,11 +331,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
@@ -367,31 +366,34 @@ public class PedidoView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTFBuscaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(jCBCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(76, 76, 76)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jcPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel12)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
+                                .addGap(53, 53, 53)
                                 .addComponent(jBBuscar)
                                 .addGap(47, 47, 47)
-                                .addComponent(jBLimpiar)))
+                                .addComponent(jBLimpiar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTFBuscaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(jCBCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(76, 76, 76)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jcPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jcMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel12))))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jdateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -519,14 +521,14 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void cargarCombo() {
-      
+
         for (Mesero m : meseros) {
             jCBAgregaMozo.addItem(m);
             CBMozo.addItem(m);
 
         }
         for (Mesa me : mesas) {
-        
+
             jCBAgregaMesa.addItem(me);
             CBMesas.addItem(me);
         }
@@ -585,7 +587,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     // BORRAR FILAS DE TABLA PEDIDO
     public void borrarFilasTablaPedido() {
 
-        int cant = modelo2.getRowCount()-1 ;
+        int cant = modelo2.getRowCount() - 1;
         for (int i = cant; i >= 0; i--) {
 
             modelo2.removeRow(i);
@@ -593,17 +595,16 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     }
 
-    
     //CARGA PRODUCTOS
     public void cargarProductos() {
-        
+
         borrarFilasTabla();
         if (jCBCategoria.getSelectedIndex() == 0) {
             for (Producto prod : productos) {
                 String categoria = "";
                 if (prod.isActivo() == true) {
                     int aux = prod.getCategoria();
-                    switch(aux){
+                    switch (aux) {
                         case 0:
                             categoria = "Comestible";
                             break;
@@ -611,7 +612,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                             categoria = "Bebida s/Alcohol";
                             break;
                         case 2:
-                            categoria ="Bebida c/Alcohol";
+                            categoria = "Bebida c/Alcohol";
                             break;
                     }
                     modelo.addRow(new Object[]{prod.getIdProducto(), prod.getNombre(), prod.getCantidad(), prod.getPrecio(), categoria});
@@ -637,31 +638,34 @@ public class PedidoView extends javax.swing.JInternalFrame {
         CBMesas.setSelectedIndex(-1);
         CBMozo.setSelectedIndex(-1);
     }
-    
+
     //CARGAR DETALLE EN TABLA PEDIDOS
     public void cargarPedidosActivos() {
-            borrarFilasTablaPedido();
-        
-            ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
-            for (DetallePedido ped : depe) {
-                if (ped.isExpirado() != true) {
-                    modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
-                }
+        borrarFilasTablaPedido();
+
+        ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
+
+        for (DetallePedido ped : depe) {
+
+            if (ped.isExpirado() != true) {
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa().getIdMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
-        
+
+        }
+
     }
 
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR MESA
     public void cargarPedidosMesa() {
         borrarFilasTablaPedido();
-        if (jcMesa.isSelected()) {
-            ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMesa((Mesa) CBMesas.getSelectedItem());
-            for (DetallePedido ped : depe) {
-                if (ped.isExpirado() != true) {
-                    modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
-                }
+        ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMesa((Mesa) CBMesas.getSelectedItem());
+        for (DetallePedido ped : depe) {
+            JOptionPane.showMessageDialog(this, ped);
+            if (!ped.isExpirado()) {
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
         }
+
     }
 
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR MESA Y MOZO
@@ -671,7 +675,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMesaMozo((Mesa) CBMesas.getSelectedItem(), (Mesero) CBMozo.getSelectedItem());
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
         }
 
@@ -684,7 +688,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMozo((Mesero) CBMozo.getSelectedItem());
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
         }
 
@@ -693,24 +697,31 @@ public class PedidoView extends javax.swing.JInternalFrame {
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR FECHA
     public void cargarPedidosPorFecha() {
         borrarFilasTablaPedido();
-
-        ArrayList<Pedido> depe = pedidoda.listaPedidosxMesa(((Mesa) CBMesas.getSelectedItem()).getIdMesa(), LocalDate.parse(jdateFecha.getDate().toString()));
-        for (Pedido ped : depe) {
-            if (ped.isActivo() != true) {
-                modelo2.addRow(new Object[]{ped.isActivo(), ped.isCobrado(), null, null, null, ped.getMesa().getIdMesa(), ped.getFecha(), ped.getHorario(), ped.getSubTotal()});
-            }
+        java.util.Date fecha = jdateFecha.getDate();
+        LocalDate fechaN = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        ArrayList<DetallePedido> depe = detalleda.listaDetallesPedidosxFecha(fechaN);
+        for (DetallePedido ped : depe) {
+            //if (ped.isActivo() != true) {
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
+            //}
         }
 
     }
 
     //CARGAR DETALLE DE PEDIDOS ACTIVOS NO EXPIRADOS POR ID
     public void cargarPedidoPorId() {
-        borrarFilasTablaPedido();
-        int id = Integer.parseInt(jtIdPedido.getText());
-        DetallePedido ped = detalleda.detallePedidoPorId(id);
+        try {
+            borrarFilasTablaPedido();
+            int id = Integer.parseInt(jtIdPedido.getText());
+            DetallePedido ped = detalleda.detallePedidoPorId(id);
 
-        if (ped.isExpirado() != true) {
-            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+            if (ped.isExpirado() != true) {
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa().getIdMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No se encontro el producto");
+        }catch(NumberFormatException x){
+            JOptionPane.showMessageDialog(this, "Debe ingresar numeros");
         }
 
     }
@@ -722,6 +733,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     //BUSCA PRODUCTOS POR NOMBRE
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        borrarFilasTabla();
         jCBCategoria.setSelectedIndex(0);
         ArrayList<Producto> prodNomb = productoda.obtenerProductosXnombre(jTFBuscaProducto.getText());
 
@@ -732,29 +744,32 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 }
             }
         } else {
-            
+
             JOptionPane.showMessageDialog(null, "No se ha encontrado un producto con ese nombre.");
         }
 
 
     }//GEN-LAST:event_jBBuscarActionPerformed
-    
+
     // AGREGAR PEDIDOS
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-         int fila = jTProductos.getSelectedRow();
+        int fila = jTProductos.getSelectedRow();
         Mesa mesa = (Mesa) jCBAgregaMesa.getSelectedItem();
         Mesero mozo = (Mesero) jCBAgregaMozo.getSelectedItem();
         Double subTotal;
-        int cant = jcbCant.getSelectedIndex()+1;
+        int cant = jcbCant.getSelectedIndex() + 1;
         Producto prod = null;
         prod = productoda.obtenerProductoXId(Integer.parseInt(jTProductos.getValueAt(fila, 0).toString()));
-                //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
+        //JOptionPane.showMessageDialog(null, "Nombre "+ prod.getNombre());
         subTotal = cant * prod.getPrecio();
         Pedido pedido = new Pedido(mesa, mozo, subTotal);
         pedidoda.cargarPedido(pedido);
-        pedido = pedidoda.obtenerPedidoXId(18);
         DetallePedido detape = new DetallePedido(pedido, prod, cant, false);
-        detalleda.agregarPedido(detape);
+        if (detalleda.agregarPedido(detape)) {
+            JOptionPane.showMessageDialog(this, "Agregado con exito");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo agregar");
+        }
         cargarPedidosActivos();
 
 
@@ -762,8 +777,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     // CANCELAR PEDIDO
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-    
-        int idDetalle = (int)jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 2);
+
+        int idDetalle = (int) jTPedidos.getValueAt(jTPedidos.getSelectedRow(), 2);
         DetallePedido detape = detalleda.detallePedidoPorId(idDetalle);
         Pedido pedi = detape.getPed();
         meseroda.cancelarPedido(pedi);
@@ -833,14 +848,14 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         for (DetallePedido ped : det) {
 
-            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
 
         }
     }//GEN-LAST:event_jbHistorialActionPerformed
 
     //BUSQUEDA DE DETALLES DE PEDIDO 
     private void jBBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarPedidoActionPerformed
-        
+
         if (jcMesa.isSelected()) {
             cargarPedidosMesa();
         } else if (jcMozo.isSelected()) {
@@ -849,7 +864,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             cargarPedidosMesaMozo();
         } else if (jcPedido.isSelected()) {
             cargarPedidoPorId();
-        } else if (jcFecha.isSelected()){
+        } else if (jcFecha.isSelected()) {
             cargarPedidosPorFecha();
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna opcion para buscar.");
