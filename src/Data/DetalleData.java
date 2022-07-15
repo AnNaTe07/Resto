@@ -240,7 +240,7 @@ public class DetalleData {
                 Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);                
-                product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
+                Producto product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
                 dped.setExpirado(rs.getBoolean("expirado"));
