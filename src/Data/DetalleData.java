@@ -40,22 +40,25 @@ public class DetalleData {
     //  AGREGAR PRODUCTOS AL PEDIDO
     public boolean agregarPedido(DetallePedido dped) {
         boolean check = true;
-        String sql = "INSERT INTO detalle (idPedido, idProducto, cantidad) VALUES = (?, ?, ?)";
+        String sql = "INSERT INTO `detalle` (`idPedido`, `idProducto`, `cantidad`, `expirado`) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dped.getPed().getIdPedido());
             ps.setInt(2, dped.getProd().getIdProducto());
             ps.setInt(3, dped.getCant());
+            ps.setBoolean(4, dped.isExpirado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dped.setIdDetalle(rs.getInt(1));
+            }else{
+                check = false;
             }            
             ps.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos");
-            check = false;
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos X" + e);
+            
         }
         return check;
     }
@@ -65,7 +68,7 @@ public class DetalleData {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
 
-        String sql = "SELECT * FROM detalle WHERE idMesa = ?";
+        String sql = "SELECT * FROM `detalle` WHERE detalle.idPedido IN (SELECT idPedido FROM `pedido` WHERE idMesa = ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -77,7 +80,7 @@ public class DetalleData {
                 Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = null;
+                Producto product = new Producto();
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -87,7 +90,7 @@ public class DetalleData {
             rs.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos");
+            JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos" + e);
 
         }
 
@@ -132,7 +135,7 @@ public class DetalleData {
 
         ArrayList<DetallePedido> allDet = new ArrayList();
 
-        String sql = "SELECT * FROM detalle WHERE idMesero = ?";
+        String sql = "SELECT * FROM `detalle` WHERE detalle.idPedido IN (SELECT idPedido FROM `pedido` WHERE idMesero = ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -141,10 +144,10 @@ public class DetalleData {
             while (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = null;
+                Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = null;
+                Producto product = new Producto();
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));
@@ -155,7 +158,7 @@ public class DetalleData {
             rs.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos");
+            JOptionPane.showMessageDialog(null, "No se pudo obtener la lista de pedidos" + e);
 
         }
 
@@ -197,10 +200,10 @@ public class DetalleData {
             if (rs.next()) {
                 DetallePedido dped = new DetallePedido();
                 dped.setIdDetalle(rs.getInt("idDetalle"));
-                Pedido ped = null;
+                Pedido ped = new Pedido();
                 ped = ppd.obtenerPedidoXId(rs.getInt("idPedido"));
                 dped.setPed(ped);
-                Producto product = null;
+                Producto product = new Producto();
                 product = prodData.obtenerProductoXId(rs.getInt("idProducto"));
                 dped.setProd(product);
                 dped.setCant(rs.getInt("cantidad"));

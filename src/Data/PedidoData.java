@@ -49,7 +49,7 @@ public class PedidoData {
             ps.close();
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudo cargar el pedido.");
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo cargar el pedido." + e);
         }
 
         return check;
@@ -58,13 +58,13 @@ public class PedidoData {
     //MOSTRAR TODOS LOS PEDIDOS ACTIVOS
     public ArrayList<Pedido> mostrarPedidos() {
         ArrayList<Pedido> allPed = new ArrayList();
-        String sql = "SELECT * FROM pedido  WHERE activo= 1";
+        String sql = "SELECT * FROM pedido  WHERE activo = 1";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedido = null;
+                Pedido pedido = new Pedido();
                 pedido.setIdPedido(rs.getInt("idPedido"));
                 Mesa ms = null;
                 Mesero mese = null;
@@ -74,15 +74,16 @@ public class PedidoData {
                 pedido.setMesa(ms);
                 pedido.setMozo(mese);
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("horario").toLocalTime());
+                pedido.setHorario(rs.getTime("hora").toLocalTime());
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
+                pedido.setSubTotal(rs.getDouble("subtotal"));
                 allPed.add(pedido);
                 
             }
             ps.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos");
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron mostrar los pedidos" + e);
 
         }
 
@@ -145,12 +146,12 @@ public class PedidoData {
                 pedido.setActivo(rs.getBoolean("activo"));
                 pedido.setCobrado(rs.getBoolean("cobrado"));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
-                pedido.setHorario(rs.getTime("horario").toLocalTime());
+                pedido.setHorario(rs.getTime("hora").toLocalTime());
                 
             }
             ps.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido.");
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudo mostrar el pedido X." + e);
 
         }
 

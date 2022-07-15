@@ -122,6 +122,13 @@ public class Pedido {
         this.horario = horario;
     }
 
+    @Override
+    public String toString() {
+        return "idPedido=" + idPedido + ", mesa=" + mesa + ", subTotal=" + subTotal + ", fecha=" + fecha + ", horario=" + horario + '}';
+    }
+    
+    
+
     
  
     
