@@ -225,7 +225,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Categoria");
 
-        jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Todos los productos>", "Platos principales", "Postres", "Bebidas sin alcohol", "Tragos" }));
+        jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Todos los productos>", "Platos principales", "Bebidas sin alcohol", "Bebidas con alcohol" }));
         jCBCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBCategoriaActionPerformed(evt);
