@@ -336,6 +336,11 @@ public class ProductosView extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(64, 44, 72));
         jLabel15.setText(" ACTUALIZAR");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpActualizarLayout = new javax.swing.GroupLayout(jpActualizar);
         jpActualizar.setLayout(jpActualizarLayout);
@@ -615,17 +620,17 @@ public class ProductosView extends javax.swing.JPanel {
     }//GEN-LAST:event_jtCantidadKeyTyped
 
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
-        char c = evt.getKeyChar();
-
-        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
-            evt.consume();
-        }
+//        char c = evt.getKeyChar();
+//
+//        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+//            evt.consume();
+//        }
     }//GEN-LAST:event_jtNombreKeyTyped
 
     private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
         char c = evt.getKeyChar();
 
-        if (c < '0' || c > '9') {
+        if ((c < '0' || c > '9')&&( c != '.')) {
             evt.consume();
         }
     }//GEN-LAST:event_jtPrecioKeyTyped
@@ -633,6 +638,10 @@ public class ProductosView extends javax.swing.JPanel {
     private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbCategoriaActionPerformed
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel15MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
