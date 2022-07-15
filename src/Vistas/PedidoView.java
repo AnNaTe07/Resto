@@ -650,7 +650,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.todoDetalleDePedidoSelect();
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+                modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
             }
         }
 
@@ -663,7 +663,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         for (DetallePedido ped : depe) {
             JOptionPane.showMessageDialog(this, ped);
             if (!ped.isExpirado()) {
-                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa().getIdMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
         }
 
@@ -676,7 +676,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.detallePedidoPorMesaMozo((Mesa) CBMesas.getSelectedItem(), (Mesero) CBMozo.getSelectedItem());
         for (DetallePedido ped : depe) {
             if (ped.isExpirado() != true) {
-                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
+                modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa().getIdMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             }
         }
 
@@ -703,7 +703,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         ArrayList<DetallePedido> depe = detalleda.listaDetallesPedidosxFecha(fechaN);
         for (DetallePedido ped : depe) {
             //if (ped.isActivo() != true) {
-            modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getDped().isActivo(), ped.getDped().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getDped().getMesa().getIdMesa(), ped.getDped().getFecha(), ped.getDped().getHorario(), ped.getDped().getSubTotal()});
             //}
         }
 
@@ -852,7 +852,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         for (DetallePedido ped : det) {
 
-            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
+            modelo2.addRow(new Object[]{ped.getPed().isActivo(), ped.getPed().isCobrado(), ped.getIdDetalle(), ped.getProd().getNombre(), ped.getCant(), ped.getPed().getMesa().getIdMesa(), ped.getPed().getFecha(), ped.getPed().getHorario(), ped.getPed().getSubTotal()});
 
         }
     }//GEN-LAST:event_jbHistorialActionPerformed
