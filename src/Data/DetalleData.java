@@ -57,7 +57,7 @@ public class DetalleData {
             ps.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos X" + e);
+            JOptionPane.showMessageDialog(null, "ERROR, no se pudieron agregar los productos Xx" + e);
             
         }
         return check;
